@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Sync Legal Page on Data Change",
+  "description": "When portfolio.ts is saved, reminds the agent to check if the legal page needs updating to reflect any new images, characters, quotes, or third-party content",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/services/portfolio.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The file src/app/services/portfolio.ts was just saved. Check if any data changed that affects the legal page (src/app/pages/legal/legal.html) — specifically: new or changed images with different sources/licenses, new characters or idols, changed quote author, new social links, or changed personal info (name, email, location). If anything changed, update the legal page to reflect it accurately. Do NOT change any data in portfolio.ts."
+  }
+}

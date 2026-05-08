@@ -1,0 +1,14 @@
+<section class="section section-alt" id="hobbies">
+  <div class="container">
+    <span class="section-label">Hobbies</span>
+    <h2 class="section-title">What I do for fun</h2>
+
+    <div class="hobbies-grid">
+      <div class="hobby-card" *ngFor="let hobby of hobbies">
+        <span class="hobby-icon" aria-hidden="true">{{ hobby.icon }}</span>
+        <h3 class="hobby-name">{{ hobby.name }}</h3>
+        <p class="hobby-desc">{{ hobby.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

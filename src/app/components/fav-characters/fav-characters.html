@@ -1,0 +1,53 @@
+<section class="section" id="characters">
+  <div class="container">
+    <span class="section-label">Characters</span>
+    <h2 class="section-title">Favourite characters in media</h2>
+
+    <div class="characters-grid">
+      <div class="char-card" *ngFor="let char of characters">
+
+        <div class="char-poster">
+          <img
+            *ngIf="char.imageUrl; else noImage"
+            [src]="char.imageUrl"
+            [alt]="char.name"
+            class="char-img"
+          />
+          <ng-template #noImage>
+            <span class="char-initial">{{ char.name.charAt(0) }}</span>
+          </ng-template>
+          <span class="char-type-badge">{{ char.mediaType }}</span>
+
+          <!-- Copyright toggle button overlaid on image bottom -->
+          <button
+            *ngIf="char.copyright"
+            class="cr-btn"
+            [class.cr-btn--open]="openCopyright === char.name"
+            (click)="toggleCopyright(char.name)"
+            [attr.aria-expanded]="openCopyright === char.name"
+            [attr.aria-label]="'Copyright info for ' + char.name"
+          >© cr</button>
+        </div>
+
+        <!-- Copyright panel slides in below poster -->
+        <div
+          class="cr-panel"
+          *ngIf="openCopyright === char.name && char.copyright"
+          role="region"
+          aria-label="Copyright details"
+        >
+          <span class="cr-panel__icon">©</span>
+          <span class="cr-panel__text">{{ char.copyright }}</span>
+          <button class="cr-panel__close" (click)="openCopyright = null" aria-label="Close">✕</button>
+        </div>
+
+        <div class="char-info">
+          <h3 class="char-name">{{ char.name }}</h3>
+          <p class="char-media">{{ char.media }}</p>
+          <p class="char-reason">{{ char.reason }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

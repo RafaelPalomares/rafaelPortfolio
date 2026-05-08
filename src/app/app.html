@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+
+<!-- Main portfolio (shown when no route matches, i.e. on "/") -->
+<ng-container *ngIf="!isLegalPage">
+  <app-nav></app-nav>
+  <app-hero></app-hero>
+  <app-about></app-about>
+  <app-skills></app-skills>
+  <app-idols></app-idols>
+  <app-hobbies></app-hobbies>
+  <app-fav-characters></app-fav-characters>
+  <app-contact></app-contact>
+</ng-container>

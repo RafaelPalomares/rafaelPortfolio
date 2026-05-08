@@ -1,0 +1,194 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.about-text {
+  p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+.about-meta {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  min-width: 100px;
+}
+
+.meta-value {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ── Flip card ─────────────────────────────────────────────────────────────── */
+.quote-flip-wrap {
+  position: sticky;
+  top: 6rem;
+  perspective: 1200px;
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible .quote-flip-inner {
+    box-shadow: 0 0 0 2px var(--accent);
+    border-radius: 16px;
+  }
+
+  &.is-flipped .quote-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.quote-flip-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/*
+ * Ghost spacer — invisible, sits in normal flow so the wrapper
+ * grows to fit whichever face is taller. Both faces are stacked
+ * on top of it via position: absolute.
+ */
+.quote-face-ghost {
+  visibility: hidden;
+  pointer-events: none;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  /* mirror the back face content (longest text) so the card is
+     always tall enough for both sides */
+  .ghost-hint   { font-size: 0.65rem; line-height: 1; }
+  .ghost-label  { font-size: 0.7rem;  line-height: 1; }
+  .ghost-reason { font-size: 0.9rem;  line-height: 1.8; }
+}
+
+/* shared face styles */
+.quote-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s;
+
+  .quote-flip-wrap:hover & {
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+}
+
+/* FRONT */
+.quote-front {
+  transform: rotateY(0deg);
+  justify-content: space-between;
+}
+
+/* BACK */
+.quote-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+/* hint label */
+.flip-hint {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+/* front content */
+.quote {
+  margin: 0;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 1.5rem;
+}
+
+.quote-author {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* back content */
+.back-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.back-reason {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .quote-flip-wrap {
+    position: static;
+  }
+}

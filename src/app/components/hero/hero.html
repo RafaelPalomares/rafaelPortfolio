@@ -1,0 +1,9 @@
+<section class="hero" *ngIf="person">
+  <div class="hero-content">
+    <p class="hero-greeting">{{ person.greeting }}</p>
+    <h1 class="hero-name">{{ person.name }}</h1>
+    <p class="hero-title">{{ person.title }}</p>
+    <button class="btn" (click)="scrollTo('about')">Get to know me</button>
+  </div>
+  <div class="hero-blob" aria-hidden="true"></div>
+</section>

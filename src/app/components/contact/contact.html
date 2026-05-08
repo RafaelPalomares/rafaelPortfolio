@@ -1,0 +1,25 @@
+<section class="section section-alt" id="contact" *ngIf="person">
+  <div class="container contact-container">
+    <span class="section-label">Contact</span>
+    <h2 class="section-title">Let's talk</h2>
+    <p class="contact-sub">
+      Whether it's a project, a question, or just a hello — my inbox is open.
+    </p>
+    <a [href]="'mailto:' + person.email" class="btn btn-large">Say hello →</a>
+
+    <div class="social-links">
+      <a
+        *ngFor="let social of socials"
+        [href]="social.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+      >{{ social.label }}</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© {{ currentYear }} {{ person?.name }}. Built with Angular.</p>
+  <a routerLink="/legal" class="legal-link">Legal Notice & Datenschutz</a>
+</footer>

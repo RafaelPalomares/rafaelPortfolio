@@ -1,0 +1,73 @@
+<section class="section" id="about" *ngIf="data">
+  <div class="container">
+    <span class="section-label">About</span>
+    <h2 class="section-title">A little about me</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p *ngFor="let para of data.person.bio">{{ para }}</p>
+
+        <div class="about-meta">
+          <div class="meta-item">
+            <span class="meta-label">Location</span>
+            <span class="meta-value">{{ data.person.location }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Email</span>
+            <span class="meta-value">
+              <a [href]="'mailto:' + data.person.email">{{ data.person.email }}</a>
+            </span>
+          </div>
+          <div class="meta-item" *ngIf="data.person.availableFor">
+            <span class="meta-label">Available for</span>
+            <span class="meta-value">{{ data.person.availableFor }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flip card -->
+      <div
+        class="quote-flip-wrap"
+        (click)="quoteFlipped = !quoteFlipped"
+        [class.is-flipped]="quoteFlipped"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="quoteFlipped = !quoteFlipped"
+        (keydown.space)="quoteFlipped = !quoteFlipped"
+        [attr.aria-pressed]="quoteFlipped"
+        aria-label="Flip quote card"
+      >
+        <div class="quote-flip-inner">
+
+          <!--
+            Ghost spacer: invisible copy of the back face (the longer side).
+            Sits in normal flow so the wrapper grows to fit all the text.
+            Both real faces are position:absolute on top of it.
+          -->
+          <div class="quote-face-ghost" aria-hidden="true">
+            <span class="ghost-hint">click to flip back</span>
+            <span class="ghost-label">Why this quote?</span>
+            <span class="ghost-reason">{{ data.quote.reason }}</span>
+          </div>
+
+          <!-- FRONT: the quote -->
+          <div class="quote-face quote-front">
+            <span class="flip-hint">click to flip</span>
+            <blockquote class="quote">
+              <p class="quote-text">"{{ data.quote.text }}"</p>
+              <cite class="quote-author">— {{ data.quote.author }}</cite>
+            </blockquote>
+          </div>
+
+          <!-- BACK: why I like it -->
+          <div class="quote-face quote-back">
+            <span class="flip-hint">click to flip back</span>
+            <p class="back-label">Why this quote?</p>
+            <p class="back-reason">{{ data.quote.reason }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
