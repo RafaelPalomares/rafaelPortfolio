@@ -55,7 +55,6 @@ const portfolioData: PortfolioData = {
       { name: 'PostgreSQL', level: 2 },
       { name: 'SQL', level: 2 },
       { name: 'OOP', level: 3 },
-      { name: 'Algorithms & Data Structures', level: 2 },
       { name: 'Arduino & Raspberry Pi', level: 2 },
     ],
   },
@@ -81,8 +80,6 @@ const portfolioData: PortfolioData = {
       { name: 'REST API Design', level: 3 },
       { name: 'Database Design', level: 2 },
       { name: 'PostgreSQL Integration', level: 2 },
-      { name: 'CRUD Operations', level: 3 },
-      { name: 'Authentication (JWT Basics)', level: 2 },
       { name: 'API Security Basics', level: 2 },
     ],
   },
@@ -91,24 +88,12 @@ const portfolioData: PortfolioData = {
     skills: [
       { name: 'Git', level: 3 },
       { name: 'GitHub', level: 3 },
-      { name: 'VS Code', level: 4 },
+      { name: 'VS Code', level: 4},
       { name: 'npm', level: 3 },
       { name: 'Debugging', level: 3 },
       { name: 'Agile Basics', level: 2 },
     ],
-  },
-  {
-    category: 'Sports & Leadership',
-    skills: [
-      { name: 'Volleyball', level: 4 },
-      { name: 'Setter Coordination', level: 4 },
-      { name: 'Team Communication', level: 4 },
-      { name: 'Strategic Thinking', level: 4 },
-      { name: 'Game Sense', level: 4 },
-      { name: 'Leadership in Team Sports', level: 3 },
-      { name: 'Fitness & Conditioning', level: 4 },
-    ],
-  },
+  }
 ],
 
   languages: [
@@ -142,7 +127,7 @@ const portfolioData: PortfolioData = {
     {
       icon: '🎵',
       name: 'Music',
-      description: 'Music is something I listen to every day. I especially enjoy 70s and 80s music because of the atmosphere, emotion, and timeless feeling those songs have.',
+      description: 'I listen to almost everything, from 50s jazz to modern trap, but I have a few special favorites that define my vibe—check out the music section for a deeper look into my playlist.',
     },
     {
       icon: '⚽',
