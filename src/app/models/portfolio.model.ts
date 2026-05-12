@@ -41,6 +41,22 @@ export interface FavCharacter {
   copyright?: string;
 }
 
+export interface MusicIdol {
+  name: string;
+  genre: string;
+  reason: string;
+  imageUrl?: string;
+  copyright?: string;
+  /** Featured song to show a snippet for */
+  featuredSong?: {
+    title: string;
+    /** Direct URL to an audio file (.mp3 / .ogg) OR a SoundCloud/YouTube embed src */
+    audioUrl: string;
+    /** 'audio' = native <audio> player, 'embed' = iframe (SoundCloud, YouTube, Spotify) */
+    type: 'audio' | 'embed';
+  };
+}
+
 export interface SocialLink {
   label: string;
   url: string;
@@ -58,5 +74,6 @@ export interface PortfolioData {
   idols: Idol[];
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
+  musicIdols: MusicIdol[];
   socials: SocialLink[];
 }

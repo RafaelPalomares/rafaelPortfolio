@@ -125,7 +125,7 @@ const portfolioData: PortfolioData = {
       reason: 'Simeon Nikolov inspires me because of his calm confidence, creativity, and high-level volleyball IQ. As a setter, I admire how he controls the game, creates opportunities for his team, and stays composed in important moments.',
       imageUrl: 'https://volleybox.net/media/upload/players/1775922422wy4kN.png',
       copyright: '© Volleybox.net · All rights reserved',
-    },
+    }
   ],
 
   favCharacters: [
@@ -178,6 +178,86 @@ const portfolioData: PortfolioData = {
       imageUrl: 'https://pbs.twimg.com/profile_images/1236314610862624772/PJg5OGA2_400x400.jpg',
       copyright: '© Nintendo / Game Freak / Creatures Inc. · Image via X',
     },
+  ],
+
+  musicIdols: [
+    
+    
+  {
+    name: 'Elvis Presley',
+    genre: 'Rock and Roll',
+    reason: 'Elvis Presley means something to me because he basically shaped modern music. His stage presence, voice, and energy made him a legend who changed how performers express themselves.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg/960px-Elvis_Presley_promoting_Jailhouse_Rock.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
+    copyright: '© Public Domain · Wikimedia Commons ',
+      featuredSong: {
+         title: 'The Wonder of You',
+        audioUrl: 'https://cs1.mp3.pm/download/81522289/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovYzFZTnJqNFl2Mk5KL0hkWFZjR21SSlN5eVVadENKZnZ3dTQvYUJ2a281MGxvRnh3RzErbTZoQ0p4ZDBnVWJCWVF2R0M1SlltaEVrenZWeUJQdUdzSGU/Elvis_Presley_with_the_Royal_Philharmonic_Orchestra_-_The_Wonder_of_You_(mp3.pm).mp3',
+         type: 'audio',
+      
+       },
+  },
+  {
+    name: 'Frank Sinatra',
+    genre: 'Jazz / Traditional Pop',
+    reason: 'Frank Sinatra means something to me because of his timeless voice, confidence, and smooth control. He represents elegance, discipline, and performing under pressure with total calm.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/73/Frank_Sinatra_laughing_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail_unscaled&_=20210430012858',
+    copyright: '© Public Domain · Wikimedia Commons',
+      featuredSong: {
+         title: 'Something Stupid',
+         audioUrl: 'https://www.jonkutner.com/wp-content/uploads/2013/12/stupid.mp3?_=1',
+          type: 'embed',
+        
+      
+       },
+  },
+  {
+    name: 'Queen',
+    genre: 'Rock',
+    reason: 'Queen means something to me because of their creativity, versatility, and powerful performances. They showed how music can be dramatic, emotional, and unforgettable at the same time.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg/960px-Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
+    copyright: '© Public Domain · Wikimedia Commons',
+      featuredSong: {
+         title: 'Bohemian Rhapsody',
+      audioUrl: 'https://cs1.mp3.pm/download/228582536/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovY3dFWkJJYTFQeFJSYnNwOENrTk5xZHV3YSs1Z1R1TUtGMnJnY1BPY283VUlRYk1Fb2pmR2JaQ0Z3bUwwM253UUNENHpWeDMyZFBKSHU5N0Z4SVVEaXY/Queen_-_Bohemian_Rhapsody_(mp3.pm).mp3',
+         type: 'audio',
+       },
+  },
+  {
+    name: 'The Smiths',
+    genre: 'Indie Rock',
+    reason: 'The Smiths mean something to me because of their emotional depth and raw honesty. Their music captures feelings in a very real, unfiltered way that hits differently.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/The_Smiths_%281984_Sire_publicity_photo%29_002.jpg/960px-The_Smiths_%281984_Sire_publicity_photo%29_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
+    copyright: '© Public Domain · Wikimedia Commons',
+      featuredSong: {
+         title: 'There Is a Light That Never Goes Out',
+      audioUrl: 'https://cs1.mp3.pm/download/127579665/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovZHNnYmM5dG1SblRHSEJTUWtjWG5CdzJ5VGt3STViV0VzbWM1ZE4wTkg4VG9TTFRLUTdOMHczR0JWeGttY3JmSGU5SFRmaGZZbUlOOFZ1aWZvM2JzdTg/The_Smiths_-_There_Is_A_Light_That_Never_Goes_Out_(mp3.pm).mp3',
+         type: 'audio',
+       },
+  },
+  {
+    name: 'Sabrina Carpenter',
+    genre: 'Pop',
+    reason: 'Sabrina Carpenter means something to me because of her modern pop sound, confidence, and personality in her music. She combines catchy production with strong storytelling.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Sabrina_Carpenter_-_O2_Arena_2025_-_062.jpg/960px-Sabrina_Carpenter_-_O2_Arena_2025_-_062.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
+    copyright: '© By Raph_PH, CC BY 2.0',
+      featuredSong: {
+        title: 'Espresso',
+        audioUrl: 'https://cs1.mp3.pm/download/237289167/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovY1ZkNVVsTDRMdnptNXlUVjQ1YmNOVFZGOG9vWnhtOVBoM1EwRVNVdTFHR0RacmhVSHA3RTRNdnJDV0lTbGZvNGlnMUFkS2xvZ1VpTGNLUFV1UjZIVHI/Sabrina_Carpenter_-_Espresso_(mp3.pm).mp3',
+         type: 'audio',
+       },
+  },
+  {
+    name: 'Laufey',
+    genre: 'Jazz Pop / Indie',
+    reason: 'Laufey means something to me because she blends old jazz vibes with modern emotion. Her music feels soft, artistic, and deeply expressive in a unique way.',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Laufey_2023.jpg',
+    copyright: '© By Wikimedia Commons contributors',
+     featuredSong: {
+         title: 'Song Title',
+      audioUrl: 'https://example.com/song.mp3',
+         type: 'audio',
+     },
+  },
   ],
 
   socials: [

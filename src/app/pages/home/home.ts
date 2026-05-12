@@ -5,6 +5,7 @@ import { AboutComponent } from '../../components/about/about';
 import { SkillsComponent } from '../../components/skills/skills';
 import { IdolsComponent } from '../../components/idols/idols';
 import { HobbiesComponent } from '../../components/hobbies/hobbies';
+import { MusicIdolsComponent } from '../../components/music-idols/music-idols';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { ContactComponent } from '../../components/contact/contact';
 
@@ -18,6 +19,7 @@ import { ContactComponent } from '../../components/contact/contact';
     SkillsComponent,
     IdolsComponent,
     HobbiesComponent,
+    MusicIdolsComponent,
     FavCharactersComponent,
     ContactComponent,
   ],
