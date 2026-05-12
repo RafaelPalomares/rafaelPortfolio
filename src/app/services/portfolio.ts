@@ -181,83 +181,109 @@ const portfolioData: PortfolioData = {
   ],
 
   musicIdols: [
-    
-    
   {
     name: 'Elvis Presley',
     genre: 'Rock and Roll',
     reason: 'Elvis Presley means something to me because he basically shaped modern music. His stage presence, voice, and energy made him a legend who changed how performers express themselves.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg/960px-Elvis_Presley_promoting_Jailhouse_Rock.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
-    copyright: '© Public Domain · Wikimedia Commons ',
-      featuredSong: {
-         title: 'The Wonder of You',
-        audioUrl: 'https://cs1.mp3.pm/download/81522289/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovYzFZTnJqNFl2Mk5KL0hkWFZjR21SSlN5eVVadENKZnZ3dTQvYUJ2a281MGxvRnh3RzErbTZoQ0p4ZDBnVWJCWVF2R0M1SlltaEVrenZWeUJQdUdzSGU/Elvis_Presley_with_the_Royal_Philharmonic_Orchestra_-_The_Wonder_of_You_(mp3.pm).mp3',
-         type: 'audio',
-      
-       },
+    imageUrl: 'https://lh3.googleusercontent.com/XuiIxgO8ml5EN_kL-Z6oOLZpPwUyQQUjN5i70lrvsJ0BxRokj6R7adxcY5HQw1g1tS7tocvM1JqzP_H8=w1920-h800-p-l90-rjs',
+    copyright: '© Elvis Presley Enterprises / RCA Records · Image via YouTube Music',
+    featuredSong: {
+      title: 'The Wonder of You',
+      audioUrl: 'https://open.spotify.com/embed/track/0LfJkvPNCNEMLpZJgDQiV1?utm_source=generator',
+      type: 'embed',
+    },
   },
   {
     name: 'Frank Sinatra',
     genre: 'Jazz / Traditional Pop',
     reason: 'Frank Sinatra means something to me because of his timeless voice, confidence, and smooth control. He represents elegance, discipline, and performing under pressure with total calm.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/73/Frank_Sinatra_laughing_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail_unscaled&_=20210430012858',
-    copyright: '© Public Domain · Wikimedia Commons',
-      featuredSong: {
-         title: 'Something Stupid',
-         audioUrl: 'https://www.jonkutner.com/wp-content/uploads/2013/12/stupid.mp3?_=1',
-          type: 'embed',
-        
-      
-       },
+    imageUrl: 'https://lh3.googleusercontent.com/Rqn8EFeRW9WN7Hv3BZSSA1PrKa8EvcKjk5TbfChs-dKhJPoiuzvk54-u8Xd0ScyaFtpTxYCeHZrliv4=w1920-h800-p-l90-rj',
+    copyright: '© Frank Sinatra Enterprises / Reprise Records · Image via YouTube Music',
+    featuredSong: {
+      title: 'Something Stupid',
+      audioUrl: 'https://open.spotify.com/embed/track/4feXcsElKIVsGwkbnTHAfV?utm_source=generator',
+      type: 'embed',
+    },
   },
   {
     name: 'Queen',
     genre: 'Rock',
     reason: 'Queen means something to me because of their creativity, versatility, and powerful performances. They showed how music can be dramatic, emotional, and unforgettable at the same time.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg/960px-Queen_A_Night_At_The_Opera_%281975_Elektra_publicity_photo_02%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
-    copyright: '© Public Domain · Wikimedia Commons',
-      featuredSong: {
-         title: 'Bohemian Rhapsody',
-      audioUrl: 'https://cs1.mp3.pm/download/228582536/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovY3dFWkJJYTFQeFJSYnNwOENrTk5xZHV3YSs1Z1R1TUtGMnJnY1BPY283VUlRYk1Fb2pmR2JaQ0Z3bUwwM253UUNENHpWeDMyZFBKSHU5N0Z4SVVEaXY/Queen_-_Bohemian_Rhapsody_(mp3.pm).mp3',
-         type: 'audio',
-       },
+    imageUrl: 'https://yt3.googleusercontent.com/_Qx50zW4-diO8SuAKhaccaNLyTvObgE-TQv1jYS4M9Kma6llb3s-IHpBBvuZAkPh88lHvXTQGaWS7aE=w1920-h800-p-l90-rj',
+    copyright: '© Queen Productions / Hollywood Records · Image via YouTube Music',
+    featuredSong: {
+      title: 'Bohemian Rhapsody',
+      audioUrl: 'https://open.spotify.com/embed/track/3z8h0TU7ReDPLIbEnYhWZb?utm_source=generator',
+      type: 'embed',
+    },
   },
   {
     name: 'The Smiths',
     genre: 'Indie Rock',
     reason: 'The Smiths mean something to me because of their emotional depth and raw honesty. Their music captures feelings in a very real, unfiltered way that hits differently.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/The_Smiths_%281984_Sire_publicity_photo%29_002.jpg/960px-The_Smiths_%281984_Sire_publicity_photo%29_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
-    copyright: '© Public Domain · Wikimedia Commons',
-      featuredSong: {
-         title: 'There Is a Light That Never Goes Out',
-      audioUrl: 'https://cs1.mp3.pm/download/127579665/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovZHNnYmM5dG1SblRHSEJTUWtjWG5CdzJ5VGt3STViV0VzbWM1ZE4wTkg4VG9TTFRLUTdOMHczR0JWeGttY3JmSGU5SFRmaGZZbUlOOFZ1aWZvM2JzdTg/The_Smiths_-_There_Is_A_Light_That_Never_Goes_Out_(mp3.pm).mp3',
-         type: 'audio',
-       },
+    imageUrl: 'https://lh3.googleusercontent.com/QM50T3vF6Hvr3coPEdwB7OImuH6f2ktU3-X6LgjpCnrSukGj9fmDkY84rOcR3Ye8OWToWwGWA9QaE5Q=w1920-h800-p-l90-rj',
+    copyright: '© The Smiths / Rough Trade Records · Image via YouTube Music',
+    featuredSong: {
+      title: 'There Is a Light That Never Goes Out',
+      audioUrl: 'https://open.spotify.com/embed/track/0WQiDwKJclirSYG9v5tayI?utm_source=generator',
+      type: 'embed',
+    },
   },
   {
     name: 'Sabrina Carpenter',
     genre: 'Pop',
     reason: 'Sabrina Carpenter means something to me because of her modern pop sound, confidence, and personality in her music. She combines catchy production with strong storytelling.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Sabrina_Carpenter_-_O2_Arena_2025_-_062.jpg/960px-Sabrina_Carpenter_-_O2_Arena_2025_-_062.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
-    copyright: '© By Raph_PH, CC BY 2.0',
-      featuredSong: {
-        title: 'Espresso',
-        audioUrl: 'https://cs1.mp3.pm/download/237289167/dThoa3I1cmJSZC8wdkx6RVJNVW9QbUJDTDRSYzd6ZysyTHRwRklnSFovY1ZkNVVsTDRMdnptNXlUVjQ1YmNOVFZGOG9vWnhtOVBoM1EwRVNVdTFHR0RacmhVSHA3RTRNdnJDV0lTbGZvNGlnMUFkS2xvZ1VpTGNLUFV1UjZIVHI/Sabrina_Carpenter_-_Espresso_(mp3.pm).mp3',
-         type: 'audio',
-       },
+    imageUrl: 'https://lh3.googleusercontent.com/FMh1mOI0ufvUCAkbUM6aUmU5WK7O5PnndyyXKP1-DCEip20SQz5eeYn3lZ29p-ASb-19ZfBVc_NKe5Ko=w1920-h800-p-l90-rj',
+    copyright: '© Sabrina Carpenter / Island Records · Image via YouTube Music',
+    featuredSong: {
+      title: 'Espresso',
+      audioUrl: 'https://open.spotify.com/embed/track/2qSkIjg1o9h3YT9RAgYN75?utm_source=generator',
+      type: 'embed',
+    },
   },
   {
     name: 'Laufey',
     genre: 'Jazz Pop / Indie',
     reason: 'Laufey means something to me because she blends old jazz vibes with modern emotion. Her music feels soft, artistic, and deeply expressive in a unique way.',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Laufey_2023.jpg',
-    copyright: '© By Wikimedia Commons contributors',
-     featuredSong: {
-         title: 'Song Title',
-      audioUrl: 'https://example.com/song.mp3',
-         type: 'audio',
-     },
+    imageUrl: 'https://lh3.googleusercontent.com/1UeTp2cTje797NGcJ6IOXs6BjAtf3kBkoD4P7BLN6d-arHigrzlFL8UpF3YbmbkQwXYwWtHuiZczEvGG=w1920-h800-p-l90-rj',
+    copyright: '© Laufey / AWAL · Image via YouTube Music',
+    featuredSong: {
+      title: 'From the Start',
+      audioUrl: 'https://open.spotify.com/embed/track/43iIQbw5hx986dUEZbr3eN?utm_source=generator',
+      type: 'embed',
+    },
   },
+  ],
+
+  projects: [
+    {
+      number: '01',
+      name: 'This Portfolio',
+      tagline: 'The site you\'re looking at right now.',
+      description: 'A personal portfolio built with Angular 21, designed from scratch with a dark aesthetic, smooth scroll navigation, and modular components. Every section reflects something real about me.',
+      stack: ['Angular', 'TypeScript', 'SCSS'],
+      status: 'live',
+      liveUrl: 'https://your-portfolio-url.com',
+      repoUrl: 'https://github.com/rafaelpalomares/portfolio',
+    },
+    {
+      number: '02',
+      name: 'Project Name',
+      tagline: 'Short one-liner about what this does.',
+      description: 'Describe what you built, why you built it, and what problem it solves. Keep it honest and direct — people can tell when it\'s filler.',
+      stack: ['Java', 'PostgreSQL', 'Spring Boot'],
+      status: 'wip',
+      repoUrl: 'https://github.com/rafaelpalomares/project',
+    },
+    {
+      number: '03',
+      name: 'Another Project',
+      tagline: 'Another thing you made that you\'re proud of.',
+      description: 'What did you learn building this? What was the hardest part? That\'s the stuff worth writing about.',
+      stack: ['JavaScript', 'HTML', 'CSS'],
+      status: 'archived',
+      repoUrl: 'https://github.com/rafaelpalomares/another-project',
+    },
   ],
 
   socials: [

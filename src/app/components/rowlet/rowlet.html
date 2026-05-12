@@ -1,0 +1,362 @@
+<section class="section section-alt" id="rowlet">
+  <div class="container">
+    <span class="section-label">Favourite Pokémon</span>
+    <h2 class="section-title">My guy, Rowlet</h2>
+
+    <!-- Loading -->
+    <div class="rowlet-loading" *ngIf="loading()">
+      <div class="pokeball-spinner" aria-label="Loading Rowlet data...">
+        <div class="pokeball-top"></div>
+        <div class="pokeball-middle"></div>
+        <div class="pokeball-bottom"></div>
+      </div>
+      <p>Fetching from PokéAPI…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="rowlet-error" *ngIf="error()">
+      <span aria-hidden="true">⚠️</span>
+      <p>Couldn't reach PokéAPI. Check your connection.</p>
+    </div>
+
+    <!-- ── Main card ─────────────────────────────────────────────────────── -->
+    <div class="rowlet-wrap" *ngIf="rowlet() as r">
+
+      <!-- Hero row: artwork + identity -->
+      <div class="rowlet-hero">
+
+        <!-- Artwork -->
+        <div class="rowlet-artwork-wrap">
+          <div class="rowlet-glow" [class.shiny-glow]="showShiny()"></div>
+          <img
+            class="rowlet-artwork"
+            [src]="currentArtwork()"
+            [class.shiny]="showShiny()"
+            [alt]="showShiny() ? 'Shiny Rowlet official artwork' : 'Rowlet official artwork'"
+          />
+          <div class="artwork-controls">
+            <span class="rowlet-id">#{{ r.id | number:'3.0-0' }}</span>
+            <button
+              class="shiny-toggle"
+              (click)="toggleShiny()"
+              [class.active]="showShiny()"
+              [attr.aria-pressed]="showShiny()"
+              aria-label="Toggle shiny form"
+            >
+              <span class="shiny-star" aria-hidden="true">✦</span>
+              {{ showShiny() ? 'Shiny' : 'Normal' }}
+            </button>
+            <button
+              class="cry-btn"
+              (click)="playCry(r.cryUrl)"
+              [class.playing]="playingCry()"
+              [disabled]="playingCry()"
+              aria-label="Play Rowlet's cry"
+            >
+              <span aria-hidden="true">{{ playingCry() ? '🔊' : '🔈' }}</span>
+              {{ playingCry() ? 'Playing…' : 'Play Cry' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Identity -->
+        <div class="rowlet-identity">
+          <div class="rowlet-header">
+            <h3 class="rowlet-name">{{ r.name }}</h3>
+            <span class="rowlet-genus">{{ r.genus }}</span>
+            <div class="rowlet-types">
+              <span class="type-badge" *ngFor="let type of r.types" [attr.data-type]="type">{{ type }}</span>
+            </div>
+          </div>
+
+          <!-- Flavor text carousel -->
+          <div class="flavor-carousel">
+            <div class="flavor-game-tag">{{ r.flavorTexts[activeFlavorIdx()].game }}</div>
+            <blockquote class="rowlet-flavor">{{ r.flavorTexts[activeFlavorIdx()].text }}</blockquote>
+            <div class="flavor-nav">
+              <button class="flavor-arrow" (click)="prevFlavor()" aria-label="Previous Pokédex entry">‹</button>
+              <span class="flavor-dots">
+                <span
+                  class="flavor-dot"
+                  *ngFor="let f of r.flavorTexts; let i = index"
+                  [class.active]="i === activeFlavorIdx()"
+                ></span>
+              </span>
+              <button class="flavor-arrow" (click)="nextFlavor()" aria-label="Next Pokédex entry">›</button>
+            </div>
+          </div>
+
+          <!-- Quick stats grid -->
+          <div class="quick-grid">
+            <div class="quick-cell">
+              <span class="qc-label">Height</span>
+              <span class="qc-value">{{ r.height }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Weight</span>
+              <span class="qc-value">{{ r.weight }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Base EXP</span>
+              <span class="qc-value">{{ r.baseExp }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Catch Rate</span>
+              <span class="qc-value">{{ r.captureRate }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Happiness</span>
+              <span class="qc-value">{{ r.baseHappiness }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Generation</span>
+              <span class="qc-value">{{ r.generation }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Growth Rate</span>
+              <span class="qc-value">{{ capitalize(r.growthRate) }}</span>
+            </div>
+            <div class="quick-cell">
+              <span class="qc-label">Shape</span>
+              <span class="qc-value">{{ capitalize(r.shape) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Tabs ──────────────────────────────────────────────────────── -->
+      <div class="tabs">
+        <button class="tab-btn" [class.active]="activeTab() === 'overview'" (click)="setTab('overview')">Overview</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'moves'" (click)="setTab('moves')">Moves</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'evolution'" (click)="setTab('evolution')">Evolution</button>
+        <button class="tab-btn" [class.active]="activeTab() === 'sprites'" (click)="setTab('sprites')">Sprites</button>
+      </div>
+
+      <!-- ── Tab: Overview ─────────────────────────────────────────────── -->
+      <div class="tab-panel" *ngIf="activeTab() === 'overview'">
+        <div class="overview-grid">
+
+          <!-- Base stats -->
+          <div class="panel">
+            <span class="panel-label">Base Stats</span>
+            <div class="stat-row" *ngFor="let stat of r.stats">
+              <span class="stat-name">{{ stat.name }}</span>
+              <span class="stat-value">{{ stat.value }}</span>
+              <div class="stat-bar-track">
+                <div class="stat-bar-fill" [style.width.%]="statPercent(stat.value, stat.max)"></div>
+              </div>
+            </div>
+            <div class="stat-total">
+              <span class="stat-name">TOTAL</span>
+              <span class="stat-value total-value">{{ r.totalStats }}</span>
+            </div>
+          </div>
+
+          <!-- Abilities -->
+          <div class="panel">
+            <span class="panel-label">Abilities</span>
+            <div class="ability-card" *ngFor="let ability of r.abilities" [class.hidden-ability]="ability.hidden">
+              <div class="ability-header">
+                <span class="ability-name">{{ capitalize(ability.name) }}</span>
+                <span class="hidden-tag" *ngIf="ability.hidden">Hidden</span>
+              </div>
+              <p class="ability-effect">{{ ability.effect }}</p>
+            </div>
+          </div>
+
+          <!-- Training & Breeding -->
+          <div class="panel">
+            <span class="panel-label">Training</span>
+            <div class="info-row">
+              <span class="ir-label">EV Yield</span>
+              <span class="ir-value">
+                <span *ngFor="let ev of r.evYield">+{{ ev.value }} {{ ev.stat }}</span>
+              </span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Catch Rate</span>
+              <span class="ir-value">{{ r.captureRate }} <span class="ir-sub">({{ (r.captureRate / 255 * 100).toFixed(1) }}%)</span></span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Base Happiness</span>
+              <span class="ir-value">{{ r.baseHappiness }}</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Base EXP</span>
+              <span class="ir-value">{{ r.baseExp }}</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Growth Rate</span>
+              <span class="ir-value">{{ capitalize(r.growthRate) }}</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <span class="panel-label">Breeding</span>
+            <div class="info-row">
+              <span class="ir-label">Egg Groups</span>
+              <span class="ir-value">{{ r.eggGroups.map(capitalize).join(', ') }}</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Gender</span>
+              <span class="ir-value" *ngIf="r.genderRatio">
+                <span class="gender-male">♂ {{ r.genderRatio.male }}%</span>
+                &nbsp;
+                <span class="gender-female">♀ {{ r.genderRatio.female }}%</span>
+              </span>
+              <span class="ir-value" *ngIf="!r.genderRatio">Genderless</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Hatch Steps</span>
+              <span class="ir-value">~{{ r.hatchSteps | number }}</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Color</span>
+              <span class="ir-value">{{ capitalize(r.color) }}</span>
+            </div>
+            <div class="info-row">
+              <span class="ir-label">Shape</span>
+              <span class="ir-value">{{ capitalize(r.shape) }}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Tab: Moves ────────────────────────────────────────────────── -->
+      <div class="tab-panel" *ngIf="activeTab() === 'moves'">
+        <div class="move-tabs">
+          <button class="move-tab-btn" [class.active]="activeMoveTab() === 'level-up'" (click)="setMoveTab('level-up')">
+            Level Up <span class="move-count">{{ r.levelUpMoves.length }}</span>
+          </button>
+          <button class="move-tab-btn" [class.active]="activeMoveTab() === 'machine'" (click)="setMoveTab('machine')">
+            TM / HM <span class="move-count">{{ r.machineMoves.length }}</span>
+          </button>
+          <button class="move-tab-btn" [class.active]="activeMoveTab() === 'egg'" (click)="setMoveTab('egg')">
+            Egg <span class="move-count">{{ r.eggMoves.length }}</span>
+          </button>
+          <button class="move-tab-btn" [class.active]="activeMoveTab() === 'tutor'" (click)="setMoveTab('tutor')">
+            Tutor <span class="move-count">{{ r.tutorMoves.length }}</span>
+          </button>
+        </div>
+
+        <!-- Level-up moves table -->
+        <div class="moves-table" *ngIf="activeMoveTab() === 'level-up'">
+          <div class="moves-table-head">
+            <span>Lv</span><span>Move</span><span>Game</span>
+          </div>
+          <div class="moves-table-row" *ngFor="let move of r.levelUpMoves">
+            <span class="move-level">{{ move.level === 0 ? '—' : move.level }}</span>
+            <span class="move-name">{{ capitalize(move.name) }}</span>
+            <span class="move-game">{{ move.game === 'sun-moon' ? 'Sun / Moon' : 'Sw / Sh' }}</span>
+          </div>
+        </div>
+
+        <!-- Flat move lists -->
+        <div class="moves-flat" *ngIf="activeMoveTab() !== 'level-up'">
+          <ng-container *ngIf="activeMoveTab() === 'machine'">
+            <span class="move-pill" *ngFor="let m of r.machineMoves">{{ capitalize(m) }}</span>
+          </ng-container>
+          <ng-container *ngIf="activeMoveTab() === 'egg'">
+            <span class="move-pill" *ngFor="let m of r.eggMoves">{{ capitalize(m) }}</span>
+          </ng-container>
+          <ng-container *ngIf="activeMoveTab() === 'tutor'">
+            <span class="move-pill" *ngFor="let m of r.tutorMoves">{{ capitalize(m) }}</span>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- ── Tab: Evolution ────────────────────────────────────────────── -->
+      <div class="tab-panel" *ngIf="activeTab() === 'evolution'">
+        <div class="evo-chain">
+          <ng-container *ngFor="let step of r.evolutionChain; let i = index">
+            <!-- Arrow between steps -->
+            <div class="evo-arrow" *ngIf="i > 0">
+              <span class="evo-arrow-icon" aria-hidden="true">→</span>
+              <span class="evo-trigger" *ngIf="step.level">Lv. {{ step.level }}</span>
+              <span class="evo-trigger" *ngIf="step.item">{{ capitalize(step.item) }}</span>
+              <span class="evo-trigger" *ngIf="!step.level && !step.item">{{ capitalize(step.trigger) }}</span>
+            </div>
+            <!-- Pokémon card -->
+            <div class="evo-card" [class.current]="step.name === 'rowlet'">
+              <img [src]="step.artworkUrl" [alt]="step.name" class="evo-img" />
+              <span class="evo-id">#{{ step.id | number:'3.0-0' }}</span>
+              <span class="evo-name">{{ capitalize(step.name) }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- ── Tab: Sprites ──────────────────────────────────────────────── -->
+      <div class="tab-panel" *ngIf="activeTab() === 'sprites'">
+        <div class="sprites-grid">
+
+          <div class="sprite-card sprite-card--large">
+            <span class="sprite-label">Official Artwork</span>
+            <img [src]="r.artworkUrl" alt="Rowlet official artwork" />
+          </div>
+          <div class="sprite-card sprite-card--large">
+            <span class="sprite-label">Official Artwork — Shiny</span>
+            <img [src]="r.shinyUrl" alt="Shiny Rowlet official artwork" />
+          </div>
+
+          <div class="sprite-card">
+            <span class="sprite-label">Showdown (animated)</span>
+            <img [src]="r.showdownGif" alt="Rowlet animated battle sprite" />
+          </div>
+          <div class="sprite-card">
+            <span class="sprite-label">Showdown Shiny</span>
+            <img [src]="r.showdownShinyGif" alt="Shiny Rowlet animated battle sprite" />
+          </div>
+          <div class="sprite-card">
+            <span class="sprite-label">Showdown Back</span>
+            <img [src]="r.showdownBackGif" alt="Rowlet back animated sprite" />
+          </div>
+
+          <div class="sprite-card">
+            <span class="sprite-label">Pokémon HOME</span>
+            <img [src]="r.homeUrl" alt="Rowlet HOME sprite" />
+          </div>
+          <div class="sprite-card">
+            <span class="sprite-label">HOME — Shiny</span>
+            <img [src]="r.homeShinyUrl" alt="Shiny Rowlet HOME sprite" />
+          </div>
+
+          <div class="sprite-card">
+            <span class="sprite-label">Dream World</span>
+            <img [src]="r.dreamWorldUrl" alt="Rowlet Dream World sprite" />
+          </div>
+
+          <div class="sprite-card sprite-card--small">
+            <span class="sprite-label">Front</span>
+            <img [src]="r.spriteDefault" alt="Rowlet front sprite" />
+          </div>
+          <div class="sprite-card sprite-card--small">
+            <span class="sprite-label">Front Shiny</span>
+            <img [src]="r.spriteShiny" alt="Shiny Rowlet front sprite" />
+          </div>
+          <div class="sprite-card sprite-card--small">
+            <span class="sprite-label">Back</span>
+            <img [src]="r.spriteBack" alt="Rowlet back sprite" />
+          </div>
+          <div class="sprite-card sprite-card--small">
+            <span class="sprite-label">Back Shiny</span>
+            <img [src]="r.spriteBackShiny" alt="Shiny Rowlet back sprite" />
+          </div>
+
+          <div class="sprite-card sprite-card--small">
+            <span class="sprite-label">Icon</span>
+            <img [src]="r.iconUrl" alt="Rowlet icon" />
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /rowlet-wrap -->
+
+    <p class="poke-credit">
+      Data from <a href="https://pokeapi.co" target="_blank" rel="noopener noreferrer">PokéAPI</a>.
+      Artwork © Nintendo / Game Freak / Creatures Inc.
+    </p>
+  </div>
+</section>

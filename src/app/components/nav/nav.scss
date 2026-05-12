@@ -48,12 +48,79 @@
   }
 }
 
-@media (max-width: 600px) {
+// Hamburger — hidden on desktop
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-muted);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  // Animate to X when open
+  &.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+  &.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 768px) {
   .nav {
     padding: 1.25rem 1.5rem;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .nav-links {
-    gap: 1.5rem;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    &.open {
+      display: flex;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      text-align: left;
+      font-size: 0.95rem;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+    }
   }
 }

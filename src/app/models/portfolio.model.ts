@@ -62,6 +62,25 @@ export interface SocialLink {
   url: string;
 }
 
+export interface Project {
+  /** Short number label, e.g. "01" */
+  number: string;
+  name: string;
+  /** One-liner shown on the card */
+  tagline: string;
+  description: string;
+  /** Tech stack badges */
+  stack: string[];
+  /** 'live' | 'wip' | 'archived' */
+  status: 'live' | 'wip' | 'archived';
+  /** Optional link to live site */
+  liveUrl?: string;
+  /** Optional link to source code */
+  repoUrl?: string;
+  /** Optional cover image URL */
+  imageUrl?: string;
+}
+
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -75,5 +94,6 @@ export interface PortfolioData {
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
   musicIdols: MusicIdol[];
+  projects: Project[];
   socials: SocialLink[];
 }

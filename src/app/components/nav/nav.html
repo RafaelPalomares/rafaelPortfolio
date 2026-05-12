@@ -1,12 +1,21 @@
 <nav class="nav" [class.scrolled]="scrolled()">
   <span class="nav-logo">YN</span>
-  <ul class="nav-links">
+
+  <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" [class.open]="menuOpen()">
     <li><button (click)="scrollTo('about')">About</button></li>
     <li><button (click)="scrollTo('skills')">Skills</button></li>
+    <li><button (click)="scrollTo('projects')">Projects</button></li>
     <li><button (click)="scrollTo('idols')">Idols</button></li>
     <li><button (click)="scrollTo('hobbies')">Hobbies</button></li>
     <li><button (click)="scrollTo('music')">Music</button></li>
     <li><button (click)="scrollTo('characters')">Characters</button></li>
+    <li><button (click)="scrollTo('rowlet')">Rowlet</button></li>
     <li><button (click)="scrollTo('contact')">Contact</button></li>
   </ul>
 </nav>

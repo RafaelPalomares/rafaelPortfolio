@@ -10,13 +10,19 @@ import { CommonModule } from '@angular/common';
 })
 export class NavComponent {
   scrolled = signal(false);
+  menuOpen = signal(false);
 
   @HostListener('window:scroll')
   onScroll() {
     this.scrolled.set(window.scrollY > 40);
   }
 
+  toggleMenu() {
+    this.menuOpen.update((open) => !open);
+  }
+
   scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    this.menuOpen.set(false);
   }
 }
