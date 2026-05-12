@@ -6,6 +6,7 @@ import { SkillsComponent } from '../../components/skills/skills';
 import { ProjectsComponent } from '../../components/projects/projects';
 import { IdolsComponent } from '../../components/idols/idols';
 import { HobbiesComponent } from '../../components/hobbies/hobbies';
+import { ClipsComponent } from '../../components/clips/clips';
 import { MusicIdolsComponent } from '../../components/music-idols/music-idols';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { RowletComponent } from '../../components/rowlet/rowlet';
@@ -22,6 +23,7 @@ import { ContactComponent } from '../../components/contact/contact';
     ProjectsComponent,
     IdolsComponent,
     HobbiesComponent,
+    ClipsComponent,
     MusicIdolsComponent,
     FavCharactersComponent,
     RowletComponent,

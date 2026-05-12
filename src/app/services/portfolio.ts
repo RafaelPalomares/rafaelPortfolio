@@ -316,7 +316,7 @@ const portfolioData: PortfolioData = {
   stack: ['Angular', 'TypeScript', 'SCSS'],
   status: 'live',
   liveUrl: 'https://rafael-portfolio-delta.vercel.app/',
-  repoUrl: 'https://github.com/rafaelpalomares/portfolio',
+  repoUrl: 'https://github.com/RafaelPalomares/rafaelPortfolio',
 },
 {
   number: '02',
