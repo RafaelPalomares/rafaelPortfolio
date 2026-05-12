@@ -167,7 +167,7 @@ const portfolioData: PortfolioData = {
       name: 'Napoleon Bonaparte',
       role: 'Military Strategist & Emperor',
       reason: 'Napoleon inspires me because of his unmatched strategic mind, confidence, and ability to lead under pressure. Even when the odds were against him, he stayed fearless and always thought several steps ahead of everyone else.',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Napoleon_at_the_Great_St._Bernard_-_Jacques-Louis_David_-_Google_Cultural_Institute.jpg/960px-Napoleon_at_the_Great_St._Bernard_-_Jacques-Louis_David_-_Google_Cultural_Institute.jpg?utm_source=commons.wikimedia.org&utm_campaign=parser&utm_content=thumbnail',
+      imageUrl: 'Napoleon_at_the_Great_St._Bernard_-_Jacques-Louis_David_-_Google_Cultural_Institute.jpg',
       copyright: '© By Jacques-Louis David - Google Art Project, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38872895',
     },
     {
@@ -175,15 +175,15 @@ const portfolioData: PortfolioData = {
       name: 'Cristiano Ronaldo',
       role: 'Professional Footballer',
       reason: 'Cristiano Ronaldo inspires me because of his insane discipline, mentality, and work ethic. He proved that hard work and dedication can push someone beyond natural talent and turn them into one of the greatest athletes ever.',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Cristiano_Ronaldo_%28cropped%29.jpg/960px-Cristiano_Ronaldo_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail',
-      copyright: '© by 	AtilaTheHun from Manchester, England, This file is licensed under the Creative Commons Attribution 2.0 Generic license.',
+      imageUrl: 'cristianoronaldo.jpg',
+      copyright: '© by AtilaTheHun from Manchester, England, This file is licensed under the Creative Commons Attribution 2.0 Generic license.',
     },
     {
       number: '03',
       name: 'Simeon Nikolov',
       role: 'Professional Volleyball Player',
       reason: 'Simeon Nikolov inspires me because of his calm confidence, creativity, and high-level volleyball IQ. As a setter, I admire how he controls the game, creates opportunities for his team, and stays composed in important moments.',
-      imageUrl: 'https://volleybox.net/media/upload/players/1775922422wy4kN.png',
+      imageUrl: 'simeonnikolov.jpeg',
       copyright: '© Volleybox.net · All rights reserved',
     }
   ],
@@ -194,7 +194,7 @@ const portfolioData: PortfolioData = {
       media: 'Haikyuu!!',
       mediaType: 'Anime',
       reason: "Oikawa is the character I relate to most. His obsession with improvement, his pride, and the way he carries the weight of being the best setter — it mirrors how I think about volleyball and life.",
-      imageUrl: 'https://static.wikia.nocookie.net/haikyuu/images/8/80/Haikyuu-19_04.jpg/revision/latest/scale-to-width-down/1000?cb=20160722031233',
+      imageUrl: 'oikawa.webp',
       copyright: '© Haruichi Furudate / Shueisha · Image via haikyuu.fandom.com',
     },
     {
@@ -202,7 +202,7 @@ const portfolioData: PortfolioData = {
       media: 'Jujutsu Kaisen',
       mediaType: 'Anime',
       reason: "Gojo stands out because of his overwhelming confidence, power, and relaxed attitude even in high-pressure situations. I admire how he carries responsibility while still staying calm and almost playful.",
-      imageUrl: 'https://images.steamusercontent.com/ugc/2104926844235375918/180EFB00FE1E3E6972B1C5BC32E24DC0B3C1BB63/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
+      imageUrl: 'satorugojo.jpeg',
       copyright: '© Gege Akutami / Shueisha · Image via Steam',
     },
     {
@@ -210,16 +210,15 @@ const portfolioData: PortfolioData = {
       media: '(500) Days of Summer',
       mediaType: 'Movie',
       reason: "Tom resonates with me because of his emotional honesty and how he reflects on relationships and expectations. His journey shows how growth often comes from misunderstandings and self-realization.",
-      imageUrl: 'https://i.pinimg.com/736x/f2/8d/ea/f28deaf52ce88b7360c93e02d5fd2615.jpg',
-      copyright: '© Fox Searchlight Pictures (2009) · Image via Pinterest ',
+      imageUrl: 'tom.jpg',
+      copyright: '© Fox Searchlight Pictures (2009) · Image via Pinterest',
     },
-    
     {
       name: 'Jax',
       media: 'The Amazing Digital Circus',
       mediaType: 'Series',
       reason: "Jax stands out because of his chaotic, unpredictable personality. I find him interesting as a character who doesn't follow rules and constantly disrupts the system around him.",
-      imageUrl: 'https://preview.redd.it/why-was-jax-so-pissed-here-v0-q4dwkl7nbtjf1.png?auto=webp&s=a070e6250897c0f8ad691a65397458a37e595c5b',
+      imageUrl: 'jax.webp',
       copyright: '© Gooseworx / GLITCH Productions · Image via Reddit',
     },
     {
@@ -227,7 +226,7 @@ const portfolioData: PortfolioData = {
       media: 'Gravity Falls',
       mediaType: 'Series',
       reason: "Bill Cipher is fascinating because of his intelligence, manipulation, and chaotic nature. He represents pure unpredictability and strategic thinking taken to an extreme level.",
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/7/77/Bill_Cipher_Gravity_Falls.webp',
+      imageUrl: 'billcipher.webp',
       copyright: '© Alex Hirsch / Disney Television Animation · Image via Wikimedia',
     },
   ],
@@ -237,7 +236,7 @@ const portfolioData: PortfolioData = {
     name: 'Elvis Presley',
     genre: 'Rock and Roll',
     reason: 'Elvis Presley means something to me because he basically shaped modern music. His stage presence, voice, and energy made him a legend who changed how performers express themselves.',
-    imageUrl: 'https://lh3.googleusercontent.com/XuiIxgO8ml5EN_kL-Z6oOLZpPwUyQQUjN5i70lrvsJ0BxRokj6R7adxcY5HQw1g1tS7tocvM1JqzP_H8=w1920-h800-p-l90-rj',
+    imageUrl: 'elvis.jpg',
     copyright: '© Elvis Presley Enterprises / RCA Records · Image via YouTube Music',
     featuredSong: {
       title: 'The Wonder of You',
@@ -249,7 +248,7 @@ const portfolioData: PortfolioData = {
     name: 'Frank Sinatra',
     genre: 'Jazz / Traditional Pop',
     reason: 'Frank Sinatra means something to me because of his timeless voice, confidence, and smooth control. He represents elegance, discipline, and performing under pressure with total calm.',
-    imageUrl: 'https://lh3.googleusercontent.com/Rqn8EFeRW9WN7Hv3BZSSA1PrKa8EvcKjk5TbfChs-dKhJPoiuzvk54-u8Xd0ScyaFtpTxYCeHZrliv4=w1920-h800-p-l90-rj',
+    imageUrl: 'franksinatra.jpg',
     copyright: '© Frank Sinatra Enterprises / Reprise Records · Image via YouTube Music',
     featuredSong: {
       title: 'Something Stupid',
@@ -261,7 +260,7 @@ const portfolioData: PortfolioData = {
     name: 'Queen',
     genre: 'Rock',
     reason: 'Queen means something to me because of their creativity, versatility, and powerful performances. They showed how music can be dramatic, emotional, and unforgettable at the same time.',
-    imageUrl: 'https://yt3.googleusercontent.com/_Qx50zW4-diO8SuAKhaccaNLyTvObgE-TQv1jYS4M9Kma6llb3s-IHpBBvuZAkPh88lHvXTQGaWS7aE=w1920-h800-p-l90-rj',
+    imageUrl: 'queen.jpg',
     copyright: '© Queen Productions / Hollywood Records · Image via YouTube Music',
     featuredSong: {
       title: 'Bohemian Rhapsody',
@@ -273,7 +272,7 @@ const portfolioData: PortfolioData = {
     name: 'The Smiths',
     genre: 'Indie Rock',
     reason: 'The Smiths mean something to me because of their emotional depth and raw honesty. Their music captures feelings in a very real, unfiltered way that hits differently.',
-    imageUrl: 'https://lh3.googleusercontent.com/QM50T3vF6Hvr3coPEdwB7OImuH6f2ktU3-X6LgjpCnrSukGj9fmDkY84rOcR3Ye8OWToWwGWA9QaE5Q=w1920-h800-p-l90-rj',
+    imageUrl: 'thesmiths.jpg',
     copyright: '© The Smiths / Rough Trade Records · Image via YouTube Music',
     featuredSong: {
       title: 'There Is a Light That Never Goes Out',
@@ -285,7 +284,7 @@ const portfolioData: PortfolioData = {
     name: 'Sabrina Carpenter',
     genre: 'Pop',
     reason: 'Sabrina Carpenter means something to me because of her modern pop sound, confidence, and personality in her music. She combines catchy production with strong storytelling.',
-    imageUrl: 'https://lh3.googleusercontent.com/FMh1mOI0ufvUCAkbUM6aUmU5WK7O5PnndyyXKP1-DCEip20SQz5eeYn3lZ29p-ASb-19ZfBVc_NKe5Ko=w1920-h800-p-l90-rj',
+    imageUrl: 'sabrinacarpenter.jpg',
     copyright: '© Sabrina Carpenter / Island Records · Image via YouTube Music',
     featuredSong: {
       title: 'Espresso',
@@ -297,7 +296,7 @@ const portfolioData: PortfolioData = {
     name: 'Laufey',
     genre: 'Jazz Pop / Indie',
     reason: 'Laufey means something to me because she blends old jazz vibes with modern emotion. Her music feels soft, artistic, and deeply expressive in a unique way.',
-    imageUrl: 'https://lh3.googleusercontent.com/1UeTp2cTje797NGcJ6IOXs6BjAtf3kBkoD4P7BLN6d-arHigrzlFL8UpF3YbmbkQwXYwWtHuiZczEvGG=w1920-h800-p-l90-rj',
+    imageUrl: 'Laufey.jpg',
     copyright: '© Laufey / AWAL · Image via YouTube Music',
     featuredSong: {
       title: 'From the Start',
