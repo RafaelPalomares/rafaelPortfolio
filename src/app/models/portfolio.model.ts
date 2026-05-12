@@ -9,9 +9,24 @@ export interface PersonInfo {
   avatarInitials: string;
 }
 
+export interface Skill {
+  name: string;
+  /** 1 = beginner, 2 = basic, 3 = intermediate, 4 = advanced, 5 = native/expert */
+  level?: 1 | 2 | 3 | 4 | 5;
+}
+
 export interface SkillCategory {
   category: string;
-  skills: string[];
+  skills: Skill[];
+}
+
+export interface Language {
+  name: string;
+  /** e.g. 'Native', 'Fluent', 'Advanced', 'Intermediate', 'Basic' */
+  proficiency: 'Native' | 'Fluent' | 'Advanced' | 'Intermediate' | 'Basic';
+  /** 0–100 for the progress bar */
+  level: number;
+  flag: string;
 }
 
 export interface Idol {
@@ -36,6 +51,8 @@ export interface FavCharacter {
   media: string;
   mediaType: 'Anime' | 'Movie' | 'Series' | 'Game' | 'Book' | 'Manga' | string;
   reason: string;
+  /** Voice actor (anime/game) or live-action actor */
+  voiceActor?: string;
   imageUrl?: string;
   /** Copyright notice shown below the image, e.g. "© Studio / Author" */
   copyright?: string;
@@ -86,10 +103,10 @@ export interface PortfolioData {
   quote: {
     text: string;
     author: string;
-    /** Why this quote resonates with you — shown on the back of the flip card */
     reason: string;
   };
   skills: SkillCategory[];
+  languages: Language[];
   idols: Idol[];
   hobbies: Hobby[];
   favCharacters: FavCharacter[];

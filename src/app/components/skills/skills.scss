@@ -1,51 +1,257 @@
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+// ─── Shared label ─────────────────────────────────────────────────────────────
+.block-label {
+  display: block;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
-.skill-category {
-  background: var(--surface);
+// ─── Languages ────────────────────────────────────────────────────────────────
+.languages-block {
+  margin-top: 3.5rem;
+  background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: border-color 0.2s;
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+}
 
-  &:hover {
-    border-color: rgba(99, 102, 241, 0.4);
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.lang-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 140px;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lang-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.lang-flag {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.lang-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.lang-center {
+  flex: 1;
+}
+
+.lang-bar-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.lang-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), #818cf8);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.lang-proficiency {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid transparent;
+
+  &[data-level='Native'] {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    border-color: rgba(74, 222, 128, 0.25);
+  }
+  &[data-level='Fluent'] {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+  &[data-level='Advanced'] {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.25);
+  }
+  &[data-level='Intermediate'] {
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.08);
+    border-color: rgba(250, 204, 21, 0.2);
+  }
+  &[data-level='Basic'] {
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border);
   }
 }
 
-.skill-cat-title {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  margin: 0 0 1.25rem;
-  font-weight: 500;
+.lang-pct {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  text-align: right;
 }
 
-.skill-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skill-tag {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.04);
+// ─── Tech skills ──────────────────────────────────────────────────────────────
+.skills-block {
+  margin-top: 2rem;
+  background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.3rem 0.75rem;
-  transition: background 0.2s, color 0.2s;
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+}
+
+// Category tabs
+.cat-tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.cat-tab {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
 
   &:hover {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--text);
+    color: var(--text-muted);
+    border-color: var(--border);
+  }
+
+  &.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+}
+
+// Skill tags grid
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.skill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.4rem 0.85rem;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(99, 102, 241, 0.35);
+    background: rgba(99, 102, 241, 0.06);
+  }
+
+  // Opacity/weight scales with level
+  &.level-1 { background: rgba(255,255,255,0.02); .skill-name { color: var(--text-dim); } }
+  &.level-2 { background: rgba(255,255,255,0.03); .skill-name { color: var(--text-muted); } }
+  &.level-3 { background: rgba(255,255,255,0.04); .skill-name { color: var(--text-muted); } }
+  &.level-4 { background: rgba(99,102,241,0.06);  .skill-name { color: var(--text); } border-color: rgba(99,102,241,0.2); }
+  &.level-5 { background: rgba(99,102,241,0.1);   .skill-name { color: var(--text); font-weight: 500; } border-color: rgba(99,102,241,0.35); }
+}
+
+.skill-name {
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+
+// Dot indicators
+.skill-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.15s;
+
+  &.filled {
+    background: var(--accent);
+    opacity: 0.7;
+  }
+}
+
+.skill-item.level-4 .dot.filled,
+.skill-item.level-5 .dot.filled {
+  opacity: 1;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .languages-block,
+  .skills-block {
+    padding: 1.5rem;
+  }
+
+  .lang-row {
+    grid-template-columns: 130px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem 1rem;
+  }
+
+  .lang-right {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  .cat-tabs {
+    gap: 0.3rem;
+  }
+
+  .cat-tab {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
   }
 }

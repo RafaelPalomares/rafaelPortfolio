@@ -3,13 +3,68 @@
     <span class="section-label">Skills</span>
     <h2 class="section-title">What I work with</h2>
 
-    <div class="skills-grid">
-      <div class="skill-category" *ngFor="let cat of skills">
-        <h3 class="skill-cat-title">{{ cat.category }}</h3>
-        <ul class="skill-list">
-          <li class="skill-tag" *ngFor="let skill of cat.skills">{{ skill }}</li>
-        </ul>
+    <!-- ── Languages ──────────────────────────────────────────────────────── -->
+    <div class="languages-block">
+      <span class="block-label">Languages</span>
+      <div class="lang-list">
+        <div class="lang-row" *ngFor="let lang of languages">
+          <div class="lang-left">
+            <span class="lang-flag">{{ lang.flag }}</span>
+            <span class="lang-name">{{ lang.name }}</span>
+          </div>
+          <div class="lang-center">
+            <div class="lang-bar-track">
+              <div class="lang-bar-fill" [style.width.%]="lang.level"></div>
+            </div>
+          </div>
+          <div class="lang-right">
+            <span class="lang-proficiency" [attr.data-level]="lang.proficiency">
+              {{ lang.proficiency }}
+            </span>
+            <span class="lang-pct">{{ lang.level }}%</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- ── Tech skills ────────────────────────────────────────────────────── -->
+    <div class="skills-block">
+      <span class="block-label">Technical & Other</span>
+
+      <!-- Category tabs -->
+      <div class="cat-tabs" role="tablist">
+        <button
+          class="cat-tab"
+          *ngFor="let cat of skills"
+          [class.active]="activeCategory === cat.category"
+          (click)="setCategory(cat.category)"
+          role="tab"
+          [attr.aria-selected]="activeCategory === cat.category"
+        >
+          {{ cat.category }}
+        </button>
+      </div>
+
+      <!-- Active category skills -->
+      <div class="skill-panel" *ngFor="let cat of skills">
+        <div class="skill-tags" *ngIf="activeCategory === cat.category">
+          <div
+            class="skill-item"
+            *ngFor="let skill of cat.skills"
+            [class]="'skill-item ' + levelClass(skill.level)"
+          >
+            <span class="skill-name">{{ skill.name }}</span>
+            <span class="skill-dots" aria-hidden="true">
+              <span
+                class="dot"
+                *ngFor="let d of dots(skill.level)"
+                [class.filled]="d <= (skill.level ?? 1)"
+              ></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

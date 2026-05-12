@@ -94,7 +94,29 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent);
+  margin: 0 0 0.4rem;
+}
+
+.char-voice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
   margin: 0 0 0.75rem;
+}
+
+.char-voice-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  flex-shrink: 0;
 }
 
 .char-reason {

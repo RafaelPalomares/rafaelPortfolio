@@ -44,6 +44,10 @@
         <div class="char-info">
           <h3 class="char-name">{{ char.name }}</h3>
           <p class="char-media">{{ char.media }}</p>
+          <p class="char-voice" *ngIf="char.voiceActor">
+            <span class="char-voice-label">{{ char.mediaType === 'Anime' || char.mediaType === 'Series' || char.mediaType === 'Game' ? 'VA' : 'Actor' }}</span>
+            {{ char.voiceActor }}
+          </p>
           <p class="char-reason">{{ char.reason }}</p>
         </div>
 
