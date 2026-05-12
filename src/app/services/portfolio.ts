@@ -39,24 +39,84 @@ const portfolioData: PortfolioData = {
     reason: "This quote resonates with me because it captures something I genuinely believe — that the hard, uncomfortable phases in life aren't obstacles, they're the path. You don't skip summer to get to autumn. You live through it. Whether it's a tough season in volleyball, a project that isn't working yet, or just a period where nothing feels right — it's all part of finding where you're supposed to be.",
   },
 
+
   skills: [
-    {
-      category: 'Programming',
-      skills: ['Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'PostgreSQL'],
-    },
-    {
-      category: 'Development',
-      skills: ['Frontend Development', 'Game Development', 'UI Design', 'Problem Solving'],
-    },
-    {
-      category: 'Sports & Leadership',
-      skills: ['Volleyball', 'Setter Coordination', 'Team Communication', 'Strategic Thinking'],
-    },
-    {
-      category: 'Languages',
-      skills: ['German', 'English', 'Spanish'],
-    },
-  ],
+  {
+    category: 'Programming',
+    skills: [
+      'Java',
+      'JavaScript',
+      'TypeScript',
+      'HTML',
+      'CSS',
+      'PostgreSQL',
+      'SQL',
+      'OOP (Object-Oriented Programming)',
+      'Algorithms & Data Structures',
+      'Arduino & Rassperry Pi'
+    ],
+  },
+  {
+    category: 'Frontend & Development',
+    skills: [
+      'Frontend Development',
+      'Angular',
+      'SCSS',
+      'UI Design',
+      'Responsive Design',
+      'REST APIs',
+      'Game Development',
+      'Clean Code',
+      'Problem Solving',
+      'Frontend Architecture',
+    ],
+  },
+  {
+    category: 'Backend Development',
+    skills: [
+      'Node.js',
+      'Express.js',
+      'REST API Design',
+      'Backend Architecture Basics',
+      'Authentication (JWT Basics)',
+      'Database Design',
+      'PostgreSQL Integration',
+      'CRUD Operations',
+      'API Security Basics',
+    ],
+  },
+  {
+    category: 'Tools & Workflow',
+    skills: [
+      'Git',
+      'GitHub',
+      'VS Code',
+      'npm',
+      'Debugging',
+      'Agile Basics',
+    ],
+  },
+  {
+    category: 'Sports & Leadership',
+    skills: [
+      'Volleyball',
+      'Setter Coordination',
+      'Team Communication',
+      'Strategic Thinking',
+      'Game Sense',
+      'Leadership in Team Sports',
+      'Fitness & Conditioning',
+    ],
+  },
+  {
+    category: 'Languages',
+    skills: [
+      'German',
+      'English',
+      'Spanish',
+    ],
+  },
+],
 
   hobbies: [
     {
@@ -170,14 +230,6 @@ const portfolioData: PortfolioData = {
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/7/77/Bill_Cipher_Gravity_Falls.webp',
       copyright: '© Alex Hirsch / Disney Television Animation · Image via Wikimedia',
     },
-    {
-      name: 'Rowlet',
-      media: 'Pokémon',
-      mediaType: 'Game / Anime',
-      reason: "Rowlet resonates with me because of its calm, focused energy and surprising strength despite its cute appearance. I like how it stays composed and precise in its actions.",
-      imageUrl: 'https://pbs.twimg.com/profile_images/1236314610862624772/PJg5OGA2_400x400.jpg',
-      copyright: '© Nintendo / Game Freak / Creatures Inc. · Image via X',
-    },
   ],
 
   musicIdols: [
@@ -185,7 +237,7 @@ const portfolioData: PortfolioData = {
     name: 'Elvis Presley',
     genre: 'Rock and Roll',
     reason: 'Elvis Presley means something to me because he basically shaped modern music. His stage presence, voice, and energy made him a legend who changed how performers express themselves.',
-    imageUrl: 'https://lh3.googleusercontent.com/XuiIxgO8ml5EN_kL-Z6oOLZpPwUyQQUjN5i70lrvsJ0BxRokj6R7adxcY5HQw1g1tS7tocvM1JqzP_H8=w1920-h800-p-l90-rjs',
+    imageUrl: 'https://lh3.googleusercontent.com/XuiIxgO8ml5EN_kL-Z6oOLZpPwUyQQUjN5i70lrvsJ0BxRokj6R7adxcY5HQw1g1tS7tocvM1JqzP_H8=w1920-h800-p-l90-rj',
     copyright: '© Elvis Presley Enterprises / RCA Records · Image via YouTube Music',
     featuredSong: {
       title: 'The Wonder of You',
