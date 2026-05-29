@@ -26,7 +26,7 @@ const portfolioData: PortfolioData = {
     bio: [
       "I’m a 17-year-old developer from Switzerland focused on building things that actually mean something—whether that’s a game, a site, or just a side project that started as a random idea. I’ve always appreciated people who lean into their own identity and discipline, and I try to bring that same mindset to my own work: constantly learning and improving without losing my own style." 
       , 
-      "For me, coding is as creative as it is technical. I’m drawn to clean aesthetics and smooth interactions—projects that feel alive rather than just functional. When I’m not at my desk, I’m usually on the volleyball court. Playing as a setter has definitely influenced how I work; it’s taught me how to stay composed and keep the bigger picture in mind, even when things get fast-paced." 
+      "For me, coding is as creative as it is technical.  When I’m not at my desk, I’m usually on the volleyball court. Playing as a setter has definitely influenced how I work; it’s taught me how to stay composed and keep the bigger picture in mind, even when things get fast-paced." 
       ,
       "I’m still very much in the middle of the learning process, but that’s the part I enjoy most. My goal is simple: keep building, keep evolving, and create work that leaves a lasting impression."
       ],
@@ -99,7 +99,7 @@ const portfolioData: PortfolioData = {
   languages: [
     { name: 'German',  proficiency: 'Native',       level: 90, flag: '🇩🇪' },
     { name: 'Spanish', proficiency: 'Advanced',        level: 70, flag: '🇪🇸' },
-    { name: 'English', proficiency: 'Fluent',        level: 88, flag: '🇬🇧' },
+    { name: 'English', proficiency: 'Fluent',        level: 80, flag: '🇬🇧' },
     { name: 'French',  proficiency: 'Basic',         level: 25, flag: '🇫🇷' },
   ],
 

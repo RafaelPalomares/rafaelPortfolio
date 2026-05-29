@@ -1,0 +1,68 @@
+<section class="section section-alt" id="stories">
+  <div class="container">
+    <span class="section-label">AI Chat</span>
+    <h2 class="section-title">Ask about me</h2>
+    <p class="chat-sub">Chat with my AI bot — it knows everything on this site.</p>
+
+    <!-- API key input -->
+    <div class="key-prompt" *ngIf="!apiKeySet()">
+      <p class="key-text">Enter a Groq API key to start chatting.</p>
+      <div class="key-input-row">
+        <input
+          #keyInput
+          type="password"
+          class="key-input"
+          placeholder="gsk_..."
+          (keydown.enter)="setApiKey(keyInput.value)"
+        />
+        <button class="key-btn" (click)="setApiKey(keyInput.value)">Connect</button>
+      </div>
+      <p class="key-note">Stored locally in your browser. Never sent anywhere except Groq's API.</p>
+    </div>
+
+    <!-- Chat interface -->
+    <div class="chat-box" *ngIf="apiKeySet()">
+
+      <!-- Messages -->
+      <div class="chat-messages" #messagesEl>
+        <div
+          class="chat-msg"
+          *ngFor="let msg of messages()"
+          [class.user]="msg.role === 'user'"
+          [class.bot]="msg.role === 'assistant'"
+        >
+          <span class="msg-label">{{ msg.role === 'user' ? 'You' : 'Bot' }}</span>
+          <p class="msg-text">{{ msg.content }}</p>
+        </div>
+
+        <div class="chat-typing" *ngIf="loading()">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="chat-input-row">
+        <input
+          class="chat-input"
+          [(ngModel)]="userInput"
+          placeholder="Ask me anything about Rafael..."
+          (keydown.enter)="sendMessage()"
+          [disabled]="loading()"
+        />
+        <button
+          class="chat-send"
+          (click)="sendMessage()"
+          [disabled]="loading() || !userInput.trim()"
+          aria-label="Send message"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
