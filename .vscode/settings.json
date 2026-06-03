@@ -1,4 +1,4 @@
 {
   "json.schemaDownload.enable": false,
-  "http.proxyStrictSSL": false
+"http.proxyStrictSSL": false
 }

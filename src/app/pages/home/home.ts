@@ -10,8 +10,6 @@ import { ClipsComponent } from '../../components/clips/clips';
 import { MusicIdolsComponent } from '../../components/music-idols/music-idols';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { RowletComponent } from '../../components/rowlet/rowlet';
-import { GitHubRoastComponent } from '../../components/github-roast/github-roast';
-import { StoryStreamComponent } from '../../components/story-stream/story-stream';
 import { ContactComponent } from '../../components/contact/contact';
 
 @Component({
@@ -29,8 +27,6 @@ import { ContactComponent } from '../../components/contact/contact';
     MusicIdolsComponent,
     FavCharactersComponent,
     RowletComponent,
-    GitHubRoastComponent,
-    StoryStreamComponent,
     ContactComponent,
   ],
   templateUrl: './home.html',
