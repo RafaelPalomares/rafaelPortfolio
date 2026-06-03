@@ -1,0 +1,88 @@
+<section class="section section-alt" id="roast">
+  <div class="container">
+    <span class="section-label">Interactive</span>
+    <h2 class="section-title">GitHub Roast Machine</h2>
+    <p class="roast-sub">Enter any GitHub username. Get roasted — or praised. Your choice.</p>
+
+    <!-- API key (reuses the same one as chat) -->
+    <div class="key-prompt" *ngIf="!apiKeySet()">
+      <p class="key-text">Enter your Groq API key for AI-powered roasts (optional — works without it too).</p>
+      <div class="key-input-row">
+        <input
+          #keyInput
+          type="password"
+          class="key-input"
+          placeholder="gsk_..."
+          (keydown.enter)="setApiKey(keyInput.value)"
+        />
+        <button class="key-btn" (click)="setApiKey(keyInput.value)">Save</button>
+      </div>
+      <p class="key-note">Stored locally. Or skip — it still works with preset roasts.</p>
+      <button class="key-skip" (click)="apiKeySet.set(true)">Skip, use preset roasts →</button>
+    </div>
+
+    <!-- Input + buttons -->
+    <div class="roast-input-area" *ngIf="apiKeySet()">
+      <div class="roast-input-row">
+        <span class="input-prefix">github.com/</span>
+        <input
+          class="roast-input"
+          [(ngModel)]="username"
+          placeholder="octocat"
+          (keydown.enter)="analyze('roast')"
+          [disabled]="loading()"
+        />
+      </div>
+      <div class="roast-buttons">
+        <button class="roast-btn roast-btn--fire" (click)="analyze('roast')" [disabled]="loading()">
+          🔥 Roast Me
+        </button>
+        <button class="roast-btn roast-btn--praise" (click)="analyze('praise')" [disabled]="loading()">
+          💚 Praise Me
+        </button>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <p class="roast-error" *ngIf="error()">{{ error() }}</p>
+
+    <!-- Loading -->
+    <div class="roast-loading" *ngIf="loading()">
+      <span class="fire-spin">🔥</span>
+      <span>Analyzing...</span>
+    </div>
+
+    <!-- Result -->
+    <div class="roast-result" *ngIf="result() as r">
+
+      <!-- User card -->
+      <div class="roast-user" *ngIf="user() as u">
+        <img [src]="u.avatar_url" [alt]="u.login" class="roast-avatar" />
+        <div class="roast-user-info">
+          <span class="roast-username">{{ u.login }}</span>
+          <span class="roast-user-meta">{{ u.public_repos }} repos · {{ u.followers }} followers</span>
+        </div>
+        <span class="roast-mode-badge" [class.praise]="r.mode === 'praise'">
+          {{ r.mode === 'roast' ? '🔥 Roasted' : '💚 Praised' }}
+        </span>
+      </div>
+
+      <!-- Roast text -->
+      <div class="roast-text-card" [class.praise-card]="r.mode === 'praise'">
+        <p class="roast-text">{{ r.roast }}</p>
+      </div>
+
+      <!-- Scores -->
+      <div class="roast-scores">
+        <div class="score-row" *ngFor="let s of r.scores">
+          <span class="score-label">{{ s.label }}</span>
+          <div class="score-bar-track">
+            <div class="score-bar-fill" [style.width.%]="s.score" [style.background]="scoreColor(s.score)"></div>
+          </div>
+          <span class="score-value" [style.color]="scoreColor(s.score)">{{ s.score }}/100</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
