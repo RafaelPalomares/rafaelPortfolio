@@ -14,7 +14,9 @@
       playsinline
       preload="metadata"
       (ended)="onEnded()"
-    ></video>
+    >
+      <track kind="captions" src="" label="No captions available" default />
+    </video>
 
     <!-- overlay shown when paused -->
     <div class="clips-overlay" [class.hidden]="playing()">
