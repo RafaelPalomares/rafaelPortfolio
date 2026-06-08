@@ -34,6 +34,8 @@ export interface Idol {
   name: string;
   role: string;
   reason: string;
+  /** 'historical' | 'sports' */
+  category: 'historical' | 'sports';
   /** Optional: URL to an open-source/public domain image (e.g. Wikimedia Commons) */
   imageUrl?: string;
   /** Copyright notice shown below the image, e.g. "© Author / License" */

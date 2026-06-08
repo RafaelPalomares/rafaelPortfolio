@@ -3,54 +3,91 @@
     <span class="section-label">Idols</span>
     <h2 class="section-title">People who inspire me</h2>
 
-    <div class="idols-grid">
-      <div class="idol-card" *ngFor="let idol of idols">
-        <div class="idol-avatar-wrap">
-          <div class="idol-avatar">
-            <img
-              *ngIf="idol.imageUrl; else fallback"
-              [src]="idol.imageUrl"
-              [alt]="idol.name"
-              class="idol-img"
-            />
-            <ng-template #fallback>
-              <span class="idol-number">{{ idol.number }}</span>
-            </ng-template>
+    <!-- Historical figures -->
+    <div class="idol-section">
+      <h3 class="idol-section-title">Historical Figures</h3>
+      <div class="idols-grid">
+        <div class="idol-card" *ngFor="let idol of historicalIdols">
+          <div class="idol-avatar-wrap">
+            <div class="idol-avatar">
+              <img
+                *ngIf="idol.imageUrl; else fallback"
+                [src]="idol.imageUrl"
+                [alt]="idol.name"
+                class="idol-img"
+              />
+              <ng-template #fallback>
+                <span class="idol-number">{{ idol.number }}</span>
+              </ng-template>
+            </div>
+            <button
+              *ngIf="idol.copyright"
+              class="cr-btn"
+              [class.cr-btn--open]="openCopyright === idol.name"
+              (click)="toggleCopyright(idol.name)"
+              [attr.aria-expanded]="openCopyright === idol.name"
+              [attr.aria-label]="'Copyright info for ' + idol.name"
+            >© cr</button>
           </div>
-
-          <!-- Copyright toggle button -->
-          <button
-            *ngIf="idol.copyright"
-            class="cr-btn"
-            [class.cr-btn--open]="openCopyright === idol.name"
-            (click)="toggleCopyright(idol.name)"
-            [attr.aria-expanded]="openCopyright === idol.name"
-            [attr.aria-label]="'Copyright info for ' + idol.name"
-          >© cr</button>
+          <div class="idol-info">
+            <h3 class="idol-name">{{ idol.name }}</h3>
+            <p class="idol-role">{{ idol.role }}</p>
+            <p class="idol-reason">{{ idol.reason }}</p>
+          </div>
         </div>
-
-        <div class="idol-info">
-          <h3 class="idol-name">{{ idol.name }}</h3>
-          <p class="idol-role">{{ idol.role }}</p>
-          <p class="idol-reason">{{ idol.reason }}</p>
-        </div>
-      </div>
-
-      <!-- Copyright popover (outside card, full-width row) -->
-      <div
-        class="cr-panel"
-        *ngIf="openCopyright"
-        role="region"
-        [attr.aria-label]="'Copyright details'"
-      >
-        <ng-container *ngFor="let idol of idols">
-          <ng-container *ngIf="openCopyright === idol.name && idol.copyright">
-            <span class="cr-panel__icon">©</span>
-            <span class="cr-panel__text">{{ idol.copyright }}</span>
-            <button class="cr-panel__close" (click)="openCopyright = null" aria-label="Close">✕</button>
-          </ng-container>
-        </ng-container>
       </div>
     </div>
+
+    <!-- Sports idols -->
+    <div class="idol-section">
+      <h3 class="idol-section-title">Sports Idols</h3>
+      <div class="idols-grid">
+        <div class="idol-card" *ngFor="let idol of sportsIdols">
+          <div class="idol-avatar-wrap">
+            <div class="idol-avatar">
+              <img
+                *ngIf="idol.imageUrl; else fallbackSport"
+                [src]="idol.imageUrl"
+                [alt]="idol.name"
+                class="idol-img"
+              />
+              <ng-template #fallbackSport>
+                <span class="idol-number">{{ idol.number }}</span>
+              </ng-template>
+            </div>
+            <button
+              *ngIf="idol.copyright"
+              class="cr-btn"
+              [class.cr-btn--open]="openCopyright === idol.name"
+              (click)="toggleCopyright(idol.name)"
+              [attr.aria-expanded]="openCopyright === idol.name"
+              [attr.aria-label]="'Copyright info for ' + idol.name"
+            >© cr</button>
+          </div>
+          <div class="idol-info">
+            <h3 class="idol-name">{{ idol.name }}</h3>
+            <p class="idol-role">{{ idol.role }}</p>
+            <p class="idol-reason">{{ idol.reason }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright panel -->
+    <div
+      class="cr-panel"
+      *ngIf="openCopyright"
+      role="region"
+      aria-label="Copyright details"
+    >
+      <ng-container *ngFor="let idol of historicalIdols.concat(sportsIdols)">
+        <ng-container *ngIf="openCopyright === idol.name && idol.copyright">
+          <span class="cr-panel__icon">©</span>
+          <span class="cr-panel__text">{{ idol.copyright }}</span>
+          <button class="cr-panel__close" (click)="openCopyright = null" aria-label="Close">✕</button>
+        </ng-container>
+      </ng-container>
+    </div>
+
   </div>
 </section>
