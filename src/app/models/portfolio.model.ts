@@ -100,6 +100,17 @@ export interface Project {
   imageUrl?: string;
 }
 
+export interface ReadingItem {
+  /** ISBN-13 or ISBN-10 — used to fetch from Open Library API */
+  isbn: string;
+  /** 'reading' | 'completed' | 'want-to-read' */
+  status: 'reading' | 'completed' | 'want-to-read';
+  /** 0–100 progress percentage (only meaningful for 'reading') */
+  progress?: number;
+  /** Optional short note / your take on it */
+  note?: string;
+}
+
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -114,5 +125,6 @@ export interface PortfolioData {
   favCharacters: FavCharacter[];
   musicIdols: MusicIdol[];
   projects: Project[];
+  readingList: ReadingItem[];
   socials: SocialLink[];
 }

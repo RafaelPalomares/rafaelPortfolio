@@ -367,8 +367,117 @@ favCharacters: [
 },
   ],
 
+  readingList: [
+    { isbn: '9780451524935', status: 'completed', note: 'A masterpiece about power and control.' },
+    { isbn: '9780140449136', status: 'completed', note: 'Pure strategy and leadership lessons.' },
+    { isbn: '9780061120084', status: 'reading', progress: 45, note: 'Simple but deep.' },
+    { isbn: '9780593139134', status: 'reading', progress: 30, note: 'Discipline equals freedom.' },
+    { isbn: '9780141036144', status: 'want-to-read' },
+    { isbn: '9780670034567', status: 'want-to-read' },
+  ],
+
   socials: [
     { label: 'GitHub', url: 'https://github.com/rafaelpalomares' },
     { label: 'LinkedIn', url: 'https://linkedin.com/in/rafaelpalomaresbill' },
   ],
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
