@@ -381,6 +381,10 @@ favCharacters: [
     { isbn: '9780747551003', status: 'completed', note: 'The darkest book in the series.' },
     { isbn: '9780747581086', status: 'completed', note: 'The Half-Blood Prince reveals all.' },
     { isbn: '9780747591054', status: 'completed', note: 'The end. Masterpiece.' },
+    { isbn: '9781101871805', status: 'completed', note: 'A perspective everyone needs to read.' },
+    { isbn: '9783499252723', status: 'completed', note: 'Honest and real.' },
+    { isbn: '9781474600842', status: 'completed', note: 'Strategy, obsession, and brilliance.' },
+    
   ],
 
   socials: [
