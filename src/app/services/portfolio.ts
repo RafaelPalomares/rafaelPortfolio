@@ -368,12 +368,20 @@ favCharacters: [
   ],
 
   readingList: [
-    { isbn: '9780451524935', status: 'completed', note: 'A masterpiece about power and control.' },
-    { isbn: '9780140449136', status: 'completed', note: 'Pure strategy and leadership lessons.' },
-    { isbn: '9780061120084', status: 'reading', progress: 45, note: 'Simple but deep.' },
-    { isbn: '9780593139134', status: 'reading', progress: 30, note: 'Discipline equals freedom.' },
-    { isbn: '9780141036144', status: 'want-to-read' },
-    { isbn: '9780670034567', status: 'want-to-read' },
+    { isbn: '9781501142970', status: 'completed', note: 'Stephen King at his best. Pure horror.' },
+    { isbn: '9781501156700', status: 'completed', note: 'Peak' },
+    { isbn: '9780140439199', status: 'completed', note: 'Pure strategy and timeless wisdom.' },
+    { isbn: '9784087821314', status: 'completed', note: 'Araki meets fine art. A JoJo masterpiece.' },
+    { isbn: '9780805092523', status: 'completed', note: 'Time travel done right.' },
+    { isbn: '9780805092530', status: 'completed', note: 'The trilogy keeps getting better.' },
+    { isbn: '9780805092547', status: 'completed', note: 'Perfect ending to the trilogy.' },
+    { isbn: '9780747532699', status: 'completed', note: 'Where it all began.' },
+    { isbn: '9780747538486', status: 'completed', note: 'The Chamber of Secrets has been opened.' },
+    { isbn: '9780747542155', status: 'completed', note: 'Time-turners and Sirius Black.' },
+    { isbn: '9780747546245', status: 'completed', note: 'The tournament that changed everything.' },
+    { isbn: '9780747551003', status: 'completed', note: 'The darkest book in the series.' },
+    { isbn: '9780747581086', status: 'completed', note: 'The Half-Blood Prince reveals all.' },
+    { isbn: '9780747591054', status: 'completed', note: 'The end. Masterpiece.' },
   ],
 
   socials: [
