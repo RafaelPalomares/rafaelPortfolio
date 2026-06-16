@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, of, catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio';
 import { ReadingItem } from '../../models/portfolio.model';
 
@@ -53,19 +53,16 @@ export class ReadingComponent implements OnInit {
     this.portfolioService.getData().subscribe((data) => {
       const items = data.readingList;
 
-      // Each request catches its own error so one failure doesn't kill the rest
-      const requests = items.map((item) =>
-        this.http.get<any>(`https://openlibrary.org/isbn/${item.isbn}.json`).pipe(
-          catchError(() => of(null))
-        )
-      );
-
-      forkJoin(requests).subscribe({
-        next: (responses) => {
-          const books: BookInfo[] = responses.map((res, i) => {
-            const item = items[i];
+      // Use the CORS-friendly books API endpoint
+      const isbns = items.map((item) => `ISBN:${item.isbn}`).join(',');
+      this.http
+        .get<any>(`https://openlibrary.org/api/books?bibkeys=${isbns}&format=json&jscmd=data`)
+        .pipe(catchError(() => of({})))
+        .subscribe((response) => {
+          const books: BookInfo[] = items.map((item) => {
+            const key = `ISBN:${item.isbn}`;
+            const res = response[key];
             if (!res) {
-              // API failed for this ISBN — show with ISBN as fallback title
               return {
                 isbn: item.isbn,
                 title: item.note ?? `ISBN ${item.isbn}`,
@@ -81,8 +78,8 @@ export class ReadingComponent implements OnInit {
             return {
               isbn: item.isbn,
               title: res.title ?? 'Unknown Title',
-              author: this.extractAuthor(res),
-              coverUrl: `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
+              author: res.authors?.[0]?.name ?? '',
+              coverUrl: res.cover?.medium ?? `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
               pages: res.number_of_pages ?? null,
               year: res.publish_date ? parseInt(res.publish_date, 10) || null : null,
               status: item.status,
@@ -92,9 +89,7 @@ export class ReadingComponent implements OnInit {
           });
           this.books.set(books);
           this.loading.set(false);
-        },
-        error: () => this.loading.set(false),
-      });
+        });
     });
   }
 
