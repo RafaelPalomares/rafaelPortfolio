@@ -109,6 +109,8 @@ export interface ReadingItem {
   progress?: number;
   /** Optional short note / your take on it */
   note?: string;
+  /** Optional local cover image path (overrides API) */
+  coverUrl?: string;
 }
 
 export interface FilmItem {

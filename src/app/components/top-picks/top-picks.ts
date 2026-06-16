@@ -79,35 +79,37 @@ export class TopPicksComponent implements OnInit {
   }
 
   private loadBooks(items: ReadingItem[]) {
+    // Use local cover images if provided, otherwise fall back to Open Library
+    const books: TopBook[] = items.map((item) => ({
+      isbn: item.isbn,
+      title: item.note ?? 'Unknown',
+      author: '',
+      coverUrl: item.coverUrl ?? `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
+      note: item.note ?? '',
+      flipped: false,
+    }));
+
+    // Try to fetch titles from Open Library
     const isbns = items.map((i) => `ISBN:${i.isbn}`).join(',');
     fetch(`https://openlibrary.org/api/books?bibkeys=${isbns}&format=json&jscmd=data`)
       .then((res) => res.json())
       .then((data) => {
-        const books: TopBook[] = items.map((item) => {
+        const enriched: TopBook[] = items.map((item) => {
           const key = `ISBN:${item.isbn}`;
           const info = data[key];
           return {
             isbn: item.isbn,
             title: info?.title ?? item.note ?? 'Unknown',
             author: info?.authors?.[0]?.name ?? '',
-            coverUrl: info?.cover?.medium ?? `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
+            coverUrl: item.coverUrl ?? info?.cover?.medium ?? `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
             note: item.note ?? '',
             flipped: false,
           };
         });
-        this.books.set(books);
+        this.books.set(enriched);
       })
       .catch(() => {
-        this.books.set(
-          items.map((item) => ({
-            isbn: item.isbn,
-            title: item.note ?? 'Unknown',
-            author: '',
-            coverUrl: `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
-            note: item.note ?? '',
-            flipped: false,
-          }))
-        );
+        this.books.set(books);
       });
   }
 

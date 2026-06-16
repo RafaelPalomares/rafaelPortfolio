@@ -314,18 +314,15 @@ favCharacters: [
   ],
 
   readingList: [
-    { isbn: '9781501142970', status: 'completed', note: 'Stephen King at his best. Pure horror.' },
-    { isbn: '9780140439199', status: 'completed', note: 'Pure strategy and timeless wisdom.' },
-    { isbn: '9781474600842', status: 'completed', note: 'Strategy, obsession, and brilliance.' },
-    
+    { isbn: '9781501142970', status: 'completed', note: 'Stephen King at his best. Pure horror.', coverUrl: 'it.jpeg' },
+    { isbn: '9780140439199', status: 'completed', note: 'Pure strategy and timeless wisdom.', coverUrl: 'artofwar.jpeg' },
+    { isbn: '9781474600842', status: 'completed', note: 'Strategy, obsession, and brilliance.', coverUrl: 'queensgambit.jpeg' },
   ],
 
   filmList: [
-    { title: '(500) Days of Summer', year: 2009, director: 'Marc Webb', posterUrl: 'https://image.tmdb.org/t/p/w300/f9mbM0YMLpYemcWx6o2WeiYQLDP.jpg', status: 'watched', rating: 10, note: 'My favourite film ever.' },
-    { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'https://image.tmdb.org/t/p/w300/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg', status: 'watched', rating: 10, note: 'Timeless. Literally.' },
-   
-    { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg', status: 'watched', rating: 10, note: 'Christoph Waltz is unreal.' },
-
+    { title: '(500) Days of Summer', year: 2009, director: 'Marc Webb', posterUrl: '500daysofsummer.png', status: 'watched', rating: 10, note: 'My favourite film ever.' },
+    { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'back2thefuture.jpeg', status: 'watched', rating: 10, note: 'Timeless. Literally.' },
+    { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'inglouriusbasterds.jpeg', status: 'watched', rating: 10, note: 'Christoph Waltz is unreal.' },
    ],
 
   socials: [
