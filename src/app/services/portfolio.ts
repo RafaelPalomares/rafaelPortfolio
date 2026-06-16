@@ -389,7 +389,8 @@ favCharacters: [
   { isbn: '9780743273565', status: 'want-to-read', note: 'A dazzling critique of the Jazz Age, wealth, and obsession.' },
   { isbn: '9780061120084', status: 'want-to-read', note: 'A beautiful, allegorical journey about following your dreams.' },
   { isbn: '9780446310789', status: 'want-to-read', note: 'A timeless and powerful story about justice, race, and growing up.' },
-  { isbn: '9780345391803', status: 'want-to-read', note: 'Pure brilliant absurdity, philosophy, and space travel.' }
+  { isbn: '9780345391803', status: 'want-to-read', note: 'Pure brilliant absurdity, philosophy, and space travel.' },
+  { isbn: '9783426562659', status: 'want-to-read', note: 'Very intereisting looking book' },
     
   ],
 
