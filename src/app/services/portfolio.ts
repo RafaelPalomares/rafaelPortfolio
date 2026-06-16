@@ -399,10 +399,7 @@ favCharacters: [
     { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'https://image.tmdb.org/t/p/w300/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg', status: 'watched', rating: 10, note: 'Timeless. Literally.' },
     { title: 'The Perks of Being a Wallflower', year: 2012, director: 'Stephen Chbosky', posterUrl: 'https://image.tmdb.org/t/p/w300/aKBilTMkBRCNwMU7UwgunpzRsmN.jpg', status: 'watched', rating: 10 },
     { title: 'It', year: 2017, director: 'Andy Muschietti', posterUrl: 'https://image.tmdb.org/t/p/w300/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg', status: 'watched', rating: 10, note: 'Stephen King on screen at his finest.' },
-    { title: 'A Nonsense Christmas with Sabrina Carpenter', year: 2024, director: 'Sam Wrench', posterUrl: 'https://image.tmdb.org/t/p/w300/tXwHMIOwkuaKj0OBVwQZPJKuKiP.jpg', status: 'watched', rating: 10 },
-    { title: 'The Muppet Show', year: 2026, director: '', posterUrl: 'https://image.tmdb.org/t/p/w300/zT0pXdxtSMILbyjCnMlJkn2XKRY.jpg', status: 'watched', rating: 10 },
     { title: 'EuroTrip', year: 2004, director: 'Jeff Schaffer', posterUrl: 'https://image.tmdb.org/t/p/w300/aL2jYNOxYRWs0kBqbJIRqpRkCN5.jpg', status: 'watched', rating: 10 },
-    { title: 'The Quintessential Quintuplets Movie', year: 2022, director: 'Masato Jinbo', posterUrl: 'https://image.tmdb.org/t/p/w300/sg4xJGSJlSuHTuG0HERHhB9fXkZ.jpg', status: 'watched', rating: 10 },
     { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg', status: 'watched', rating: 10, note: 'Christoph Waltz is unreal.' },
 
     // ─── 8/10 (4 stars) ──────────────────────────────────────────────────
@@ -453,13 +450,8 @@ favCharacters: [
     { title: 'Whiplash', year: 2014, director: 'Damien Chazelle', posterUrl: 'https://image.tmdb.org/t/p/w300/7fn624j544zkMfhOkMFyPIvdXlE.jpg', status: 'want-to-watch' },
     { title: 'The Notebook', year: 2004, director: 'Nick Cassavetes', posterUrl: 'https://image.tmdb.org/t/p/w300/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg', status: 'want-to-watch' },
     { title: 'American Psycho', year: 2000, director: 'Mary Harron', posterUrl: 'https://image.tmdb.org/t/p/w300/9uGHEgsiUXjCNq8wdBop4UEBl5x.jpg', status: 'want-to-watch' },
-    { title: 'Challengers', year: 2024, director: 'Luca Guadagnino', posterUrl: 'https://image.tmdb.org/t/p/w300/H6vke7zGiuLsz4v4RPjRV6KzgMZ.jpg', status: 'want-to-watch' },
-    { title: 'The Hunger Games', year: 2012, director: 'Gary Ross', posterUrl: 'https://image.tmdb.org/t/p/w300/yDbyVT0tlETpCpzNFheF0QZdT4j.jpg', status: 'want-to-watch' },
-    { title: 'The Hunger Games: Catching Fire', year: 2013, director: 'Francis Lawrence', posterUrl: 'https://image.tmdb.org/t/p/w300/wEJTgLDQ5sn4DiVnPJjnTOP3dCx.jpg', status: 'want-to-watch' },
     { title: 'The Shining', year: 1980, director: 'Stanley Kubrick', posterUrl: 'https://image.tmdb.org/t/p/w300/nRj5511mZdTl4saWEPoj9QroTIu.jpg', status: 'want-to-watch' },
-    { title: 'The Housemaid', year: 2025, director: '', posterUrl: 'https://image.tmdb.org/t/p/w300/cXUqDqSNsLOF1C7uENaKEb7bMwv.jpg', status: 'want-to-watch' },
-    { title: 'The Shawshank Redemption', year: 1994, director: 'Frank Darabont', posterUrl: 'https://image.tmdb.org/t/p/w300/9cjIGRiQGbiTxNLI6vfGkDvFpga.jpg', status: 'want-to-watch' },
-  ],
+   ],
 
   socials: [
     { label: 'GitHub', url: 'https://github.com/rafaelpalomares' },
