@@ -40,7 +40,8 @@
           (click)="flipSong(i)"
         >
           <div class="pick-front pick-front--song">
-            <div class="song-front-content">
+            <img *ngIf="song.coverUrl" [src]="song.coverUrl" [alt]="song.title" class="pick-poster" />
+            <div class="song-front-overlay">
               <span class="song-rank">#{{ i + 1 }}</span>
               <h4 class="song-title">{{ song.title }}</h4>
               <p class="song-artist">{{ song.artist }}</p>

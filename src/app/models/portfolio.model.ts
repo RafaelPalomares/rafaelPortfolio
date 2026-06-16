@@ -133,6 +133,8 @@ export interface TopSong {
   /** Spotify embed URL */
   spotifyEmbed: string;
   note?: string;
+  /** Local cover image path */
+  coverUrl?: string;
 }
 
 export interface PortfolioData {

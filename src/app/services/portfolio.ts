@@ -265,20 +265,23 @@ favCharacters: [
     {
       title: 'Snow White',
       artist: 'Laufey',
-      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      spotifyEmbed: 'https://open.spotify.com/embed/track/1AZwVoUx3UF5JbkUeMSUGe?utm_source=generator',
       note: 'Soft, dreamy, and perfectly crafted.',
+      coverUrl: 'snowwhite.jpeg',
     },
     {
       title: 'Forever Young',
       artist: 'Alphaville',
-      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      spotifyEmbed: 'https://open.spotify.com/embed/track/4S1VYqwfkLit9mKVY3MXoo?utm_source=generator',
       note: 'Timeless synth-pop. Hits every time.',
+      coverUrl: 'foreveryoung.jpeg',
     },
     {
       title: "Boys Don't Cry",
       artist: 'The Cure',
-      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      spotifyEmbed: 'https://open.spotify.com/embed/track/1QFh8OH1e78dGd3VyJZCAC?utm_source=generator',
       note: 'Raw emotion wrapped in a perfect melody.',
+      coverUrl: 'boysdontcry.jpeg',
     },
   ],
 

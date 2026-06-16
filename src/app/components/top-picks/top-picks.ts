@@ -28,6 +28,7 @@ interface TopSongDisplay {
   artist: string;
   spotifyEmbed: string;
   note: string;
+  coverUrl: string;
   flipped: boolean;
 }
 
@@ -72,6 +73,7 @@ export class TopPicksComponent implements OnInit {
           artist: s.artist,
           spotifyEmbed: s.spotifyEmbed,
           note: s.note ?? '',
+          coverUrl: s.coverUrl ?? '',
           flipped: false,
         }))
       );
