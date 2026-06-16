@@ -51,14 +51,32 @@ export class ReadingComponent implements OnInit {
   ngOnInit() {
     this.portfolioService.getData().subscribe((data) => {
       const items = data.readingList;
+
+      // Each request catches its own error so one failure doesn't kill the rest
       const requests = items.map((item) =>
-        this.http.get<any>(`https://openlibrary.org/isbn/${item.isbn}.json`)
+        this.http.get<any>(`https://openlibrary.org/isbn/${item.isbn}.json`).pipe(
+          catchError(() => of(null))
+        )
       );
 
       forkJoin(requests).subscribe({
         next: (responses) => {
           const books: BookInfo[] = responses.map((res, i) => {
             const item = items[i];
+            if (!res) {
+              // API failed for this ISBN — show with ISBN as fallback title
+              return {
+                isbn: item.isbn,
+                title: item.note ?? `ISBN ${item.isbn}`,
+                author: '',
+                coverUrl: `https://covers.openlibrary.org/b/isbn/${item.isbn}-M.jpg`,
+                pages: null,
+                year: null,
+                status: item.status,
+                progress: item.status === 'completed' ? 100 : (item.progress ?? 0),
+                note: item.note,
+              };
+            }
             return {
               isbn: item.isbn,
               title: res.title ?? 'Unknown Title',
@@ -93,11 +111,6 @@ export class ReadingComponent implements OnInit {
   }
 
   private extractAuthor(res: any): string {
-    if (res.authors && res.authors.length > 0) {
-      const key = res.authors[0].key;
-      // Open Library returns /authors/OL123A — just use a fallback
-      return res.by_statement ?? 'Unknown Author';
-    }
-    return res.by_statement ?? 'Unknown Author';
+    return res.by_statement ?? (res.authors?.length ? 'Author' : '');
   }
 }
