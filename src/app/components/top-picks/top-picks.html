@@ -1,0 +1,94 @@
+<section class="section" id="top-picks">
+  <div class="container">
+    <span class="section-label">Favourites</span>
+    <h2 class="section-title">My Top 3</h2>
+
+    <!-- Films -->
+    <div class="picks-group">
+      <h3 class="picks-category">🎬 Films</h3>
+      <div class="picks-row">
+        <div
+          class="pick-card"
+          *ngFor="let film of films(); let i = index"
+          [class.flipped]="film.flipped"
+          (click)="flipFilm(i)"
+        >
+          <div class="pick-front">
+            <img [src]="film.posterUrl" [alt]="film.title" class="pick-poster" />
+            <div class="pick-rank">#{{ i + 1 }}</div>
+            <div class="pick-hint">tap to flip</div>
+          </div>
+          <div class="pick-back">
+            <span class="pick-back-rank">#{{ i + 1 }}</span>
+            <h4 class="pick-back-title">{{ film.title }}</h4>
+            <p class="pick-back-meta">{{ film.year }} · {{ film.director }}</p>
+            <p class="pick-back-note">{{ film.note }}</p>
+            <span class="pick-back-rating" *ngIf="film.rating">★ {{ film.rating }}/10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Songs -->
+    <div class="picks-group">
+      <h3 class="picks-category">🎵 Songs</h3>
+      <div class="picks-row picks-row--songs">
+        <div
+          class="pick-card pick-card--song"
+          *ngFor="let song of songs(); let i = index"
+          [class.flipped]="song.flipped"
+          (click)="flipSong(i)"
+        >
+          <div class="pick-front pick-front--song">
+            <div class="song-front-content">
+              <span class="song-rank">#{{ i + 1 }}</span>
+              <h4 class="song-title">{{ song.title }}</h4>
+              <p class="song-artist">{{ song.artist }}</p>
+            </div>
+            <div class="pick-hint">tap to listen</div>
+          </div>
+          <div class="pick-back pick-back--song" (click)="$event.stopPropagation()">
+            <span class="pick-back-rank">#{{ i + 1 }}</span>
+            <h4 class="pick-back-title">{{ song.title }}</h4>
+            <p class="pick-back-meta">{{ song.artist }}</p>
+            <p class="pick-back-note" *ngIf="song.note">{{ song.note }}</p>
+            <iframe
+              *ngIf="song.spotifyEmbed"
+              [src]="safeUrl(song.spotifyEmbed)"
+              class="song-embed"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+            <button class="flip-back-btn" (click)="flipSong(i)">← Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Books -->
+    <div class="picks-group">
+      <h3 class="picks-category">📚 Books</h3>
+      <div class="picks-row">
+        <div
+          class="pick-card"
+          *ngFor="let book of books(); let i = index"
+          [class.flipped]="book.flipped"
+          (click)="flipBook(i)"
+        >
+          <div class="pick-front">
+            <img [src]="book.coverUrl" [alt]="book.title" class="pick-poster" />
+            <div class="pick-rank">#{{ i + 1 }}</div>
+            <div class="pick-hint">tap to flip</div>
+          </div>
+          <div class="pick-back">
+            <span class="pick-back-rank">#{{ i + 1 }}</span>
+            <h4 class="pick-back-title">{{ book.title }}</h4>
+            <p class="pick-back-meta" *ngIf="book.author">{{ book.author }}</p>
+            <p class="pick-back-note">{{ book.note }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

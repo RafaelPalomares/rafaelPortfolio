@@ -6,9 +6,7 @@ import { SkillsComponent } from '../../components/skills/skills';
 import { ProjectsComponent } from '../../components/projects/projects';
 import { IdolsComponent } from '../../components/idols/idols';
 import { HobbiesComponent } from '../../components/hobbies/hobbies';
-import { ReadingComponent } from '../../components/reading/reading';
-import { FilmsComponent } from '../../components/films/films';
-import { MusicIdolsComponent } from '../../components/music-idols/music-idols';
+import { TopPicksComponent } from '../../components/top-picks/top-picks';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { RowletComponent } from '../../components/rowlet/rowlet';
 import { ContactComponent } from '../../components/contact/contact';
@@ -24,9 +22,7 @@ import { ContactComponent } from '../../components/contact/contact';
     ProjectsComponent,
     IdolsComponent,
     HobbiesComponent,
-    ReadingComponent,
-    FilmsComponent,
-    MusicIdolsComponent,
+    TopPicksComponent,
     FavCharactersComponent,
     RowletComponent,
     ContactComponent,

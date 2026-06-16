@@ -125,6 +125,14 @@ export interface FilmItem {
   note?: string;
 }
 
+export interface TopSong {
+  title: string;
+  artist: string;
+  /** Spotify embed URL */
+  spotifyEmbed: string;
+  note?: string;
+}
+
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -137,7 +145,7 @@ export interface PortfolioData {
   idols: Idol[];
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
-  musicIdols: MusicIdol[];
+  topSongs: TopSong[];
   projects: Project[];
   readingList: ReadingItem[];
   filmList: FilmItem[];

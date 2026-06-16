@@ -261,79 +261,25 @@ favCharacters: [
   },
 ],
 
-  musicIdols: [
-  {
-    name: 'Elvis Presley',
-    genre: 'Rock and Roll',
-    reason: 'Elvis Presley means something to me because he basically shaped modern music. His stage presence, voice, and energy made him a legend who changed how performers express themselves.',
-    imageUrl: 'elvis.jpg',
-    copyright: '© Elvis Presley Enterprises / RCA Records · Image via YouTube Music',
-    featuredSong: {
-      title: 'The Wonder of You',
-      audioUrl: 'https://open.spotify.com/embed/track/0LfJkvPNCNEMLpZJgDQiV1?utm_source=generator',
-      type: 'embed',
+  topSongs: [
+    {
+      title: 'Snow White',
+      artist: 'Laufey',
+      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      note: 'Soft, dreamy, and perfectly crafted.',
     },
-  },
-  {
-    name: 'Frank Sinatra',
-    genre: 'Jazz / Traditional Pop',
-    reason: 'Frank Sinatra means something to me because of his timeless voice, confidence, and smooth control. He represents elegance, discipline, and performing under pressure with total calm.',
-    imageUrl: 'franksinatra.jpg',
-    copyright: '© Frank Sinatra Enterprises / Reprise Records · Image via YouTube Music',
-    featuredSong: {
-      title: 'Something Stupid',
-      audioUrl: 'https://open.spotify.com/embed/track/4feXcsElKIVsGwkbnTHAfV?utm_source=generator',
-      type: 'embed',
+    {
+      title: 'Forever Young',
+      artist: 'Alphaville',
+      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      note: 'Timeless synth-pop. Hits every time.',
     },
-  },
-  {
-    name: 'Queen',
-    genre: 'Rock',
-    reason: 'Queen means something to me because of their creativity, versatility, and powerful performances. They showed how music can be dramatic, emotional, and unforgettable at the same time.',
-    imageUrl: 'queen.jpg',
-    copyright: '© Queen Productions / Hollywood Records · Image via YouTube Music',
-    featuredSong: {
-      title: 'Bohemian Rhapsody',
-      audioUrl: 'https://open.spotify.com/embed/track/3z8h0TU7ReDPLIbEnYhWZb?utm_source=generator',
-      type: 'embed',
+    {
+      title: "Boys Don't Cry",
+      artist: 'The Cure',
+      spotifyEmbed: '', // TODO: paste Spotify embed URL
+      note: 'Raw emotion wrapped in a perfect melody.',
     },
-  },
-  {
-    name: 'The Smiths',
-    genre: 'Indie Rock',
-    reason: 'The Smiths mean something to me because of their emotional depth and raw honesty. Their music captures feelings in a very real, unfiltered way that hits differently.',
-    imageUrl: 'thesmiths.jpg',
-    copyright: '© The Smiths / Rough Trade Records · Image via YouTube Music',
-    featuredSong: {
-      title: 'There Is a Light That Never Goes Out',
-      audioUrl: 'https://open.spotify.com/embed/track/0WQiDwKJclirSYG9v5tayI?utm_source=generator',
-      type: 'embed',
-    },
-  },
-  {
-    name: 'Sabrina Carpenter',
-    genre: 'Pop',
-    reason: 'Sabrina Carpenter means something to me because of her modern pop sound, confidence, and personality in her music. She combines catchy production with strong storytelling.',
-    imageUrl: 'sabrinacarpenter.jpg',
-    copyright: '© Sabrina Carpenter / Island Records · Image via YouTube Music',
-    featuredSong: {
-      title: 'Espresso',
-      audioUrl: 'https://open.spotify.com/embed/track/2qSkIjg1o9h3YT9RAgYN75?utm_source=generator',
-      type: 'embed',
-    },
-  },
-  {
-    name: 'Laufey',
-    genre: 'Jazz Pop / Indie',
-    reason: 'Laufey means something to me because she blends old jazz vibes with modern emotion. Her music feels soft, artistic, and deeply expressive in a unique way.',
-    imageUrl: 'Laufey.jpg',
-    copyright: '© Laufey / AWAL · Image via YouTube Music',
-    featuredSong: {
-      title: 'From the Start',
-      audioUrl: 'https://open.spotify.com/embed/track/43iIQbw5hx986dUEZbr3eN?utm_source=generator',
-      type: 'embed',
-    },
-  },
   ],
 
   projects: [
@@ -369,88 +315,17 @@ favCharacters: [
 
   readingList: [
     { isbn: '9781501142970', status: 'completed', note: 'Stephen King at his best. Pure horror.' },
-    { isbn: '9781501156700', status: 'completed', note: 'Peak' },
     { isbn: '9780140439199', status: 'completed', note: 'Pure strategy and timeless wisdom.' },
-    { isbn: '9780312551513', status: 'completed', note: 'Time travel done right.' },
-    { isbn: '9780805092660', status: 'completed', note: 'The trilogy keeps getting better.' },
-    { isbn: '9780805092677', status: 'completed', note: 'Perfect ending to the trilogy.' },
-    { isbn: '9780747532699', status: 'completed', note: 'Where it all began.' },
-    { isbn: '9780747538486', status: 'completed', note: 'The Chamber of Secrets has been opened.' },
-    { isbn: '9780747542155', status: 'completed', note: 'Time-turners and Sirius Black.' },
-    { isbn: '9780747546245', status: 'completed', note: 'The tournament that changed everything.' },
-    { isbn: '9780747551003', status: 'completed', note: 'The darkest book in the series.' },
-    { isbn: '9780747581086', status: 'completed', note: 'The Half-Blood Prince reveals all.' },
-    { isbn: '9780747591054', status: 'completed', note: 'The end. Masterpiece.' },
-    { isbn: '9781101871805', status: 'completed', note: 'A perspective everyone needs to read.' },
-    { isbn: '9783499252723', status: 'completed', note: 'Honest and real.' },
-    { isbn: '9780062315007', status: 'want-to-read', note: 'A gripping dystopian masterpiece about control and individuality.' },
-    { isbn: '9780451524935', status: 'want-to-read', note: 'The ultimate cautionary tale about surveillance and totalitarianism.' },
-    { isbn: '9780743273565', status: 'want-to-read', note: 'A dazzling critique of the Jazz Age, wealth, and obsession.' },
-    { isbn: '9780061120084', status: 'want-to-read', note: 'A beautiful, allegorical journey about following your dreams.' },
-    { isbn: '9780345391803', status: 'want-to-read', note: 'Pure brilliant absurdity, philosophy, and space travel.' },
     { isbn: '9781474600842', status: 'completed', note: 'Strategy, obsession, and brilliance.' },
     
   ],
 
   filmList: [
-    // ─── 10/10 (5 stars) ─────────────────────────────────────────────────
     { title: '(500) Days of Summer', year: 2009, director: 'Marc Webb', posterUrl: 'https://image.tmdb.org/t/p/w300/f9mbM0YMLpYemcWx6o2WeiYQLDP.jpg', status: 'watched', rating: 10, note: 'My favourite film ever.' },
-    { title: '10 Things I Hate About You', year: 1999, director: 'Gil Junger', posterUrl: 'https://image.tmdb.org/t/p/w300/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg', status: 'watched', rating: 10 },
     { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'https://image.tmdb.org/t/p/w300/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg', status: 'watched', rating: 10, note: 'Timeless. Literally.' },
-    { title: 'The Perks of Being a Wallflower', year: 2012, director: 'Stephen Chbosky', posterUrl: 'https://image.tmdb.org/t/p/w300/aKBilTMkBRCNwMU7UwgunpzRsmN.jpg', status: 'watched', rating: 10 },
-    { title: 'It', year: 2017, director: 'Andy Muschietti', posterUrl: 'https://image.tmdb.org/t/p/w300/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg', status: 'watched', rating: 10, note: 'Stephen King on screen at his finest.' },
-    { title: 'EuroTrip', year: 2004, director: 'Jeff Schaffer', posterUrl: 'https://image.tmdb.org/t/p/w300/aL2jYNOxYRWs0kBqbJIRqpRkCN5.jpg', status: 'watched', rating: 10 },
+   
     { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg', status: 'watched', rating: 10, note: 'Christoph Waltz is unreal.' },
 
-    // ─── 8/10 (4 stars) ──────────────────────────────────────────────────
-    { title: 'Interstellar', year: 2014, director: 'Christopher Nolan', posterUrl: 'https://image.tmdb.org/t/p/w300/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg', status: 'watched', rating: 8, note: 'The docking scene is insane.' },
-    { title: 'Fight Club', year: 1999, director: 'David Fincher', posterUrl: 'https://image.tmdb.org/t/p/w300/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg', status: 'watched', rating: 8 },
-    { title: 'The Truman Show', year: 1998, director: 'Peter Weir', posterUrl: 'https://image.tmdb.org/t/p/w300/vuza0WqY239yBXOadKlGwJsZJFE.jpg', status: 'watched', rating: 8 },
-    { title: 'Oppenheimer', year: 2023, director: 'Christopher Nolan', posterUrl: 'https://image.tmdb.org/t/p/w300/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg', status: 'watched', rating: 8 },
-    { title: 'Inception', year: 2010, director: 'Christopher Nolan', posterUrl: 'https://image.tmdb.org/t/p/w300/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg', status: 'watched', rating: 8 },
-    { title: 'Kill Bill: Vol. 1', year: 2003, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg', status: 'watched', rating: 8 },
-    { title: 'How to Lose a Guy in 10 Days', year: 2003, director: 'Donald Petrie', posterUrl: 'https://image.tmdb.org/t/p/w300/aFiHyGJMWJMdzN6fKsmzFJmMkna.jpg', status: 'watched', rating: 8 },
-    { title: 'Ratatouille', year: 2007, director: 'Brad Bird', posterUrl: 'https://image.tmdb.org/t/p/w300/t3vaWRPSf6WjDSamIkKDs1iQWna.jpg', status: 'watched', rating: 8 },
-    { title: '13 Going on 30', year: 2004, director: 'Gary Winick', posterUrl: 'https://image.tmdb.org/t/p/w300/fYvGFls2MgDnfpmZHuJiEk8IbPi.jpg', status: 'watched', rating: 8 },
-    { title: 'Glass Onion', year: 2022, director: 'Rian Johnson', posterUrl: 'https://image.tmdb.org/t/p/w300/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg', status: 'watched', rating: 8 },
-    { title: 'Mean Girls', year: 2004, director: 'Mark Waters', posterUrl: 'https://image.tmdb.org/t/p/w300/fXm3YKXAEjx7d2tIlqzEcaPirhm.jpg', status: 'watched', rating: 8 },
-    { title: "The Queen's Gambit", year: 2020, director: 'Scott Frank', posterUrl: 'https://image.tmdb.org/t/p/w300/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg', status: 'watched', rating: 8 },
-    { title: 'Stranger Things 5', year: 2025, director: 'The Duffer Brothers', posterUrl: 'https://image.tmdb.org/t/p/w300/uOIL0hEAYBLqZwMKNylhtrGOkWa.jpg', status: 'watched', rating: 8 },
-    { title: 'Superbad', year: 2007, director: 'Greg Mottola', posterUrl: 'https://image.tmdb.org/t/p/w300/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg', status: 'watched', rating: 8 },
-
-    // ─── 6/10 (3 stars) ──────────────────────────────────────────────────
-    { title: 'Spider-Man: Into the Spider-Verse', year: 2018, director: 'Peter Ramsey', posterUrl: 'https://image.tmdb.org/t/p/w300/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg', status: 'watched', rating: 6 },
-    { title: 'Forrest Gump', year: 1994, director: 'Robert Zemeckis', posterUrl: 'https://image.tmdb.org/t/p/w300/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg', status: 'watched', rating: 6 },
-    { title: 'Kill Bill: Vol. 2', year: 2004, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/2yhg0mZQMhDyvUQ4rG1IiMFOFHR.jpg', status: 'watched', rating: 6 },
-    { title: 'The Wolf of Wall Street', year: 2013, director: 'Martin Scorsese', posterUrl: 'https://image.tmdb.org/t/p/w300/34m2tygAYBGqA9MXKhRDtzYd4MR.jpg', status: 'watched', rating: 6 },
-    { title: 'Avatar: The Way of Water', year: 2022, director: 'James Cameron', posterUrl: 'https://image.tmdb.org/t/p/w300/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', status: 'watched', rating: 6 },
-    { title: 'The Dark Knight', year: 2008, director: 'Christopher Nolan', posterUrl: 'https://image.tmdb.org/t/p/w300/qJ2tW6WMUDux911Ma1zuJFRT4UY.jpg', status: 'watched', rating: 6 },
-    { title: 'KPop Demon Hunters', year: 2025, director: '', posterUrl: 'https://image.tmdb.org/t/p/w300/eVSEPTVvDBYi1OElSPnCl1sRcjR.jpg', status: 'watched', rating: 6 },
-
-    // ─── 5/10 (2.5 stars) ────────────────────────────────────────────────
-    { title: 'The Fantastic 4: First Steps', year: 2025, director: 'Matt Shakman', posterUrl: 'https://image.tmdb.org/t/p/w300/4Zhg0IjSEcAYU7JyqAnBLrkazXc.jpg', status: 'watched', rating: 5 },
-
-    // ─── 4/10 (2 stars) ──────────────────────────────────────────────────
-    { title: 'Pulp Fiction', year: 1994, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg', status: 'watched', rating: 4 },
-    { title: "Five Nights at Freddy's 2", year: 2025, director: 'Emma Tammi', posterUrl: 'https://image.tmdb.org/t/p/w300/rSBA3YWKdrOiRCr5tGLXaJYkxyE.jpg', status: 'watched', rating: 4 },
-    { title: "Five Nights at Freddy's", year: 2023, director: 'Emma Tammi', posterUrl: 'https://image.tmdb.org/t/p/w300/j1iRoKPoXyRniNvKJlpMhq0iYpz.jpg', status: 'watched', rating: 4 },
-    { title: 'Zootopia', year: 2016, director: 'Byron Howard', posterUrl: 'https://image.tmdb.org/t/p/w300/sM33SANp9z6rXW8Itn7NnG1GOEs.jpg', status: 'watched', rating: 4 },
-    { title: 'Barbie', year: 2023, director: 'Greta Gerwig', posterUrl: 'https://image.tmdb.org/t/p/w300/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg', status: 'watched', rating: 4 },
-    { title: 'Harry Potter and the Order of the Phoenix', year: 2007, director: 'David Yates', posterUrl: 'https://image.tmdb.org/t/p/w300/7YzFzjMsNWmI6yYvE4pLbRqljdN.jpg', status: 'watched', rating: 4 },
-
-    // ─── 2/10 (1 star) ───────────────────────────────────────────────────
-    { title: 'Coraline', year: 2009, director: 'Henry Selick', posterUrl: 'https://image.tmdb.org/t/p/w300/4jeFJGVClBiGGOh0NRmbRmHAfEP.jpg', status: 'watched', rating: 2 },
-    { title: 'Avatar', year: 2009, director: 'James Cameron', posterUrl: 'https://image.tmdb.org/t/p/w300/kyeqWdyUXW608qlYkRqosgbbJyK.jpg', status: 'watched', rating: 2 },
-
-    // ─── Watchlist ────────────────────────────────────────────────────────
-    { title: 'La La Land', year: 2016, director: 'Damien Chazelle', posterUrl: 'https://image.tmdb.org/t/p/w300/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg', status: 'want-to-watch' },
-    { title: 'Dead Poets Society', year: 1989, director: 'Peter Weir', posterUrl: 'https://image.tmdb.org/t/p/w300/fia1GRjSEF8lhIOWNMUvCKiEbJf.jpg', status: 'want-to-watch' },
-    { title: 'Once Upon a Time... in Hollywood', year: 2019, director: 'Quentin Tarantino', posterUrl: 'https://image.tmdb.org/t/p/w300/8j58iEBw9pOXFV2HjF8V28WfFpY.jpg', status: 'want-to-watch' },
-    { title: 'Good Will Hunting', year: 1997, director: 'Gus Van Sant', posterUrl: 'https://image.tmdb.org/t/p/w300/bABCBKYBK7A5G1x0FzmtQKnnq7p.jpg', status: 'want-to-watch' },
-    { title: 'Whiplash', year: 2014, director: 'Damien Chazelle', posterUrl: 'https://image.tmdb.org/t/p/w300/7fn624j544zkMfhOkMFyPIvdXlE.jpg', status: 'want-to-watch' },
-    { title: 'The Notebook', year: 2004, director: 'Nick Cassavetes', posterUrl: 'https://image.tmdb.org/t/p/w300/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg', status: 'want-to-watch' },
-    { title: 'American Psycho', year: 2000, director: 'Mary Harron', posterUrl: 'https://image.tmdb.org/t/p/w300/9uGHEgsiUXjCNq8wdBop4UEBl5x.jpg', status: 'want-to-watch' },
-    { title: 'The Shining', year: 1980, director: 'Stanley Kubrick', posterUrl: 'https://image.tmdb.org/t/p/w300/nRj5511mZdTl4saWEPoj9QroTIu.jpg', status: 'want-to-watch' },
    ],
 
   socials: [
