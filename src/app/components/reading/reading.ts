@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of, catchError } from 'rxjs';
@@ -32,13 +32,14 @@ export class ReadingComponent implements OnInit {
   loading = signal(true);
   activeFilter = signal<'all' | 'reading' | 'completed' | 'want-to-read'>('all');
 
-  filteredBooks = () => {
+  filteredBooks = computed(() => {
     const filter = this.activeFilter();
-    if (filter === 'all') return this.books();
-    return this.books().filter((b) => b.status === filter);
-  };
+    const all = this.books();
+    if (filter === 'all') return all;
+    return all.filter((b) => b.status === filter);
+  });
 
-  stats = () => {
+  stats = computed(() => {
     const all = this.books();
     return {
       total: all.length,
@@ -46,7 +47,7 @@ export class ReadingComponent implements OnInit {
       completed: all.filter((b) => b.status === 'completed').length,
       wantToRead: all.filter((b) => b.status === 'want-to-read').length,
     };
-  };
+  });
 
   ngOnInit() {
     this.portfolioService.getData().subscribe((data) => {
