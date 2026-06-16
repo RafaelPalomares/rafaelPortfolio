@@ -293,15 +293,15 @@ favCharacters: [
   ],
 
   readingList: [
-    { isbn: '9781501142970', title: 'It', author: 'Stephen King', pages: 1168, status: 'completed', note: 'Stephen King at his best. Pure horror.', coverUrl: 'it.jpeg' },
-    { isbn: '9780140439199', title: 'The Art of War', author: 'Sun Tzu', pages: 384, status: 'completed', note: 'Pure strategy and timeless wisdom.', coverUrl: 'artofwar.jpeg' },
-    { isbn: '9781474600842', title: "The Queen's Gambit", author: 'Walter Tevis', pages: 272, status: 'completed', note: 'Strategy, obsession, and brilliance.', coverUrl: 'queensgambit.jpeg' },
+    { isbn: '9781501142970', title: 'It', author: 'Stephen King', pages: 1168, status: 'completed', note: 'One of the most terrifying and emotionally complex horror novels ever written. Stephen King builds an entire world in Derry, Maine — the friendships, the fears, the childhood trauma — and makes you feel every single page of those 1,100+ pages. Pennywise is iconic, but the real horror is how real the human parts feel.', coverUrl: 'it.jpeg' },
+    { isbn: '9780140439199', title: 'The Art of War', author: 'Sun Tzu', pages: 384, status: 'completed', note: 'Written over 2,500 years ago and still completely relevant. Every chapter reads like advice for volleyball, business, or life in general. It taught me that strategy isn\'t about brute force — it\'s about positioning, patience, and knowing when to act. I keep coming back to it.', coverUrl: 'artofwar.jpeg' },
+    { isbn: '9781474600842', title: "The Queen's Gambit", author: 'Walter Tevis', pages: 272, status: 'completed', note: 'Beth Harmon\'s obsession with chess mirrors how I feel about volleyball and coding — that drive to master something completely, to see patterns others don\'t, and to sacrifice comfort for greatness. The writing is sharp, the pacing is perfect, and it shows that genius without discipline means nothing.', coverUrl: 'queensgambit.jpeg' },
   ],
 
   filmList: [
-    { title: '(500) Days of Summer', year: 2009, director: 'Marc Webb', posterUrl: '500daysofsummer.png', status: 'watched', rating: 10, note: 'My favourite film ever.' },
-    { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'back2thefuture.jpeg', status: 'watched', rating: 10, note: 'Timeless. Literally.' },
-    { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'inglouriusbasterds.jpeg', status: 'watched', rating: 10, note: 'Christoph Waltz is unreal.' },
+    { title: '(500) Days of Summer', year: 2009, director: 'Marc Webb', posterUrl: '500daysofsummer.png', status: 'watched', rating: 10, note: 'This is my all-time favourite film. It completely changed how I think about love and expectations. The non-linear storytelling, the soundtrack, the honesty — it doesn\'t romanticize heartbreak, it just shows it as it is. Tom\'s journey from obsession to self-awareness hits differently every time I rewatch it.' },
+    { title: 'Back to the Future', year: 1985, director: 'Robert Zemeckis', posterUrl: 'back2thefuture.jpeg', status: 'watched', rating: 10, note: 'Pure cinema magic. The pacing is flawless, the chemistry between Marty and Doc is legendary, and the concept of time travel has never been executed more perfectly in a film. It\'s funny, thrilling, and emotionally satisfying — and it never gets old no matter how many times you watch it.' },
+    { title: 'Inglourious Basterds', year: 2009, director: 'Quentin Tarantino', posterUrl: 'inglouriusbasterds.jpeg', status: 'watched', rating: 10, note: 'Christoph Waltz as Hans Landa is one of the greatest performances in cinema history. The tension in every scene is unbearable — especially the opening and the bar scene. Tarantino rewrites history with style, and every frame drips with masterful dialogue, suspense, and dark humour.' },
    ],
 
   socials: [
