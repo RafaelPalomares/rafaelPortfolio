@@ -101,15 +101,13 @@ export interface Project {
 }
 
 export interface ReadingItem {
-  /** ISBN-13 or ISBN-10 — used to fetch from Open Library API */
   isbn: string;
-  /** 'reading' | 'completed' | 'want-to-read' */
+  title: string;
+  author: string;
+  pages?: number;
   status: 'reading' | 'completed' | 'want-to-read';
-  /** 0–100 progress percentage (only meaningful for 'reading') */
   progress?: number;
-  /** Optional short note / your take on it */
   note?: string;
-  /** Optional local cover image path (overrides API) */
   coverUrl?: string;
 }
 
@@ -149,7 +147,6 @@ export interface PortfolioData {
   idols: Idol[];
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
-  topSongs: TopSong[];
   projects: Project[];
   readingList: ReadingItem[];
   filmList: FilmItem[];
