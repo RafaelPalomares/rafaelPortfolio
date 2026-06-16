@@ -202,6 +202,36 @@
   padding: 0.2rem 0.7rem;
 }
 
+.flip-back-btn {
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+}
+
+.song-embed {
+  width: 100%;
+  height: 80px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 0.75rem;
+}
+
 // ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
   .picks-row {
