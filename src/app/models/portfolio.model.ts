@@ -111,6 +111,20 @@ export interface ReadingItem {
   note?: string;
 }
 
+export interface FilmItem {
+  /** TMDb poster path or full URL */
+  posterUrl: string;
+  title: string;
+  year: number;
+  director: string;
+  /** 'watched' | 'watching' | 'want-to-watch' */
+  status: 'watched' | 'watching' | 'want-to-watch';
+  /** Your rating out of 10 (optional) */
+  rating?: number;
+  /** Optional short note */
+  note?: string;
+}
+
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -126,5 +140,6 @@ export interface PortfolioData {
   musicIdols: MusicIdol[];
   projects: Project[];
   readingList: ReadingItem[];
+  filmList: FilmItem[];
   socials: SocialLink[];
 }
