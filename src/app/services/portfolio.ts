@@ -222,25 +222,6 @@ favCharacters: [
     imageUrl: 'satorugojo.jpeg',
     copyright: '© Gege Akutami / Shueisha · Image via Steam',
   },
-
-  {
-    name: 'Marty McFly',
-    media: 'Back to the Future',
-    mediaType: 'Movie',
-    voiceActor: 'Michael J. Fox',
-    reason: "Marty resonates with me because of his courage under pressure and his loyalty. He gets thrown into impossible situations and still finds a way through — not because he's the smartest in the room, but because he doesn't give up.",
-    imageUrl: 'martymcfly.webp',
-    copyright: '© Universal Pictures / Amblin Entertainment · Image via Fandom',
-  },
-  {
-    name: 'Tom Hansen',
-    media: '(500) Days of Summer',
-    mediaType: 'Movie',
-    voiceActor: 'Joseph Gordon-Levitt',
-    reason: "Tom is a great reminder that we don't always have everything figured out. His story resonates with me because it shows how important it is to be honest with yourself and to learn from your own mistakes and misunderstandings.",
-    imageUrl: 'tom.jpg',
-    copyright: '© Fox Searchlight Pictures (2009) · Image via Pinterest',
-  },
   {
     name: 'Jax',
     media: 'The Amazing Digital Circus',
@@ -249,16 +230,7 @@ favCharacters: [
     reason: "Jax is interesting because he’s completely unpredictable. I like that he doesn't just follow the script; he’s a reminder to keep things lighthearted and to value a bit of individuality in a world that often feels too structured.",
     imageUrl: 'jax.webp',
     copyright: '© Gooseworx / GLITCH Productions · Image via Reddit',
-  },
-  {
-    name: 'Bill Cipher',
-    media: 'Gravity Falls',
-    mediaType: 'Series',
-    voiceActor: 'Alex Hirsch',
-    reason: "I’m fascinated by the strategic way Bill thinks. While he’s an extreme character, his intelligence and the way he approaches complex problems from outside the box are really interesting from an analytical standpoint.",
-    imageUrl: 'billcipher.webp',
-    copyright: '© Alex Hirsch / Disney Television Animation · Image via Wikimedia',
-  },
+  }
 ],
 
   projects: [
