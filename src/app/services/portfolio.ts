@@ -21,7 +21,7 @@ export class PortfolioService {
 const portfolioData: PortfolioData = {
   person: {
     name: 'Rafael Palomares',
-    title: 'Apprenticeship as a Software-Developer @ Swisscom',
+    title: 'Apprenticeship as a Software-Developer',
     greeting: "Hi, I'm Rafael, nice to meet you!",
     bio: [
       "I’m a 17-year-old developer from Switzerland focused on building things that actually mean something—whether that’s a game, a site, or just a side project that started as a random idea. I’ve always appreciated people who lean into their own identity and discipline, and I try to bring that same mindset to my own work: constantly learning and improving without losing my own style." 
