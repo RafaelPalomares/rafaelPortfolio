@@ -1,123 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, map } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PortfolioData } from '../models/portfolio.model';
-import { DynamicFields } from '../models/dynamic-fields.model';
-import { TextGenerationService } from './text-generation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PortfolioService {
-  constructor(private textGen: TextGenerationService) {}
-
-  /**
-   * Returns portfolio data.
-   * Emits static data immediately, then re-emits with merged dynamic fields
-   * once Gemini responds (or keeps static on failure).
-   */
   getData(): Observable<PortfolioData> {
-    return combineLatest([
-      new Observable<PortfolioData>((subscriber) => {
-        subscriber.next(portfolioData);
-        subscriber.complete();
-      }),
-      this.textGen.getDynamicFields(),
-    ]).pipe(
-      map(([staticData, dynamicFields]) => {
-        if (dynamicFields) {
-          return mergePortfolioData(staticData, dynamicFields);
-        }
-        return staticData;
-      })
-    );
+    return of(portfolioData);
   }
 }
-
-// ─── Merge Function ──────────────────────────────────────────────────────────
-
-export function mergePortfolioData(
-  staticData: PortfolioData,
-  dynamicFields: DynamicFields
-): PortfolioData {
-  const merged = structuredClone(staticData);
-
-  // Person fields
-  if (dynamicFields.person?.greeting) {
-    merged.person.greeting = dynamicFields.person.greeting;
-  }
-  if (dynamicFields.person?.bio?.length === 3) {
-    merged.person.bio = dynamicFields.person.bio;
-  }
-  if (dynamicFields.person?.availableFor) {
-    merged.person.availableFor = dynamicFields.person.availableFor;
-  }
-
-  // Quote
-  if (dynamicFields.quote?.reason) {
-    merged.quote.reason = dynamicFields.quote.reason;
-  }
-
-  // Hobbies
-  if (dynamicFields.hobbies?.length === merged.hobbies.length) {
-    for (let i = 0; i < merged.hobbies.length; i++) {
-      if (dynamicFields.hobbies[i]?.description) {
-        merged.hobbies[i].description = dynamicFields.hobbies[i].description;
-      }
-    }
-  }
-
-  // Idols
-  if (dynamicFields.idols?.length === merged.idols.length) {
-    for (let i = 0; i < merged.idols.length; i++) {
-      if (dynamicFields.idols[i]?.reason) {
-        merged.idols[i].reason = dynamicFields.idols[i].reason;
-      }
-    }
-  }
-
-  // Favourite Characters
-  if (dynamicFields.favCharacters?.length === merged.favCharacters.length) {
-    for (let i = 0; i < merged.favCharacters.length; i++) {
-      if (dynamicFields.favCharacters[i]?.reason) {
-        merged.favCharacters[i].reason = dynamicFields.favCharacters[i].reason;
-      }
-    }
-  }
-
-  // Projects
-  if (dynamicFields.projects?.length === merged.projects.length) {
-    for (let i = 0; i < merged.projects.length; i++) {
-      if (dynamicFields.projects[i]?.description) {
-        merged.projects[i].description = dynamicFields.projects[i].description;
-      }
-      if (dynamicFields.projects[i]?.tagline) {
-        merged.projects[i].tagline = dynamicFields.projects[i].tagline;
-      }
-    }
-  }
-
-  // Reading List
-  if (dynamicFields.readingList?.length === merged.readingList.length) {
-    for (let i = 0; i < merged.readingList.length; i++) {
-      if (dynamicFields.readingList[i]?.note) {
-        merged.readingList[i].note = dynamicFields.readingList[i].note;
-      }
-    }
-  }
-
-  // Film List
-  if (dynamicFields.filmList?.length === merged.filmList.length) {
-    for (let i = 0; i < merged.filmList.length; i++) {
-      if (dynamicFields.filmList[i]?.note) {
-        merged.filmList[i].note = dynamicFields.filmList[i].note;
-      }
-    }
-  }
-
-  return merged;
-}
-
-// ─── Static Portfolio Data ───────────────────────────────────────────────────
 
 const portfolioData: PortfolioData = {
   person: {
