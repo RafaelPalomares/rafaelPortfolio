@@ -1,59 +1,107 @@
-# Portfolio
+# Rafael's Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
+A modern, responsive portfolio website showcasing projects and skills built with Angular.
 
-## Development server
+**Live:** https://rafael-portfolio-delta.vercel.app
 
-To start a local development server, run:
+## 🛠️ Tech Stack
+
+- **Frontend Framework:** Angular 21
+- **Styling:** SCSS
+- **Language:** TypeScript
+- **Build Tool:** Angular CLI
+- **Testing:** Vitest (unit tests), e2e testing framework
+- **Deployment:** Vercel
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/RafaelPalomares/rafaelPortfolio.git
+cd rafaelPortfolio
+
+# Install dependencies
+npm install
+```
+
+### Development
+
+```bash
+# Start development server
+npm run ng serve
+# or
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Navigate to `http://localhost:4200/`. The application will automatically reload when you modify source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Build
 
 ```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+# Build for production
+npm run ng build
+# or
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build artifacts are stored in the `dist/` directory.
 
-## Running unit tests
+## 🧪 Testing
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Unit Tests
 
 ```bash
+# Run unit tests with Vitest
+npm run ng test
+# or
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### End-to-End Tests
 
 ```bash
+# Run e2e tests
+npm run ng e2e
+# or
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 📦 Project Structure
 
-## Additional Resources
+```
+src/
+├── app/              # Angular components and modules
+├── assets/           # Static assets (images, fonts, etc.)
+├── styles/           # Global SCSS styles
+└── index.html        # Main HTML file
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🔧 Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run ng serve` | Start development server |
+| `npm run ng build` | Build for production |
+| `npm run ng test` | Run unit tests |
+| `npm run ng e2e` | Run e2e tests |
+| `npm run ng generate component [name]` | Generate new component |
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 👨‍💻 Author
+
+**Rafael Palomares**
+- GitHub: [@RafaelPalomares](https://github.com/RafaelPalomares)
+- Portfolio: https://rafael-portfolio-delta.vercel.app
+
+---
+
+For more information on using Angular CLI, visit the [Angular CLI Overview](https://angular.dev/tools/cli).
