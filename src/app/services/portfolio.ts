@@ -344,7 +344,6 @@ const portfolioData: PortfolioData = {
       title: 'Mona Lisa',
       artist: 'Leonardo da Vinci',
       wikipediaTitle: 'Mona_Lisa',
-      copyright: 'Quelle: Gwengoat / Getty Images',
       reason: 'Ever since childhood, seeing her in person was a dream waiting to be fulfilled. Standing before her this spring was pure joy—an unforgettable moment where years of anticipation finally met reality. Beyond that personal connection, her subtle, impossible-to-pin-down expression and sfumato depth make her the ultimate masterpiece.'
     },
     {
@@ -352,14 +351,12 @@ const portfolioData: PortfolioData = {
       artist: 'René Magritte',
       wikipediaTitle: 'The_Son_of_Man',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Magritte_TheSonOfMan.jpg',
-      copyright: 'Quelle: STR New / Reuters',
       reason: 'It nails that surreal, mysterious aura—reminiscent of the eerie, calm authority of Wonder of U from JoJo's Bizarre Adventure. The suited man with the floating green apple obscures what's right in front of you, capturing a sense of unstoppable, quiet calamity and existential mystery.'
     },
     {
       title: 'The Starry Night',
       artist: 'Vincent van Gogh',
       wikipediaTitle: 'The_Starry_Night',
-      copyright: 'Quelle: Fine Art / Corbis via Getty Images',
       reason: 'It turns raw emotion and psychological turmoil into movement. The swirling night sky doesn't feel static; it vibrates with energy, making you feel the weight of Van Gogh's inner world through vivid blues and burning yellows.'
     },
     {
@@ -415,7 +412,6 @@ const portfolioData: PortfolioData = {
       title: 'Napoleon Crossing the Alps',
       artist: 'Jacques-Louis David',
       wikipediaTitle: 'Napoleon_Crossing_the_Alps',
-      copyright: 'Quelle: Print Collector / Print Collector/Getty Images',
       reason: 'The ultimate image of power, motion, and heroism. The rearing horse, dramatic cloak, and ideal posture scream unshakeable confidence and historical destiny.'
     },
     {
