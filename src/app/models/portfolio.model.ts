@@ -142,6 +142,7 @@ export interface Artwork {
   wikipediaTitle?: string;
   wikimediaFile?: string;
   imageUrl?: string;
+  copyright?: string;
 }
 
 export interface PortfolioData {

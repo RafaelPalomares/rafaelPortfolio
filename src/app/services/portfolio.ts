@@ -339,92 +339,97 @@ const portfolioData: PortfolioData = {
   ],
 
   artGallery: [
+
     {
       title: 'Mona Lisa',
       artist: 'Leonardo da Vinci',
       wikipediaTitle: 'Mona_Lisa',
-      reason: 'This painting has a special place in my heart. Since I was a child, I always dreamed of seeing her in person. This spring, I finally had the chance to visit the Louvre, and seeing her was one of the most joyful moments in my life.'
-    },
-    {
-      title: 'The Starry Night',
-      artist: 'Vincent van Gogh',
-      wikipediaTitle: 'The_Starry_Night',
-      reason: 'A breathtaking visualization of the night sky, capturing emotion and turbulence.'
-    },
-    {
-      title: 'Sunflowers',
-      artist: 'Vincent van Gogh',
-      wikipediaTitle: 'Sunflowers_(Van_Gogh_series)',
-      reason: 'The vibrant yellows and the raw, expressive brushstrokes bring so much life and energy.'
-    },
-    {
-      title: 'The Kiss',
-      artist: 'Gustav Klimt',
-      wikipediaTitle: 'The_Kiss_(Klimt)',
-      reason: 'The intricate gold leaf patterns and the emotional intimacy of the subjects make it truly captivating.'
-    },
-    {
-      title: 'The Great Wave off Kanagawa',
-      artist: 'Hokusai',
-      wikipediaTitle: 'The_Great_Wave_off_Kanagawa',
-      reason: 'A powerful depiction of nature’s force contrasting with the stillness of Mount Fuji in the background.'
-    },
-    {
-      title: 'The Scream',
-      artist: 'Edvard Munch',
-      wikipediaTitle: 'The_Scream',
-      reason: 'An incredibly raw and universal expression of existential dread and human anxiety.'
-    },
-    {
-      title: 'The Birth of Venus',
-      artist: 'Sandro Botticelli',
-      wikipediaTitle: 'The_Birth_of_Venus',
-      reason: 'A masterpiece of the Renaissance that perfectly captures the beauty and grace of classical mythology.'
-    },
-    {
-      title: 'The Persistence of Memory',
-      artist: 'Salvador Dalí',
-      wikipediaTitle: 'The_Persistence_of_Memory',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg',
-      reason: 'The melting clocks challenge our perception of time and reality in a brilliant, surreal way.'
+      copyright: 'Quelle: Gwengoat / Getty Images',
+      reason: 'Ever since childhood, seeing her in person was a dream waiting to be fulfilled. Standing before her this spring was pure joy—an unforgettable moment where years of anticipation finally met reality. Beyond that personal connection, her subtle, impossible-to-pin-down expression and sfumato depth make her the ultimate masterpiece.'
     },
     {
       title: 'The Son of Man',
       artist: 'René Magritte',
       wikipediaTitle: 'The_Son_of_Man',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Magritte_TheSonOfMan.jpg',
-      reason: 'I love how it plays with what is hidden and what is visible, leaving a lingering sense of mystery.'
+      copyright: 'Quelle: STR New / Reuters',
+      reason: 'It nails that surreal, mysterious aura—reminiscent of the eerie, calm authority of Wonder of U from JoJo's Bizarre Adventure. The suited man with the floating green apple obscures what's right in front of you, capturing a sense of unstoppable, quiet calamity and existential mystery.'
+    },
+    {
+      title: 'The Starry Night',
+      artist: 'Vincent van Gogh',
+      wikipediaTitle: 'The_Starry_Night',
+      copyright: 'Quelle: Fine Art / Corbis via Getty Images',
+      reason: 'It turns raw emotion and psychological turmoil into movement. The swirling night sky doesn't feel static; it vibrates with energy, making you feel the weight of Van Gogh's inner world through vivid blues and burning yellows.'
+    },
+    {
+      title: 'Sunflowers',
+      artist: 'Vincent van Gogh',
+      wikipediaTitle: 'Sunflowers_(Van_Gogh_series)',
+      reason: 'A masterclass in texture and warmth. It takes a simple subject and gives it raw, textured vitality—showing beauty in different stages of life and decay with thick, confident impasto strokes.'
+    },
+    {
+      title: 'The Kiss',
+      artist: 'Gustav Klimt',
+      wikipediaTitle: 'The_Kiss_(Klimt)',
+      reason: 'The golden radiance and geometric patterns create a sense of timeless love. It feels less like a standard painting and more like an icon glowing from within, blending intimacy with decorative splendor.'
+    },
+    {
+      title: 'The Great Wave off Kanagawa',
+      artist: 'Hokusai',
+      wikipediaTitle: 'The_Great_Wave_off_Kanagawa',
+      reason: 'The composition is legendary: the overwhelming force of nature framing Mount Fuji in the background. It perfectly captures tension, scale, and the contrast between momentary chaos and permanent stability.'
+    },
+    {
+      title: 'The Scream',
+      artist: 'Edvard Munch',
+      wikipediaTitle: 'The_Scream',
+      reason: 'It visually translates pure anxiety. The wavy lines of the environment echo the figure's internal panic, making the landscape itself feel like it’s vibrating with terror.'
+    },
+    {
+      title: 'The Birth of Venus',
+      artist: 'Sandro Botticelli',
+      wikipediaTitle: 'The_Birth_of_Venus',
+      reason: 'Pure classical elegance and mythological grace. The flowing lines, soft colors, and effortless movement give it an ethereal, dreamlike quality that stands out across art history.'
+    },
+    {
+      title: 'The Persistence of Memory',
+      artist: 'Salvador Dalí',
+      wikipediaTitle: 'The_Persistence_of_Memory',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg',
+      reason: 'It distorts reality in the best way possible. The melting clocks in a stark, barren landscape capture the fluid, nonsensical nature of time and dreams.'
     },
     {
       title: 'The School of Athens',
       artist: 'Raphael',
       wikipediaTitle: 'The_School_of_Athens',
-      reason: 'A perfect celebration of philosophy and knowledge, bringing the greatest minds of antiquity together.'
+      reason: 'A grand celebration of intellect, symmetry, and perspective. Gathering history's greatest philosophers into one perfectly proportioned architectural space gives it incredible depth and monumental scale.'
     },
     {
-      title: 'Coronation of Napoleon',
+      title: 'The Coronation of Napoleon',
       artist: 'Jacques-Louis David',
       wikipediaTitle: 'Coronation_of_Napoleon',
-      reason: 'An epic and grandiose painting that captures the ambition and power of Napoleon.'
+      reason: 'Pure theatrical propaganda on a massive scale. The sheer detail, grand lighting, and meticulous crowd rendering make you feel the weight of empire and political drama.'
     },
     {
       title: 'Napoleon Crossing the Alps',
       artist: 'Jacques-Louis David',
       wikipediaTitle: 'Napoleon_Crossing_the_Alps',
-      reason: 'The ultimate depiction of leadership and determination, portraying Napoleon as an unstoppable force.'
+      copyright: 'Quelle: Print Collector / Print Collector/Getty Images',
+      reason: 'The ultimate image of power, motion, and heroism. The rearing horse, dramatic cloak, and ideal posture scream unshakeable confidence and historical destiny.'
     },
     {
       title: 'Napoleon I on his Imperial Throne',
       artist: 'Jean-Auguste-Dominique Ingres',
       wikipediaTitle: 'Napoleon_I_on_his_Imperial_Throne',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Ingres%2C_Napoleon_on_his_Imperial_throne.jpg',
-      reason: 'A striking and majestic portrait that captures the absolute power and divine authority of the Emperor.'
+      reason: 'It presents Napoleon almost as a deity or Roman emperor. The rigid symmetry, opulent robes, and cold gaze create a breathtaking display of absolute authority.'
     },
     {
-      title: 'C\'est fini (It is finished)',
+      title: "C'est fini (It is finished)",
       artist: 'Oskar Rex',
-      wikimediaFile: 'File:Oskar_Rex_-_C\'est_fini.jpg',
-      reason: 'A powerful and poignant depiction of Napoleon in exile on Saint Helena, contemplating his legacy and the end of an era.'
+      wikimediaFile: 'File:Oskar_Rex_-_C'est_fini.jpg',
+      reason: 'A haunting contrast to the imperial portraits. Showing Napoleon isolated, looking out at the ocean on Saint Helena, it captures the melancholic end of an era and the quiet weight of fallen ambition.'
     }
   ],
 
