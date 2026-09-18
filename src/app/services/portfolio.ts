@@ -420,12 +420,6 @@ const portfolioData: PortfolioData = {
       wikipediaTitle: 'Napoleon_I_on_his_Imperial_Throne',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Ingres%2C_Napoleon_on_his_Imperial_throne.jpg',
       reason: 'It presents Napoleon almost as a deity or Roman emperor. The rigid symmetry, opulent robes, and cold gaze create a breathtaking display of absolute authority.'
-    },
-    {
-      title: "C'est fini (It is finished)",
-      artist: 'Oskar Rex',
-      wikimediaFile: "File:Oskar_Rex_-_C'est_fini.jpg",
-      reason: 'A haunting contrast to the imperial portraits. Showing Napoleon isolated, looking out at the ocean on Saint Helena, it captures the melancholic end of an era and the quiet weight of fallen ambition.'
     }
   ],
 
