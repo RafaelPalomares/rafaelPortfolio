@@ -10,6 +10,7 @@ import { TopPicksComponent } from '../../components/top-picks/top-picks';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { RowletComponent } from '../../components/rowlet/rowlet';
 import { ContactComponent } from '../../components/contact/contact';
+import { ArtGalleryComponent } from '../../components/art-gallery/art-gallery';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ import { ContactComponent } from '../../components/contact/contact';
     HobbiesComponent,
     TopPicksComponent,
     FavCharactersComponent,
+    ArtGalleryComponent,
     RowletComponent,
     ContactComponent,
   ],

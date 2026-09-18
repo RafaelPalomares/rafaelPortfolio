@@ -28,10 +28,10 @@ const portfolioData: PortfolioData = {
   },
 
   quote: {
-    text: 'In order to find your autumn, you have to go through summer.',
-    author: '(500) Days of Summer (2009)',
+    text: "'Impossible' is a word to be found only in the dictionary of fools.",
+    author: 'Napoleon Bonaparte',
     reason:
-      "This quote resonates with me because it captures something I genuinely believe — that the hard, uncomfortable phases in life aren't obstacles, they're the path. You don't skip summer to get to autumn. You live through it. Whether it's a tough season in volleyball, a project that isn't working yet, or just a period where nothing feels right — it's all part of finding where you're supposed to be.",
+      "This quote resonates with me because it reframes limiting beliefs — the moment you label a goal or a problem as 'impossible', you've already given up control. Whether it's mastering a tough play on the court, debugging a system that keeps breaking, or taking on a project everyone says is too ambitious — 'impossible' is just an excuse for people who aren't willing to find another way.",
   },
 
   skills: [
@@ -336,6 +336,96 @@ const portfolioData: PortfolioData = {
       rating: 10,
       note: 'Christoph Waltz as Hans Landa is one of the greatest performances in cinema history. The tension in every scene is unbearable — especially the opening and the bar scene. Tarantino rewrites history with style, and every frame drips with masterful dialogue, suspense, and dark humour.',
     },
+  ],
+
+  artGallery: [
+    {
+      title: 'Mona Lisa',
+      artist: 'Leonardo da Vinci',
+      wikipediaTitle: 'Mona_Lisa',
+      reason: 'This painting has a special place in my heart. Since I was a child, I always dreamed of seeing her in person. This spring, I finally had the chance to visit the Louvre, and seeing her was one of the most joyful moments in my life.'
+    },
+    {
+      title: 'The Starry Night',
+      artist: 'Vincent van Gogh',
+      wikipediaTitle: 'The_Starry_Night',
+      reason: 'A breathtaking visualization of the night sky, capturing emotion and turbulence.'
+    },
+    {
+      title: 'Sunflowers',
+      artist: 'Vincent van Gogh',
+      wikipediaTitle: 'Sunflowers_(Van_Gogh_series)',
+      reason: 'The vibrant yellows and the raw, expressive brushstrokes bring so much life and energy.'
+    },
+    {
+      title: 'The Kiss',
+      artist: 'Gustav Klimt',
+      wikipediaTitle: 'The_Kiss_(Klimt)',
+      reason: 'The intricate gold leaf patterns and the emotional intimacy of the subjects make it truly captivating.'
+    },
+    {
+      title: 'The Great Wave off Kanagawa',
+      artist: 'Hokusai',
+      wikipediaTitle: 'The_Great_Wave_off_Kanagawa',
+      reason: 'A powerful depiction of nature’s force contrasting with the stillness of Mount Fuji in the background.'
+    },
+    {
+      title: 'The Scream',
+      artist: 'Edvard Munch',
+      wikipediaTitle: 'The_Scream',
+      reason: 'An incredibly raw and universal expression of existential dread and human anxiety.'
+    },
+    {
+      title: 'The Birth of Venus',
+      artist: 'Sandro Botticelli',
+      wikipediaTitle: 'The_Birth_of_Venus',
+      reason: 'A masterpiece of the Renaissance that perfectly captures the beauty and grace of classical mythology.'
+    },
+    {
+      title: 'The Persistence of Memory',
+      artist: 'Salvador Dalí',
+      wikipediaTitle: 'The_Persistence_of_Memory',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg',
+      reason: 'The melting clocks challenge our perception of time and reality in a brilliant, surreal way.'
+    },
+    {
+      title: 'The Son of Man',
+      artist: 'René Magritte',
+      wikipediaTitle: 'The_Son_of_Man',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Magritte_TheSonOfMan.jpg',
+      reason: 'I love how it plays with what is hidden and what is visible, leaving a lingering sense of mystery.'
+    },
+    {
+      title: 'The School of Athens',
+      artist: 'Raphael',
+      wikipediaTitle: 'The_School_of_Athens',
+      reason: 'A perfect celebration of philosophy and knowledge, bringing the greatest minds of antiquity together.'
+    },
+    {
+      title: 'Coronation of Napoleon',
+      artist: 'Jacques-Louis David',
+      wikipediaTitle: 'Coronation_of_Napoleon',
+      reason: 'An epic and grandiose painting that captures the ambition and power of Napoleon.'
+    },
+    {
+      title: 'Napoleon Crossing the Alps',
+      artist: 'Jacques-Louis David',
+      wikipediaTitle: 'Napoleon_Crossing_the_Alps',
+      reason: 'The ultimate depiction of leadership and determination, portraying Napoleon as an unstoppable force.'
+    },
+    {
+      title: 'Napoleon I on his Imperial Throne',
+      artist: 'Jean-Auguste-Dominique Ingres',
+      wikipediaTitle: 'Napoleon_I_on_his_Imperial_Throne',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Ingres%2C_Napoleon_on_his_Imperial_throne.jpg',
+      reason: 'A striking and majestic portrait that captures the absolute power and divine authority of the Emperor.'
+    },
+    {
+      title: "C'est fini",
+      artist: 'Oskar Rex',
+      wikimediaFile: 'File:Oskar_Rex_-_C\'est_fini.jpg',
+      reason: 'A deeply moving and dramatic portrayal of Beethoven, capturing the weight of his genius and struggles.'
+    }
   ],
 
   socials: [

@@ -135,6 +135,15 @@ export interface TopSong {
   coverUrl?: string;
 }
 
+export interface Artwork {
+  title: string;
+  artist: string;
+  reason: string;
+  wikipediaTitle?: string;
+  wikimediaFile?: string;
+  imageUrl?: string;
+}
+
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -150,5 +159,6 @@ export interface PortfolioData {
   projects: Project[];
   readingList: ReadingItem[];
   filmList: FilmItem[];
+  artGallery: Artwork[];
   socials: SocialLink[];
 }

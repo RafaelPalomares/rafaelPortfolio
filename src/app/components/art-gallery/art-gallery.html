@@ -1,0 +1,49 @@
+<section class="section" id="art-gallery" *ngIf="data && artworks.length > 0">
+  <div class="container">
+    <span class="section-label">Gallery</span>
+    <h2 class="section-title">The Art Gallery</h2>
+    
+    <div class="art-grid">
+      <div
+        class="quote-flip-wrap"
+        *ngFor="let art of artworks"
+        (click)="toggleFlip(art)"
+        [class.is-flipped]="art.flipped"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="toggleFlip(art)"
+        (keydown.space)="toggleFlip(art)"
+        [attr.aria-pressed]="art.flipped"
+        aria-label="Flip artwork card"
+      >
+        <div class="quote-flip-inner">
+          <div class="quote-face-ghost" aria-hidden="true">
+            <span class="ghost-hint">click to flip back</span>
+            <span class="ghost-label">Why I love it</span>
+            <span class="ghost-reason">{{ art.reason }}</span>
+          </div>
+
+          <!-- FRONT: Image -->
+          <div class="quote-face quote-front art-front">
+            <span class="flip-hint">click to flip</span>
+            <div class="art-image-wrapper">
+              <img *ngIf="art.fetchedImageUrl" [src]="art.fetchedImageUrl" [alt]="art.title" class="art-img" />
+              <div *ngIf="!art.fetchedImageUrl" class="art-placeholder">Loading...</div>
+            </div>
+            <div class="art-info">
+              <h3 class="art-title">{{ art.title }}</h3>
+              <p class="art-artist">{{ art.artist }}</p>
+            </div>
+          </div>
+
+          <!-- BACK: Reason -->
+          <div class="quote-face quote-back">
+            <span class="flip-hint">click to flip back</span>
+            <p class="back-label">Why I love it</p>
+            <p class="back-reason">{{ art.reason }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
