@@ -421,10 +421,10 @@ const portfolioData: PortfolioData = {
       reason: 'A striking and majestic portrait that captures the absolute power and divine authority of the Emperor.'
     },
     {
-      title: "C'est fini",
+      title: 'C\'est fini (It is finished)',
       artist: 'Oskar Rex',
       wikimediaFile: 'File:Oskar_Rex_-_C\'est_fini.jpg',
-      reason: 'A deeply moving and dramatic portrayal of Beethoven, capturing the weight of his genius and struggles.'
+      reason: 'A powerful and poignant depiction of Napoleon in exile on Saint Helena, contemplating his legacy and the end of an era.'
     }
   ],
 
