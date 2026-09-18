@@ -351,13 +351,13 @@ const portfolioData: PortfolioData = {
       artist: 'René Magritte',
       wikipediaTitle: 'The_Son_of_Man',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Magritte_TheSonOfMan.jpg',
-      reason: 'It nails that surreal, mysterious aura—reminiscent of the eerie, calm authority of Wonder of U from JoJo's Bizarre Adventure. The suited man with the floating green apple obscures what's right in front of you, capturing a sense of unstoppable, quiet calamity and existential mystery.'
+      reason: "It nails that surreal, mysterious aura—reminiscent of the eerie, calm authority of Wonder of U from JoJo's Bizarre Adventure. The suited man with the floating green apple obscures what's right in front of you, capturing a sense of unstoppable, quiet calamity and existential mystery."
     },
     {
       title: 'The Starry Night',
       artist: 'Vincent van Gogh',
       wikipediaTitle: 'The_Starry_Night',
-      reason: 'It turns raw emotion and psychological turmoil into movement. The swirling night sky doesn't feel static; it vibrates with energy, making you feel the weight of Van Gogh's inner world through vivid blues and burning yellows.'
+      reason: "It turns raw emotion and psychological turmoil into movement. The swirling night sky doesn't feel static; it vibrates with energy, making you feel the weight of Van Gogh's inner world through vivid blues and burning yellows."
     },
     {
       title: 'Sunflowers',
@@ -381,7 +381,7 @@ const portfolioData: PortfolioData = {
       title: 'The Scream',
       artist: 'Edvard Munch',
       wikipediaTitle: 'The_Scream',
-      reason: 'It visually translates pure anxiety. The wavy lines of the environment echo the figure's internal panic, making the landscape itself feel like it’s vibrating with terror.'
+      reason: "It visually translates pure anxiety. The wavy lines of the environment echo the figure's internal panic, making the landscape itself feel like it’s vibrating with terror."
     },
     {
       title: 'The Birth of Venus',
@@ -400,7 +400,7 @@ const portfolioData: PortfolioData = {
       title: 'The School of Athens',
       artist: 'Raphael',
       wikipediaTitle: 'The_School_of_Athens',
-      reason: 'A grand celebration of intellect, symmetry, and perspective. Gathering history's greatest philosophers into one perfectly proportioned architectural space gives it incredible depth and monumental scale.'
+      reason: "A grand celebration of intellect, symmetry, and perspective. Gathering history's greatest philosophers into one perfectly proportioned architectural space gives it incredible depth and monumental scale."
     },
     {
       title: 'The Coronation of Napoleon',
@@ -424,7 +424,7 @@ const portfolioData: PortfolioData = {
     {
       title: "C'est fini (It is finished)",
       artist: 'Oskar Rex',
-      wikimediaFile: 'File:Oskar_Rex_-_C'est_fini.jpg',
+      wikimediaFile: "File:Oskar_Rex_-_C'est_fini.jpg",
       reason: 'A haunting contrast to the imperial portraits. Showing Napoleon isolated, looking out at the ocean on Saint Helena, it captures the melancholic end of an era and the quiet weight of fallen ambition.'
     }
   ],
