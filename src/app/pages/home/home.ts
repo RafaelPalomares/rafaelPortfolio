@@ -11,6 +11,8 @@ import { FavCharactersComponent } from '../../components/fav-characters/fav-char
 import { RowletComponent } from '../../components/rowlet/rowlet';
 import { ContactComponent } from '../../components/contact/contact';
 import { ArtGalleryComponent } from '../../components/art-gallery/art-gallery';
+import { PlaylistComponent } from '../../components/playlist/playlist';
+import { LegendaryItemComponent } from '../../components/legendary-item/legendary-item';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +30,8 @@ import { ArtGalleryComponent } from '../../components/art-gallery/art-gallery';
     ArtGalleryComponent,
     RowletComponent,
     ContactComponent,
+    PlaylistComponent,
+    LegendaryItemComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

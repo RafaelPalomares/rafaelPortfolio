@@ -421,6 +421,8 @@ const portfolioData: PortfolioData = {
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Ingres%2C_Napoleon_on_his_Imperial_throne.jpg',
       reason: 'It presents Napoleon almost as a deity or Roman emperor. The rigid symmetry, opulent robes, and cold gaze create a breathtaking display of absolute authority.'
     }
+
+
   ],
 
   socials: [

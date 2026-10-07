@@ -1,0 +1,28 @@
+<section class="section section-alt" id="prized-possession">
+  <div class="container" style="text-align: center;">
+    <span class="section-label">Most Prized Possession</span>
+    <h2 class="section-title">The Legendary Mace</h2>
+    <p class="section-subtitle" style="margin-bottom: 3rem;">A weapon that goes beyond all limits.</p>
+
+    <div class="legendary-showcase">
+      <div class="pedestal">
+        <div class="glow-effect"></div>
+        <img [src]="mace.iconUrl" alt="Plus Ultra" class="mace-icon" draggable="false">
+      </div>
+
+      <div class="item-details">
+        <h3 class="item-name" [style.color]="mace.rarityColor">{{ mace.name }}</h3>
+        
+        <div class="enchantments">
+          <div *ngFor="let enc of mace.enchantments" class="enchantment">
+            <span class="sparkle">✨</span> {{ enc }}
+          </div>
+        </div>
+
+        <div class="lore-box">
+          <p *ngFor="let line of mace.lore">{{ line }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

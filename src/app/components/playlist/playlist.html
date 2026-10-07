@@ -1,0 +1,29 @@
+<section class="section" id="playlist">
+  <div class="container">
+    <span class="section-label">Music</span>
+    <h2 class="section-title">My Playlist</h2>
+    <p class="section-subtitle">What I'm currently listening to.</p>
+    
+    <div class="playlist-container">
+      <iframe 
+        width="100%" 
+        height="450" 
+        src="https://www.youtube.com/embed/videoseries?list=PLDIKVuDg6n48" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="song-list">
+      <h3>Tracks in this Playlist</h3>
+      <ul>
+        <li *ngFor="let song of songs; let i = index">
+          <span class="track-number">{{ i + 1 }}.</span>
+          <span class="track-title">{{ song }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
