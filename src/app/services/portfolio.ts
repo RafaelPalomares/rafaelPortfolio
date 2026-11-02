@@ -27,12 +27,14 @@ const portfolioData: PortfolioData = {
     avatarInitials: 'RP',
   },
 
+
   quote: {
-    text: "'Impossible' is a word to be found only in the dictionary of fools.",
-    author: 'Napoleon Bonaparte',
+    text: "I'm not afraid of an army of lions led by a sheep; I'm afraid of an army of sheep led by a lion.",
+    author: 'Alexander the Great',
     reason:
-      "This quote resonates with me because it reframes limiting beliefs — the moment you label a goal or a problem as 'impossible', you've already given up control. Whether it's mastering a tough play on the court, debugging a system that keeps breaking, or taking on a project everyone says is too ambitious — 'impossible' is just an excuse for people who aren't willing to find another way.",
+      "This quote reflects my belief that leadership, strategy, and mentality can be more decisive than individual strength. A team of talented people without direction will struggle to reach its potential, while ordinary individuals led by someone who inspires them, understands the game, and knows when to act can achieve extraordinary things. Whether on the volleyball court, in a team project, or facing a challenge others consider impossible, I believe the difference is rarely just talent — it is the person who brings everyone together and makes them play beyond their limits.",
   },
+
 
   skills: [
     {
@@ -123,7 +125,7 @@ const portfolioData: PortfolioData = {
       icon: '🎵',
       name: 'Music',
       description:
-        'I listen to almost everything, from 50s jazz to modern trap, but I have a few special favorites that define my vibe—check out the music section for a deeper look into my playlist.',
+        'I listen to almost everything, from 50s jazz to modern trap, but I have a few special favorites that define my vibe.',
     },
     {
       icon: '⚽',
@@ -157,27 +159,28 @@ const portfolioData: PortfolioData = {
       copyright:
         '© By Jacques-Louis David - Google Art Project, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38872895',
     },
+
     {
       number: '02',
+      name: 'Alexander the Great',
+      role: 'King & Military Strategist',
+      category: 'historical',
+      reason:
+        'Alexander the Great inspires me because of his ambition, adaptability, and ability to lead from the front. He reminds me to think beyond limitations, take calculated risks, and pursue goals others consider impossible. His legacy represents the combination of vision, courage, and leadership needed to turn ambitious plans into reality.',
+      imageUrl: 'alexander.jpeg',
+      copyright:
+        '©',
+    },
+    {
+      number: '03',
       name: 'Sun Tzu',
       role: 'Military Strategist & Author',
       category: 'historical',
       reason:
-        'Sun Tzu inspires me because of his deep understanding of strategy, timing, and psychology. He teaches that true victory comes from intelligence, preparation, and winning without unnecessary conflict.',
+        'Sun Tzu inspires me because of his understanding of strategy, timing, and psychology. He teaches me that winning is not always about being the strongest, but about understanding the situation, preparing better than the competition, and making the right move at the right time. His philosophy reminds me to stay adaptable, anticipate challenges, and use intelligence rather than force to gain an advantage.',
       imageUrl: 'suntzu.jpeg',
       copyright:
         '© Von Autor/-in unbekannt - Qing Palace Collection Picture Book. Beijing: Palace Museum Press. 1994., Gemeinfrei, https://commons.wikimedia.org/w/index.php?curid=57088337',
-    },
-    {
-      number: '03',
-      name: 'Socrates',
-      role: 'Philosopher',
-      category: 'historical',
-      reason:
-        'Socrates inspires me because he valued truth, critical thinking, and self-awareness above everything else. His way of questioning everything reminds me to think deeper and never accept things blindly.',
-      imageUrl: 'socrates.jpeg',
-      copyright:
-        '© Von Copy of Lysippos (?) - Eric Gaba (User:Sting), July 2005., Gemeinfrei, https://commons.wikimedia.org/w/index.php?curid=3569936',
     },
     {
       number: '04',
