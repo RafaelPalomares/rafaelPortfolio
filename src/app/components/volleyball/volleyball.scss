@@ -655,3 +655,49 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Player Highlight Video (locally hosted clip) ── */
+.player-video {
+  margin-top: 1rem;
+}
+
+.player-video-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a5b4fc;
+
+  padding: 0.5rem 0.9rem;
+
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: rgba(129, 140, 248, 0.16);
+    border-color: rgba(129, 140, 248, 0.55);
+  }
+}
+
+.player-video-frame {
+  margin-top: 0.9rem;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  video {
+    display: block;
+
+    height: auto;
+    width: 100%;
+    max-width: 605px;
+
+    background: #000;
+    border: 0;
+  }
+}

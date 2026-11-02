@@ -117,6 +117,27 @@
   }
 }
 
+.legal-disclaimer {
+  background: var(--accent-soft);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+
+  p {
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  em {
+    color: var(--text-dim);
+  }
+}
+
 .legal-footer-note {
   font-size: 0.75rem;
   color: var(--text-dim);

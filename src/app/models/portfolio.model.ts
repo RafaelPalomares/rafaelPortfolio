@@ -61,6 +61,8 @@ export interface VolleyballPlayer {
   imageUrl?: string;
   /** Copyright notice shown below the image, e.g. "© Source / License" */
   copyright?: string;
+  /** Optional path to a locally hosted highlight clip for this player, e.g. "player.mp4" */
+  videoUrl?: string;
 }
 
 export interface FavCharacter {

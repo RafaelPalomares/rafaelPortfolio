@@ -266,6 +266,7 @@ const portfolioData: PortfolioData = {
         'Simeon Nikolov is the player I study most. As a fellow setter, I admire his calm confidence, creativity, and absurd volleyball IQ at such a young age. The way he controls tempo, hides his sets, and stays composed in clutch moments is exactly the game I want to grow into.',
       imageUrl: 'simeonnikolov.jpeg',
       copyright: '© Volleybox.net · All rights reserved',
+      videoUrl: 'simeonnikolov.mp4',
     },
     {
       name: 'Micah Christenson',
@@ -282,6 +283,7 @@ const portfolioData: PortfolioData = {
         'Micah Christenson is the blueprint for a modern setter: technically flawless hands, incredible court awareness, and the composure to run a world-class offense under pressure. I look to him for how to distribute the ball efficiently and keep every hitter involved.',
       imageUrl: 'micahchristenson.jpeg',
       copyright: '© FIVB · All rights reserved',
+      videoUrl: 'micahchristenson.mp4',
     },
     {
       name: 'Eze Vazquez',
@@ -298,6 +300,7 @@ const portfolioData: PortfolioData = {
         'Eze Vazquez plays with a fearless, expressive style that I love. His quick hands and willingness to take risks show me that being a setter isn\'t just about safe plays — it\'s about creativity, tempo, and setting the emotional tone for the team.',
       imageUrl: 'ezevazquez.jpeg',
       copyright: '© All rights reserved by respective owner',
+      videoUrl: 'ezevazquez.mp4',
     },
   ],
 

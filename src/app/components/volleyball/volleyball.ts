@@ -25,6 +25,7 @@ export class VolleyballComponent implements OnInit {
 
   favPlayers = signal<VolleyballPlayer[]>([]);
   openPlayerCopyright = signal<string | null>(null);
+  openPlayerVideo = signal<string | null>(null);
 
   plays: SetterPlay[] = [
     {
@@ -34,16 +35,34 @@ export class VolleyballComponent implements OnInit {
       tempo: '1st Tempo · Rapid Fire',
       description: 'The middle blocker takes off before the ball even reaches the setter’s hands. Caught at the peak of the jump with zero delay.',
       tacticalWhy: 'Bypasses the opposing middle blocker before they can commit, forcing the defense to freeze in the middle.',
-      ballPath: { x1: 270, y1: 140, x2: 240, y2: 90 },
+      ballPath: { x1: 270, y1: 75, x2: 200, y2: 68 },
     },
     {
-      id: 'outside4',
-      name: 'High Ball Outside',
-      targetZone: 'Zone 4 (Left Pin)',
-      tempo: '2nd / High Tempo',
-      description: 'A crisp, high-arching ball pushed all the way out to the left antenna, giving the outside hitter maximum elevation and vision.',
-      tacticalWhy: 'Provides the hitter room to tool off the block or hit sharp cross-court angles past the perimeter diggers.',
-      ballPath: { x1: 270, y1: 140, x2: 60, y2: 85 },
+      id: 'shoot',
+      name: 'Shoot (Wide Middle Quick)',
+      targetZone: 'Left Gap (Z3 → Z4)',
+      tempo: '1st Tempo · Fast & Wide',
+      description: 'The middle blocker runs a 1st-tempo quick far away from the setter, attacking a flat, fast ball out in the gap toward the left side instead of right in front of the setter.',
+      tacticalWhy: 'Stretching the quick wide pulls the opposing middle blocker out of the center, opening huge seams for the pins and the back row.',
+      ballPath: { x1: 270, y1: 75, x2: 120, y2: 66 },
+    },
+    {
+      id: 'backone',
+      name: 'Back One (Quick Behind)',
+      targetZone: 'Just Behind Setter',
+      tempo: '1st Tempo · Rapid Fire',
+      description: 'A quick 1st-tempo ball set blind directly behind the setter’s head, meeting the middle blocker at the peak of the jump just behind the setter.',
+      tacticalWhy: 'Mirrors the front quick on the back shoulder, keeping the opposing middle guessing which side of the setter the quick will come from.',
+      ballPath: { x1: 270, y1: 75, x2: 290, y2: 66 },
+    },
+    {
+      id: 'dball',
+      name: 'D-Ball (Quick to Oppo)',
+      targetZone: 'Right of Setter (toward Z2)',
+      tempo: '1st Tempo · Rapid Fire',
+      description: 'A quick 1st-tempo ball pushed to the right of the setter toward the opposite side, letting the attacker meet it fast before the block closes.',
+      tacticalWhy: 'Running a quick on the right stresses the opposing block on the opposite’s side and keeps a fast-tempo option alive away from the middle.',
+      ballPath: { x1: 270, y1: 75, x2: 325, y2: 70 },
     },
     {
       id: 'pipe6',
@@ -52,16 +71,25 @@ export class VolleyballComponent implements OnInit {
       tempo: '1.5 Tempo',
       description: 'A flat, driving set delivered directly over the 3-meter line to an oncoming back-row attacker surging from deep court.',
       tacticalWhy: 'Exploits the seams between the blockers when the middle blocker is committed to the front court attack.',
-      ballPath: { x1: 270, y1: 140, x2: 200, y2: 230 },
+      ballPath: { x1: 270, y1: 75, x2: 200, y2: 230 },
     },
     {
-      id: 'back2',
-      name: 'Back-Set to Opposite',
+      id: 'oppo2',
+      name: 'Oppo "2" (Front Row)',
       targetZone: 'Zone 2 (Right Pin)',
-      tempo: '2nd Tempo',
-      description: 'The setter arches their back slightly and pushes an inverted ball blind behind their head to the opposite attacker.',
-      tacticalWhy: 'Draws the opposing middle toward the left, opening an isolated 1-on-1 single block on the right pin.',
-      ballPath: { x1: 270, y1: 140, x2: 340, y2: 85 },
+      tempo: '2nd Tempo · Front Row',
+      description: 'A back set delivered to the opposite hitter attacking from the front row on the right antenna — the classic "2" ball swung over Zone 2.',
+      tacticalWhy: 'Gives the opposite a clean front-row swing on the right pin, often isolating them against a single blocker.',
+      ballPath: { x1: 270, y1: 75, x2: 345, y2: 80 },
+    },
+    {
+      id: 'oppoA',
+      name: 'Oppo "A" (Back Row)',
+      targetZone: 'Zone 1 (Back Right)',
+      tempo: '2nd Tempo · Back Row',
+      description: 'The same opposite attack, but run as an "A" ball from the back row — the opposite swings from behind the 3-meter line on the right side of the court.',
+      tacticalWhy: 'Keeps the opposite dangerous even from the back row, adding a right-side back-row option that stretches the block vertically and deep.',
+      ballPath: { x1: 270, y1: 75, x2: 330, y2: 215 },
     },
     {
       id: 'dump',
@@ -70,7 +98,7 @@ export class VolleyballComponent implements OnInit {
       tempo: 'Instant Surprise',
       description: 'Faking a high set with square shoulders, the setter flicks their left wrist and tips the ball directly into an open pocket on the opponent’s floor.',
       tacticalWhy: 'Keeps opposing blockers honest; when they jump to block the middle, the dump lands completely uncontested.',
-      ballPath: { x1: 270, y1: 140, x2: 250, y2: 40 },
+      ballPath: { x1: 270, y1: 75, x2: 250, y2: 40 },
     },
   ];
 
@@ -88,6 +116,10 @@ export class VolleyballComponent implements OnInit {
 
   togglePlayerCopyright(name: string): void {
     this.openPlayerCopyright.set(this.openPlayerCopyright() === name ? null : name);
+  }
+
+  togglePlayerVideo(name: string): void {
+    this.openPlayerVideo.set(this.openPlayerVideo() === name ? null : name);
   }
 
   scrollTo(id: string): void {

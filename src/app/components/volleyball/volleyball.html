@@ -254,6 +254,27 @@
 
             <p class="player-reason">{{ player.reason }}</p>
 
+            <div class="player-video" *ngIf="player.videoUrl">
+              <button
+                type="button"
+                class="player-video-toggle"
+                (click)="togglePlayerVideo(player.name)"
+                [attr.aria-expanded]="openPlayerVideo() === player.name"
+              >
+                {{ openPlayerVideo() === player.name ? 'Hide highlight ▲' : '▶ Watch highlight clip' }}
+              </button>
+
+              <div class="player-video-frame" *ngIf="openPlayerVideo() === player.name">
+                <video
+                  [src]="player.videoUrl"
+                  [attr.aria-label]="player.name + ' — highlight clip'"
+                  controls
+                  playsinline
+                  preload="metadata"
+                ></video>
+              </div>
+            </div>
+
             <div class="cr-inline" *ngIf="openPlayerCopyright() === player.name && player.copyright">
               <span class="cr-inline-icon">©</span>
               <span class="cr-inline-text">{{ player.copyright }}</span>
