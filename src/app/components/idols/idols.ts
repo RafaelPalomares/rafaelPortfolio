@@ -13,13 +13,11 @@ import { Idol } from '../../models/portfolio.model';
 export class IdolsComponent implements OnInit {
   private portfolioService = inject(PortfolioService);
   historicalIdols: Idol[] = [];
-  sportsIdols: Idol[] = [];
   openCopyright: string | null = null;
 
   ngOnInit() {
     this.portfolioService.getData().subscribe((d) => {
       this.historicalIdols = d.idols.filter((i) => i.category === 'historical');
-      this.sportsIdols = d.idols.filter((i) => i.category === 'sports');
     });
   }
 

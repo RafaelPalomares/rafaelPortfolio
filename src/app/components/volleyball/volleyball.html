@@ -206,5 +206,62 @@
       <button class="btn btn-outline" (click)="scrollTo('projects')">View in Projects →</button>
     </div>
 
+    <!-- Favorite Volleyball Players -->
+    <div class="fav-players" id="players">
+      <div class="fav-players-header">
+        <span class="section-label">Idols on the Court</span>
+        <h3 class="fav-players-title">Setters I Look Up To</h3>
+        <p class="fav-players-subtitle">
+          The playmakers who shape how I read the game. These are the setters whose highlights I study to
+          sharpen my own tempo, vision, and composure.
+        </p>
+      </div>
+
+      <div class="players-grid">
+        <article class="player-card" *ngFor="let player of favPlayers()">
+          <div class="player-media">
+            <img
+              *ngIf="player.imageUrl; else playerFallback"
+              [src]="player.imageUrl"
+              [alt]="player.name"
+              class="player-img"
+            />
+            <ng-template #playerFallback>
+              <span class="player-flag-fallback">{{ player.flag }}</span>
+            </ng-template>
+
+            <button
+              *ngIf="player.copyright"
+              class="cr-btn"
+              [class.cr-btn--open]="openPlayerCopyright() === player.name"
+              (click)="togglePlayerCopyright(player.name)"
+              [attr.aria-expanded]="openPlayerCopyright() === player.name"
+              [attr.aria-label]="'Copyright info for ' + player.name"
+            >© cr</button>
+          </div>
+
+          <div class="player-body">
+            <div class="player-pos-row">
+              <span class="player-flag">{{ player.flag }}</span>
+              <span class="player-pos">{{ player.position }}</span>
+            </div>
+            <h4 class="player-name">{{ player.name }}</h4>
+            <p class="player-team">{{ player.team }}</p>
+
+            <ul class="player-highlights">
+              <li *ngFor="let highlight of player.highlights">{{ highlight }}</li>
+            </ul>
+
+            <p class="player-reason">{{ player.reason }}</p>
+
+            <div class="cr-inline" *ngIf="openPlayerCopyright() === player.name && player.copyright">
+              <span class="cr-inline-icon">©</span>
+              <span class="cr-inline-text">{{ player.copyright }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
   </div>
 </section>

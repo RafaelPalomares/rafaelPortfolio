@@ -48,6 +48,21 @@ export interface Hobby {
   description: string;
 }
 
+export interface VolleyballPlayer {
+  name: string;
+  position: string;
+  team: string;
+  nationality: string;
+  flag: string;
+  /** Short highlight reel of what makes this player special */
+  highlights: string[];
+  /** Why Rafael looks up to this player */
+  reason: string;
+  imageUrl?: string;
+  /** Copyright notice shown below the image, e.g. "© Source / License" */
+  copyright?: string;
+}
+
 export interface FavCharacter {
   name: string;
   media: string;
@@ -100,51 +115,6 @@ export interface Project {
   imageUrl?: string;
 }
 
-export interface ReadingItem {
-  isbn: string;
-  title: string;
-  author: string;
-  pages?: number;
-  status: 'reading' | 'completed' | 'want-to-read';
-  progress?: number;
-  note?: string;
-  coverUrl?: string;
-}
-
-export interface FilmItem {
-  /** TMDb poster path or full URL */
-  posterUrl: string;
-  title: string;
-  year: number;
-  director: string;
-  /** 'watched' | 'watching' | 'want-to-watch' */
-  status: 'watched' | 'watching' | 'want-to-watch';
-  /** Your rating out of 10 (optional) */
-  rating?: number;
-  /** Optional short note */
-  note?: string;
-}
-
-export interface TopSong {
-  title: string;
-  artist: string;
-  /** Spotify embed URL */
-  spotifyEmbed: string;
-  note?: string;
-  /** Local cover image path */
-  coverUrl?: string;
-}
-
-export interface Artwork {
-  title: string;
-  artist: string;
-  reason: string;
-  wikipediaTitle?: string;
-  wikimediaFile?: string;
-  imageUrl?: string;
-  copyright?: string;
-}
-
 export interface PortfolioData {
   person: PersonInfo;
   quote: {
@@ -158,8 +128,6 @@ export interface PortfolioData {
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
   projects: Project[];
-  readingList: ReadingItem[];
-  filmList: FilmItem[];
-  artGallery: Artwork[];
+  volleyballPlayers: VolleyballPlayer[];
   socials: SocialLink[];
 }

@@ -427,6 +427,189 @@
   }
 }
 
+/* ── Favorite Players ── */
+.fav-players {
+  margin-top: 4rem;
+  scroll-margin-top: 90px;
+}
+
+.fav-players-header {
+  margin-bottom: 2rem;
+}
+
+.fav-players-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
+  color: var(--text);
+  font-weight: 400;
+  margin: 0.4rem 0;
+}
+
+.fav-players-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(129, 140, 248, 0.35);
+  }
+}
+
+.player-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(145deg, rgba(129, 140, 248, 0.08), rgba(255, 255, 255, 0.02));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .player-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .player-flag-fallback {
+    font-size: 3.5rem;
+  }
+
+  .cr-btn {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.7rem;
+    color: #c7d2fe;
+    background: rgba(13, 13, 15, 0.75);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover,
+    &.cr-btn--open {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+  }
+}
+
+.player-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+}
+
+.player-pos-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .player-flag {
+    font-size: 1.1rem;
+  }
+
+  .player-pos {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a5b4fc;
+    font-weight: 600;
+  }
+}
+
+.player-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+
+.player-team {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.player-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+
+    &::before {
+      content: '🏐';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.player-reason {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.cr-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  .cr-inline-icon {
+    color: #a5b4fc;
+    font-weight: 600;
+  }
+
+  .cr-inline-text {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .volleyball-hero-grid {
@@ -449,6 +632,10 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .players-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -462,5 +649,9 @@
 
   .play-display {
     padding: 1.25rem;
+  }
+
+  .players-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PortfolioService } from '../../services/portfolio';
+import { VolleyballPlayer } from '../../models/portfolio.model';
 
 export interface SetterPlay {
   id: string;
@@ -18,7 +20,12 @@ export interface SetterPlay {
   templateUrl: './volleyball.html',
   styleUrl: './volleyball.scss',
 })
-export class VolleyballComponent {
+export class VolleyballComponent implements OnInit {
+  private readonly portfolioService = inject(PortfolioService);
+
+  favPlayers = signal<VolleyballPlayer[]>([]);
+  openPlayerCopyright = signal<string | null>(null);
+
   plays: SetterPlay[] = [
     {
       id: 'quick1',
@@ -69,11 +76,21 @@ export class VolleyballComponent {
 
   selectedPlay = signal<SetterPlay>(this.plays[0]);
 
-  selectPlay(play: SetterPlay) {
+  ngOnInit(): void {
+    this.portfolioService.getData().subscribe((data) => {
+      this.favPlayers.set(data.volleyballPlayers);
+    });
+  }
+
+  selectPlay(play: SetterPlay): void {
     this.selectedPlay.set(play);
   }
 
-  scrollTo(id: string) {
+  togglePlayerCopyright(name: string): void {
+    this.openPlayerCopyright.set(this.openPlayerCopyright() === name ? null : name);
+  }
+
+  scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

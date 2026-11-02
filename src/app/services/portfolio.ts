@@ -182,37 +182,6 @@ const portfolioData: PortfolioData = {
       copyright:
         '© Von Autor/-in unbekannt - Qing Palace Collection Picture Book. Beijing: Palace Museum Press. 1994., Gemeinfrei, https://commons.wikimedia.org/w/index.php?curid=57088337',
     },
-    {
-      number: '04',
-      name: 'Cristiano Ronaldo',
-      role: 'Professional Footballer',
-      category: 'sports',
-      reason:
-        'Cristiano Ronaldo inspires me because of his insane discipline, mentality, and work ethic. He proved that hard work and dedication can push someone beyond natural talent and turn them into one of the greatest athletes ever.',
-      imageUrl: 'cristianoronaldo.jpg',
-      copyright:
-        '© by AtilaTheHun from Manchester, England, This file is licensed under the Creative Commons Attribution 2.0 Generic license.',
-    },
-    {
-      number: '05',
-      name: 'Simeon Nikolov',
-      role: 'Professional Volleyball Player',
-      category: 'sports',
-      reason:
-        'Simeon Nikolov inspires me because of his calm confidence, creativity, and high-level volleyball IQ. As a setter, I admire how he controls the game, creates opportunities for his team, and stays composed in important moments.',
-      imageUrl: 'simeonnikolov.jpeg',
-      copyright: '© Volleybox.net · All rights reserved',
-    },
-    {
-      number: '06',
-      name: 'Tyrese Haliburton',
-      role: 'Professional Basketball Player',
-      category: 'sports',
-      reason:
-        'Tyrese Haliburton inspires me because of his unselfish playstyle, leadership, and confidence. He always looks to make his teammates better, stays calm under pressure, and proves that intelligence and teamwork can be just as valuable as pure athleticism.',
-      imageUrl: 'tyresehaliburton.jpeg',
-      copyright: '© The New York Times · All rights reserved',
-    },
   ],
 
   favCharacters: [
@@ -281,151 +250,55 @@ const portfolioData: PortfolioData = {
     },
   ],
 
-  readingList: [
+  volleyballPlayers: [
     {
-      isbn: '9781501142970',
-      title: 'It',
-      author: 'Stephen King',
-      pages: 1168,
-      status: 'completed',
-      note: "One of the most terrifying and emotionally complex horror novels ever written. Stephen King builds an entire world in Derry, Maine — the friendships, the fears, the childhood trauma — and makes you feel every single page of those 1,100+ pages. Pennywise is iconic, but the real horror is how real the human parts feel.",
-      coverUrl: 'it.jpeg',
+      name: 'Simeon Nikolov',
+      position: 'Setter',
+      team: 'Lube Civitanova / Bulgaria',
+      nationality: 'Bulgaria',
+      flag: '🇧🇬',
+      highlights: [
+        'Teenage prodigy who became a starting setter at the senior international level',
+        'Key playmaker in Bulgaria\'s silver medal run at the 2025 Nations League',
+        'Deceptive, fast tempo distribution that keeps opposing middle blockers guessing',
+      ],
+      reason:
+        'Simeon Nikolov is the player I study most. As a fellow setter, I admire his calm confidence, creativity, and absurd volleyball IQ at such a young age. The way he controls tempo, hides his sets, and stays composed in clutch moments is exactly the game I want to grow into.',
+      imageUrl: 'simeonnikolov.jpeg',
+      copyright: '© Volleybox.net · All rights reserved',
     },
     {
-      isbn: '9780140439199',
-      title: 'The Art of War',
-      author: 'Sun Tzu',
-      pages: 384,
-      status: 'completed',
-      note: "Written over 2,500 years ago and still completely relevant. Every chapter reads like advice for volleyball, business, or life in general. It taught me that strategy isn't about brute force — it's about positioning, patience, and knowing when to act. I keep coming back to it.",
-      coverUrl: 'artofwar.jpeg',
+      name: 'Micah Christenson',
+      position: 'Setter',
+      team: 'USA National Team',
+      nationality: 'United States',
+      flag: '🇺🇸',
+      highlights: [
+        'Olympic bronze medalist with Team USA (Rio 2016)',
+        'Renowned for pinpoint set location and elite back-row attacking as a setter',
+        'Masterclass in reading blockers and running a balanced, unpredictable offense',
+      ],
+      reason:
+        'Micah Christenson is the blueprint for a modern setter: technically flawless hands, incredible court awareness, and the composure to run a world-class offense under pressure. I look to him for how to distribute the ball efficiently and keep every hitter involved.',
+      imageUrl: 'micahchristenson.jpeg',
+      copyright: '© FIVB · All rights reserved',
     },
     {
-      isbn: '9781474600842',
-      title: "The Queen's Gambit",
-      author: 'Walter Tevis',
-      pages: 272,
-      status: 'completed',
-      note: "Beth Harmon's obsession with chess mirrors how I feel about volleyball and coding — that drive to master something completely, to see patterns others don't, and to sacrifice comfort for greatness. The writing is sharp, the pacing is perfect, and it shows that genius without discipline means nothing.",
-      coverUrl: 'queensgambit.jpeg',
+      name: 'Eze Vazquez',
+      position: 'Setter',
+      team: 'Argentina National Team',
+      nationality: 'Argentina',
+      flag: '🇦🇷',
+      highlights: [
+        'Creative South American setter known for his flair and quick decision-making',
+        'Drives a fast, aggressive tempo that energizes the whole team',
+        'Brings passion and leadership that lifts his teammates in big moments',
+      ],
+      reason:
+        'Eze Vazquez plays with a fearless, expressive style that I love. His quick hands and willingness to take risks show me that being a setter isn\'t just about safe plays — it\'s about creativity, tempo, and setting the emotional tone for the team.',
+      imageUrl: 'ezevazquez.jpeg',
+      copyright: '© All rights reserved by respective owner',
     },
-  ],
-
-  filmList: [
-    {
-      title: '(500) Days of Summer',
-      year: 2009,
-      director: 'Marc Webb',
-      posterUrl: '500daysofsummer.png',
-      status: 'watched',
-      rating: 10,
-      note: "This is my all-time favourite film. It completely changed how I think about love and expectations. The non-linear storytelling, the soundtrack, the honesty — it doesn't romanticize heartbreak, it just shows it as it is. Tom's journey from obsession to self-awareness hits differently every time I rewatch it.",
-    },
-    {
-      title: 'Back to the Future',
-      year: 1985,
-      director: 'Robert Zemeckis',
-      posterUrl: 'back2thefuture.jpeg',
-      status: 'watched',
-      rating: 10,
-      note: "Pure cinema magic. The pacing is flawless, the chemistry between Marty and Doc is legendary, and the concept of time travel has never been executed more perfectly in a film. It's funny, thrilling, and emotionally satisfying — and it never gets old no matter how many times you watch it.",
-    },
-    {
-      title: 'Inglourious Basterds',
-      year: 2009,
-      director: 'Quentin Tarantino',
-      posterUrl: 'inglouriusbasterds.jpeg',
-      status: 'watched',
-      rating: 10,
-      note: 'Christoph Waltz as Hans Landa is one of the greatest performances in cinema history. The tension in every scene is unbearable — especially the opening and the bar scene. Tarantino rewrites history with style, and every frame drips with masterful dialogue, suspense, and dark humour.',
-    },
-  ],
-
-  artGallery: [
-
-    {
-      title: 'Mona Lisa',
-      artist: 'Leonardo da Vinci',
-      wikipediaTitle: 'Mona_Lisa',
-      reason: 'Ever since childhood, seeing her in person was a dream waiting to be fulfilled. Standing before her this spring was pure joy—an unforgettable moment where years of anticipation finally met reality. Beyond that personal connection, her subtle, impossible-to-pin-down expression and sfumato depth make her the ultimate masterpiece.'
-    },
-    {
-      title: 'The Son of Man',
-      artist: 'René Magritte',
-      wikipediaTitle: 'The_Son_of_Man',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Magritte_TheSonOfMan.jpg',
-      reason: "It nails that surreal, mysterious aura—reminiscent of the eerie, calm authority of Wonder of U from JoJo's Bizarre Adventure. The suited man with the floating green apple obscures what's right in front of you, capturing a sense of unstoppable, quiet calamity and existential mystery."
-    },
-    {
-      title: 'The Starry Night',
-      artist: 'Vincent van Gogh',
-      wikipediaTitle: 'The_Starry_Night',
-      reason: "It turns raw emotion and psychological turmoil into movement. The swirling night sky doesn't feel static; it vibrates with energy, making you feel the weight of Van Gogh's inner world through vivid blues and burning yellows."
-    },
-    {
-      title: 'Sunflowers',
-      artist: 'Vincent van Gogh',
-      wikipediaTitle: 'Sunflowers_(Van_Gogh_series)',
-      reason: 'A masterclass in texture and warmth. It takes a simple subject and gives it raw, textured vitality—showing beauty in different stages of life and decay with thick, confident impasto strokes.'
-    },
-    {
-      title: 'The Kiss',
-      artist: 'Gustav Klimt',
-      wikipediaTitle: 'The_Kiss_(Klimt)',
-      reason: 'The golden radiance and geometric patterns create a sense of timeless love. It feels less like a standard painting and more like an icon glowing from within, blending intimacy with decorative splendor.'
-    },
-    {
-      title: 'The Great Wave off Kanagawa',
-      artist: 'Hokusai',
-      wikipediaTitle: 'The_Great_Wave_off_Kanagawa',
-      reason: 'The composition is legendary: the overwhelming force of nature framing Mount Fuji in the background. It perfectly captures tension, scale, and the contrast between momentary chaos and permanent stability.'
-    },
-    {
-      title: 'The Scream',
-      artist: 'Edvard Munch',
-      wikipediaTitle: 'The_Scream',
-      reason: "It visually translates pure anxiety. The wavy lines of the environment echo the figure's internal panic, making the landscape itself feel like it’s vibrating with terror."
-    },
-    {
-      title: 'The Birth of Venus',
-      artist: 'Sandro Botticelli',
-      wikipediaTitle: 'The_Birth_of_Venus',
-      reason: 'Pure classical elegance and mythological grace. The flowing lines, soft colors, and effortless movement give it an ethereal, dreamlike quality that stands out across art history.'
-    },
-    {
-      title: 'The Persistence of Memory',
-      artist: 'Salvador Dalí',
-      wikipediaTitle: 'The_Persistence_of_Memory',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg',
-      reason: 'It distorts reality in the best way possible. The melting clocks in a stark, barren landscape capture the fluid, nonsensical nature of time and dreams.'
-    },
-    {
-      title: 'The School of Athens',
-      artist: 'Raphael',
-      wikipediaTitle: 'The_School_of_Athens',
-      reason: "A grand celebration of intellect, symmetry, and perspective. Gathering history's greatest philosophers into one perfectly proportioned architectural space gives it incredible depth and monumental scale."
-    },
-    {
-      title: 'The Coronation of Napoleon',
-      artist: 'Jacques-Louis David',
-      wikipediaTitle: 'Coronation_of_Napoleon',
-      reason: 'Pure theatrical propaganda on a massive scale. The sheer detail, grand lighting, and meticulous crowd rendering make you feel the weight of empire and political drama.'
-    },
-    {
-      title: 'Napoleon Crossing the Alps',
-      artist: 'Jacques-Louis David',
-      wikipediaTitle: 'Napoleon_Crossing_the_Alps',
-      reason: 'The ultimate image of power, motion, and heroism. The rearing horse, dramatic cloak, and ideal posture scream unshakeable confidence and historical destiny.'
-    },
-    {
-      title: 'Napoleon I on his Imperial Throne',
-      artist: 'Jean-Auguste-Dominique Ingres',
-      wikipediaTitle: 'Napoleon_I_on_his_Imperial_Throne',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Ingres%2C_Napoleon_on_his_Imperial_throne.jpg',
-      reason: 'It presents Napoleon almost as a deity or Roman emperor. The rigid symmetry, opulent robes, and cold gaze create a breathtaking display of absolute authority.'
-    }
-
-
   ],
 
   socials: [
