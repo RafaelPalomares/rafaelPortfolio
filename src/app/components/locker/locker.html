@@ -1,0 +1,254 @@
+<section class="section" id="locker">
+  <div class="container">
+    <div class="locker-section-header">
+      <span class="section-label">Locker Room</span>
+      <h2 class="section-title">Rafael's Locker: Numbers & Identity</h2>
+      <p class="section-subtitle">
+        In volleyball and competitive sports, a shirt number isn't assigned at random. It carries personal history,
+        tactical responsibility, and a specific mentality when walking onto the court.
+      </p>
+    </div>
+
+    <div class="locker-stage">
+      <!-- ── Left: The 3D Interactive Locker ── -->
+      <div class="locker-unit-wrapper">
+        <div class="locker-unit" [class.door-closed]="!doorOpen()">
+
+          <!-- Locker Header & Nameplate -->
+          <div class="locker-top-trim">
+            <div class="locker-vent">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="player-nameplate">
+              <span class="plate-num">#{{ selectedJersey().number }}</span>
+              <span class="plate-name">{{ selectedJersey().name }}</span>
+              <span class="plate-team">{{ selectedJersey().team }}</span>
+            </div>
+          </div>
+
+          <!-- Locker Interior -->
+          <div class="locker-interior">
+            <!-- Top Shelf -->
+            <div class="shelf shelf-top">
+              <div class="shelf-item headphones" title="Pre-game Beats">🎧</div>
+
+              <!-- THE SURPRISE BOX (Easter Egg) -->
+              <button class="surprise-stash-box" (click)="unlockSurprise()" [class.inspected]="secretStashInspected()"
+                aria-label="Unlock secret locker stash">
+                <div class="stash-glow"></div>
+                <span class="stash-icon">🎁</span>
+                <span class="stash-tag">{{ secretStashInspected() ? 'Opened' : 'Secret Stash!' }}</span>
+              </button>
+
+              <div class="shelf-item court-ball" title="Official Match Ball">🏐</div>
+            </div>
+
+            <!-- Main Hanging Bay -->
+            <div class="hanging-bay">
+              <div class="hanger-rod"></div>
+
+              <!-- Hanging Jersey (SVG rendered with active jersey colors) -->
+              <div class="hanging-jersey" [attr.data-scheme]="selectedJersey().colorScheme">
+                <svg viewBox="0 0 220 250" class="jersey-svg" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Hanger Hook -->
+                  <path d="M110 8 C110 0 118 0 118 8 C118 16 110 22 110 26" fill="none" stroke="#d4d4d8"
+                    stroke-width="3" />
+                  <path d="M55 42 L110 26 L165 42" fill="none" stroke="#d4d4d8" stroke-width="3.5" />
+
+                  <!-- Jersey Silhouette -->
+                  <g class="jersey-body">
+                    <!-- Base Shirt Body -->
+                    <path
+                      d="M 68 45 L 88 48 C 96 55 124 55 132 48 L 152 45 L 205 82 L 180 120 L 160 106 L 160 235 L 60 235 L 60 106 L 40 120 L 15 82 Z"
+                      [attr.fill]="selectedJersey().primaryColor" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" />
+
+                    <!-- Shoulder & Collar Trim -->
+                    <path d="M 88 48 C 96 56 124 56 132 48" fill="none" [attr.stroke]="selectedJersey().accentColor"
+                      stroke-width="4" />
+                    <path d="M 152 45 L 205 82 L 195 96 L 150 64 Z" [attr.fill]="selectedJersey().accentColor"
+                      opacity="0.3" />
+                    <path d="M 68 45 L 15 82 L 25 96 L 70 64 Z" [attr.fill]="selectedJersey().accentColor"
+                      opacity="0.3" />
+
+                    <!-- Side Seam Accents -->
+                    <line x1="66" y1="110" x2="66" y2="235" [attr.stroke]="selectedJersey().accentColor"
+                      stroke-width="3" opacity="0.6" />
+                    <line x1="154" y1="110" x2="154" y2="235" [attr.stroke]="selectedJersey().accentColor"
+                      stroke-width="3" opacity="0.6" />
+
+                    <!-- Player Name -->
+                    <text x="110" y="108" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700"
+                      letter-spacing="2" font-family="'Inter', sans-serif">
+                      {{ selectedJersey().name }}
+                    </text>
+
+                    <!-- Big Jersey Number -->
+                    <text x="110" y="175" text-anchor="middle" [attr.fill]="selectedJersey().accentColor" font-size="58"
+                      font-weight="800" font-family="'Playfair Display', serif">
+                      {{ selectedJersey().number }}
+                    </text>
+
+                    <!-- Subtext / Swiss Flag Mini -->
+                    <text x="110" y="204" text-anchor="middle" fill="rgba(255, 255, 255, 0.45)" font-size="8"
+                      font-family="'Inter', sans-serif" letter-spacing="1">
+                      SUI · SETTER
+                    </text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Bottom Shelf -->
+            <div class="shelf shelf-bottom">
+              <div class="bottom-item knee-pads" title="Knee Pads">🛡️</div>
+              <div class="bottom-item wrist-tape" title="Finger Tape: 'FOCUS'">
+                <span class="tape-label">FOCUS</span>
+              </div>
+              <div class="bottom-item court-kicks" title="Mizuno Court Shoes">👟</div>
+            </div>
+          </div>
+
+          <!-- Locker Metal Door (Can toggle open/shut) -->
+          <div class="locker-door" [class.is-open]="doorOpen()" (click)="toggleDoor()">
+            <div class="door-inner">
+              <div class="door-slats">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="door-handle">
+                <div class="handle-bar"></div>
+                <div class="handle-latch"></div>
+              </div>
+              <div class="door-sticker">
+                <span class="sticker-num">#{{ selectedJersey().number }}</span>
+                <span class="sticker-quote">"SET TO WIN"</span>
+              </div>
+              <div class="door-hint">{{ doorOpen() ? 'Click to close door' : 'Click to open locker' }}</div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="door-toggle-btn" (click)="toggleDoor()">
+          {{ doorOpen() ? '🚪 Close Locker' : '🚪 Open Locker' }}
+        </button>
+      </div>
+
+      <!-- ── Right: Number Selector & Stories ── -->
+      <div class="locker-info-panel">
+        <span class="panel-tag">Jersey Numbers & Meaning</span>
+        <h3 class="panel-heading">Choose a Jersey Number</h3>
+        <p class="panel-intro">
+          Click any number below to inspect its history and see the jersey swap inside the locker:
+        </p>
+
+        <!-- Number Selector Tabs -->
+        <div class="jersey-tabs" role="tablist">
+          <button *ngFor="let j of jerseys" class="jersey-tab" [class.active]="selectedJersey().number === j.number"
+            (click)="selectJersey(j)" role="tab" [attr.aria-selected]="selectedJersey().number === j.number">
+            <div class="tab-badge-row">
+              <span class="tab-num">#{{ j.number }}</span>
+              <span class="tab-badge" [class.badge-active]="j.isCurrent" [class.badge-past]="!j.isCurrent">
+                {{ j.badge }}
+              </span>
+            </div>
+            <span class="tab-title">{{ j.title }}</span>
+          </button>
+        </div>
+
+        <!-- Selected Jersey Deep-Dive -->
+        <div class="jersey-detail-card">
+          <div class="detail-header">
+            <div>
+              <span class="detail-number" [style.color]="selectedJersey().accentColor">
+                #{{ selectedJersey().number }}
+              </span>
+              <h4 class="detail-title">{{ selectedJersey().title }}</h4>
+            </div>
+            <div class="header-tags">
+              <span class="status-tag" [class.tag-active]="selectedJersey().isCurrent" [class.tag-past]="!selectedJersey().isCurrent">
+                {{ selectedJersey().statusLabel }}
+              </span>
+              <span class="detail-role">{{ selectedJersey().role }}</span>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <span class="detail-label">Origin & Inspiration</span>
+            <p class="detail-reason">{{ selectedJersey().reason }}</p>
+          </div>
+
+          <div class="detail-block">
+            <span class="detail-label">On-Court Mentality</span>
+            <p class="detail-story">{{ selectedJersey().story }}</p>
+          </div>
+
+          <!-- Secret Stash Callout in panel -->
+          <div class="stash-teaser-box" (click)="unlockSurprise()">
+            <span class="teaser-icon">✨</span>
+            <div class="teaser-text">
+              <strong>Psst... check the locker's top shelf!</strong>
+              <p>There is a special surprise hidden inside Rafael's secret locker compartment.</p>
+            </div>
+            <button class="btn btn-sm">Open Stash</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THE SURPRISE MODAL / CELEBRATION OVERLAY ── -->
+  <div class="surprise-modal-backdrop" *ngIf="surpriseUnlocked()" (click)="closeSurprise()">
+    <div class="surprise-modal" (click)="$event.stopPropagation()">
+
+      <!-- Confetti Particles -->
+      <div class="confetti-container" aria-hidden="true">
+        <div *ngFor="let c of confetti()" class="confetti-dot" [style.left.%]="c.x" [style.background]="c.color"
+          [style.width.px]="c.size" [style.height.px]="c.size" [style.animationDelay.s]="c.delay"
+          [style.transform]="'rotate(' + c.rotation + 'deg)'"></div>
+      </div>
+
+      <button class="modal-close-btn" (click)="closeSurprise()" aria-label="Close surprise">✕</button>
+
+      <div class="modal-header">
+        <span class="modal-badge">🦁 The Setter's Philosophy</span>
+        <h3 class="modal-title">My Volleyball Guiding Quote</h3>
+        <p class="modal-subtitle">The mentality that drives every set, rally, and match.</p>
+      </div>
+
+      <!-- Single Focus: The Quote & Setter Meaning -->
+      <div class="quote-showcase-box">
+        <blockquote class="lead-quote">
+          “I'm not afraid of an army of lions led by a sheep; I'm afraid of an army of sheep led by a lion.”
+        </blockquote>
+        <cite class="quote-author">— Alexander the Great</cite>
+
+        <div class="setter-meaning-box">
+          <span class="meaning-label">🏐 What this means as a Setter</span>
+          <p class="meaning-p">
+            In volleyball, the setter is the floor general who touches the ball on virtually every offensive possession.
+            You control the rhythm, absorb the chaos of off-target passes, and decide where the battle is fought.
+          </p>
+          <p class="meaning-p">
+            A team can have six explosive athletes — raw "lions" with tremendous verticality and hitting power. But if
+            they are directed by a hesitant setter who panics when out-of-system or telegraphs every touch, that
+            potential collapses.
+          </p>
+          <p class="meaning-p">
+            Conversely, an underdog squad led by a fearless, high-IQ setter can outsmart and dismantle any powerhouse.
+            When the setter stays composed at 14-14 in the 5th set, commands the floor, and trusts their hitters
+            completely, the entire team plays beyond its limits.
+          </p>
+          <div class="meaning-highlight">
+            A setter doesn't just deliver the ball — the setter gives the team its courage.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn" (click)="generateConfetti()">🎊 More Confetti!</button>
+        <button class="btn btn-outline" (click)="closeSurprise()">Back to Locker</button>
+      </div>
+
+    </div>
+  </div>
+</section>

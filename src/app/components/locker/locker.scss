@@ -1,0 +1,829 @@
+.locker-section-header {
+  margin-bottom: 3.5rem;
+  max-width: 720px;
+}
+
+.locker-stage {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* ── Locker Unit 3D Cabinet ── */
+.locker-unit-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.locker-unit {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  height: 580px;
+  background: #111116;
+  border: 3px solid #27272a;
+  border-radius: 12px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    inset 0 2px 4px rgba(255, 255, 255, 0.05);
+  perspective: 1200px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+/* Locker Top Trim & Nameplate */
+.locker-top-trim {
+  background: #18181f;
+  border-bottom: 2px solid #27272a;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 9px 9px 0 0;
+}
+
+.locker-vent {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 4px;
+    background: #09090b;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.player-nameplate {
+  background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+
+  .plate-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .plate-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+  }
+
+  .plate-team {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Locker Interior */
+.locker-interior {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 30%, #1e1e24 0%, #0d0d11 100%);
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shelves */
+.shelf {
+  background: #1a1a22;
+  border-top: 2px solid #2d2d38;
+  border-bottom: 2px solid #09090d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.shelf-top {
+  margin-bottom: 0.5rem;
+  height: 62px;
+}
+
+.shelf-item {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  cursor: default;
+}
+
+/* Surprise Box on Top Shelf */
+.surprise-stash-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(129, 140, 248, 0.2) 100%);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulseStash 2s infinite ease-in-out;
+
+  &:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+  }
+
+  &.inspected {
+    border-color: rgba(255, 255, 255, 0.2);
+    animation: none;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .stash-icon {
+    font-size: 1.25rem;
+  }
+
+  .stash-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #fbbf24;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+@keyframes pulseStash {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.7);
+  }
+}
+
+/* Hanging Bay */
+.hanging-bay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hanger-rod {
+  width: 90%;
+  height: 6px;
+  background: linear-gradient(180deg, #52525b 0%, #27272a 100%);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hanging-jersey {
+  width: 220px;
+  height: 250px;
+  margin-top: 0.25rem;
+  animation: jerseySway 4s ease-in-out infinite alternate;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes jerseySway {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
+}
+
+.jersey-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Shelf Bottom */
+.shelf-bottom {
+  margin-top: 0.5rem;
+  height: 52px;
+}
+
+.bottom-item {
+  font-size: 1.35rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.wrist-tape {
+  background: #ffffff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  transform: rotate(-5deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+  .tape-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #09090b;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* 3D Locker Door */
+.locker-door {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1f1f27 0%, #121217 100%);
+  border: 3px solid #2e2e38;
+  border-radius: 12px;
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s;
+  z-index: 10;
+  cursor: pointer;
+  backface-visibility: hidden;
+
+  &.is-open {
+    transform: rotateY(-112deg);
+    box-shadow: 15px 0 30px rgba(0, 0, 0, 0.6);
+  }
+
+  &:not(.is-open) {
+    transform: rotateY(0deg);
+  }
+}
+
+.door-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+}
+
+.door-slats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
+  span {
+    display: block;
+    width: 60%;
+    height: 6px;
+    background: #0d0d12;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.door-handle {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 0.5rem;
+
+  .handle-bar {
+    width: 12px;
+    height: 50px;
+    background: linear-gradient(180deg, #a1a1aa 0%, #52525b 100%);
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  }
+
+  .handle-latch {
+    width: 8px;
+    height: 8px;
+    background: #71717a;
+    border-radius: 50%;
+  }
+}
+
+.door-sticker {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.75rem;
+  text-align: center;
+  transform: rotate(-2deg);
+
+  .sticker-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .sticker-quote {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+}
+
+.door-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.door-toggle-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #fff;
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+}
+
+/* ── Right: Jersey Info & Selector Panel ── */
+.locker-info-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #a5b4fc;
+  margin-bottom: 0.5rem;
+}
+
+.panel-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.panel-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Jersey Tabs */
+.jersey-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.jersey-tab {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(129, 140, 248, 0.3);
+  }
+
+  &.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+
+    .tab-num {
+      color: #ffffff;
+    }
+
+    .tab-title {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+  }
+
+  .tab-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tab-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .tab-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    &.badge-active {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+    }
+
+    &.badge-past {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-dim);
+    }
+  }
+
+  .tab-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+}
+
+/* Detail Card */
+.jersey-detail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+
+  .detail-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .detail-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .header-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+  }
+
+  .status-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+
+    &.tag-active {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    &.tag-past {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-dim);
+    }
+  }
+
+  .detail-role {
+    font-size: 0.8rem;
+    background: rgba(129, 140, 248, 0.15);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    color: #c7d2fe;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+  }
+}
+
+.detail-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  .detail-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a5b4fc;
+    font-weight: 600;
+  }
+
+  .detail-reason,
+  .detail-story {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+}
+
+/* Stash Teaser */
+.stash-teaser-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(129, 140, 248, 0.05) 100%);
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(129, 140, 248, 0.1) 100%);
+  }
+
+  .teaser-icon {
+    font-size: 1.5rem;
+  }
+
+  .teaser-text {
+    flex: 1;
+
+    strong {
+      font-size: 0.88rem;
+      color: #fbbf24;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+  }
+
+  .btn-sm {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.85rem;
+    background: #f59e0b;
+    color: #09090b;
+    font-weight: 600;
+
+    &:hover {
+      background: #fbbf24;
+    }
+  }
+}
+
+/* ── Surprise Modal & Confetti ── */
+.surprise-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.surprise-modal {
+  position: relative;
+  background: #121217;
+  border: 2px solid rgba(245, 158, 11, 0.5);
+  border-radius: 20px;
+  max-width: 680px;
+  width: 100%;
+  padding: 2.75rem;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(245, 158, 11, 0.2);
+  overflow: hidden;
+  animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-dot {
+  position: absolute;
+  top: -10px;
+  border-radius: 2px;
+  animation: confettiFall 2.8s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .modal-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #fbbf24;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 400;
+    margin-bottom: 0.35rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+}
+
+/* ── Single-Focus Quote Showcase & Setter Meaning ── */
+.quote-showcase-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.lead-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1.45;
+  margin: 0 0 0.6rem;
+  text-align: center;
+}
+
+.quote-author {
+  display: block;
+  text-align: right;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.75rem;
+}
+
+.setter-meaning-box {
+  background: rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.meaning-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fbbf24;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.meaning-p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.meaning-highlight {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.12) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1.15rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-top: 0.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 950px) {
+  .locker-stage {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .locker-info-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .jersey-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .surprise-modal {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .stash-teaser-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

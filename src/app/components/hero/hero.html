@@ -3,7 +3,19 @@
     <p class="hero-greeting">{{ person.greeting }}</p>
     <h1 class="hero-name">{{ person.name }}</h1>
     <p class="hero-title">{{ person.title }}</p>
-    <button class="btn" (click)="scrollTo('about')">Get to know me</button>
+
+    <div class="hero-tags">
+      <span class="hero-tag">💻 Software Developer</span>
+      <span class="hero-tag">🏐 Volleyball Setter</span>
+      <span class="hero-tag">🇨🇭 Bern, Switzerland</span>
+    </div>
+
+    <div class="hero-actions">
+      <button class="btn" (click)="scrollTo('projects')">My Work</button>
+      <button class="btn btn-outline" (click)="scrollTo('volleyball')">Volleyball</button>
+      <button class="btn btn-ghost" (click)="scrollTo('about')">Get to know me</button>
+    </div>
   </div>
   <div class="hero-blob" aria-hidden="true"></div>
 </section>
+

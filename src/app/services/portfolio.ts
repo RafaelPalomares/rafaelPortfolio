@@ -29,10 +29,10 @@ const portfolioData: PortfolioData = {
 
 
   quote: {
-    text: "I'm not afraid of an army of lions led by a sheep; I'm afraid of an army of sheep led by a lion.",
-    author: 'Alexander the Great',
+    text: "If you know the enemy and know yourself, you need not fear the result of a hundred battles.",
+    author: 'Sun Tzu',
     reason:
-      "This quote reflects my belief that leadership, strategy, and mentality can be more decisive than individual strength. A team of talented people without direction will struggle to reach its potential, while ordinary individuals led by someone who inspires them, understands the game, and knows when to act can achieve extraordinary things. Whether on the volleyball court, in a team project, or facing a challenge others consider impossible, I believe the difference is rarely just talent — it is the person who brings everyone together and makes them play beyond their limits.",
+      "This quote from Sun Tzu reflects my philosophy toward both software development and competitive volleyball. True confidence doesn't come from arrogance or brute force — it comes from deep preparation, objective self-awareness, and understanding what you are up against. Whether analyzing edge cases and architecture in code, or reading opposing blockers and defensive rotations on the court, knowing both your own capabilities and the opponent's patterns guarantees you stay composed and make the decisive play.",
   },
 
 

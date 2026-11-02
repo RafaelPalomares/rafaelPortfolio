@@ -8,10 +8,10 @@ import { IdolsComponent } from '../../components/idols/idols';
 import { HobbiesComponent } from '../../components/hobbies/hobbies';
 import { TopPicksComponent } from '../../components/top-picks/top-picks';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
-import { RowletComponent } from '../../components/rowlet/rowlet';
+import { VolleyballComponent } from '../../components/volleyball/volleyball';
+import { LockerComponent } from '../../components/locker/locker';
 import { ContactComponent } from '../../components/contact/contact';
 import { ArtGalleryComponent } from '../../components/art-gallery/art-gallery';
-import { LegendaryItemComponent } from '../../components/legendary-item/legendary-item';
 
 @Component({
   selector: 'app-home',
@@ -22,14 +22,14 @@ import { LegendaryItemComponent } from '../../components/legendary-item/legendar
     AboutComponent,
     SkillsComponent,
     ProjectsComponent,
+    VolleyballComponent,
+    LockerComponent,
     IdolsComponent,
     HobbiesComponent,
     TopPicksComponent,
     FavCharactersComponent,
     ArtGalleryComponent,
-    RowletComponent,
     ContactComponent,
-    LegendaryItemComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
