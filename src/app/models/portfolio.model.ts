@@ -93,9 +93,96 @@ export interface MusicIdol {
   };
 }
 
+export interface FavAnimal {
+  name: string;
+  /** Emoji shown as the visual marker, e.g. '🐙' */
+  icon: string;
+  /** Short tagline shown under the name */
+  tagline: string;
+  /** One or more paragraphs explaining why this animal resonates */
+  reason: string[];
+  /** Short standout facts about the animal */
+  traits: string[];
+}
+
 export interface SocialLink {
   label: string;
   url: string;
+}
+
+/**
+ * A single paragraph of legal copy. Supports an optional emphasised variant
+ * (rendered in italics) for translated/secondary notices.
+ */
+export interface LegalParagraph {
+  text: string;
+  /** When true, the paragraph is rendered emphasised (e.g. the English notice) */
+  emphasised?: boolean;
+}
+
+/**
+ * A generic legal content block with an optional subheading and paragraphs.
+ */
+export interface LegalBlock {
+  /** Optional subheading (rendered as an h3) */
+  heading?: string;
+  paragraphs: LegalParagraph[];
+}
+
+/**
+ * Structured legal content for the legal/privacy page. All copy lives here so
+ * the template renders purely from data and nothing is hard-coded in HTML.
+ */
+export interface LegalContent {
+  pageTitle: string;
+  pageSubtitle: string;
+  backLinkLabel: string;
+
+  /** Impressum section */
+  impressum: {
+    heading: string;
+    intro: string;
+    notice: string;
+  };
+
+  /** Copyright (Urheberrecht) section */
+  copyright: {
+    heading: string;
+    disclaimer: LegalParagraph[];
+    intro: string;
+    idolsHeading: string;
+    volleyballHeading: string;
+    volleyballUsageNote: string;
+    videosHeading: string;
+    videosIntro: string;
+    videosOutro: string;
+    charactersHeading: string;
+    characterUsageNote: string;
+    favAnimalHeading: string;
+    favAnimalNoteBefore: string;
+    favAnimalNoteAfter: string;
+    quoteHeading: string;
+    quoteNoteBefore: string;
+    quoteNoteAfter: string;
+  };
+
+  /** Privacy (Datenschutz) section */
+  privacy: {
+    heading: string;
+    lawRef: string;
+    blocks: LegalBlock[];
+  };
+
+  /** Liability (Haftungsausschluss) section */
+  liability: {
+    heading: string;
+    paragraphsBefore: string[];
+    contactNoteBefore: string;
+    contactNoteAfter: string;
+  };
+
+  /** Footer line (law references etc.) */
+  footerLawRefs: string;
 }
 
 export interface Project {
@@ -129,7 +216,9 @@ export interface PortfolioData {
   idols: Idol[];
   hobbies: Hobby[];
   favCharacters: FavCharacter[];
+  favAnimal: FavAnimal;
   projects: Project[];
   volleyballPlayers: VolleyballPlayer[];
   socials: SocialLink[];
+  legal: LegalContent;
 }

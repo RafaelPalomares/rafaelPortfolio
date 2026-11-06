@@ -217,6 +217,23 @@ const portfolioData: PortfolioData = {
     },
   ],
 
+  favAnimal: {
+    name: 'Octopus',
+    icon: '🐙',
+    tagline: 'Eight arms, nine brains, zero fear — the ocean’s ultimate problem-solver',
+    reason: [
+      "The octopus is my favorite animal because it’s basically a living cheat code. No shell, no claws, no armor — and it still rules its world by being the smartest thing in the room. It doesn’t overpower problems, it dismantles them. That’s exactly how I want to play: win with the brain, not the muscle, whether I’m reading a defense on the court or untangling a nasty bug in my code.",
+      "And it’s ruthless about adapting. An octopus can morph its color and texture in a heartbeat, pour its entire body through a gap the size of a coin, and rewrite its plan mid-move without ever panicking. That cold, creative composure — stay calm, read the situation, find the way through — is the energy I try to bring to every challenge I take on.",
+    ],
+    traits: [
+      'Nine brains and eight independently-thinking arms',
+      'Shape-shifting master of camouflage and disguise',
+      'Escape artist that squeezes through almost any gap',
+      'Cracks puzzles, opens jars, and plots its way to the goal',
+      'Stays ice-cold and improvises the instant the plan breaks',
+    ],
+  },
+
   projects: [
     {
       number: '01',
@@ -308,4 +325,131 @@ const portfolioData: PortfolioData = {
     { label: 'GitHub', url: 'https://github.com/rafaelpalomares' },
     { label: 'LinkedIn', url: 'https://linkedin.com/in/rafaelpalomaresbill' },
   ],
+
+  legal: {
+    pageTitle: 'Legal Notice & Privacy Policy',
+    pageSubtitle: 'Impressum · Datenschutzerklärung · Urheberrecht — gemäss Schweizer Recht',
+    backLinkLabel: '← Back to portfolio',
+
+    impressum: {
+      heading: 'Impressum',
+      intro:
+        'Diese Website ist ein persönliches, nicht-kommerzielles Portfolio und wird betrieben von:',
+      notice:
+        'Es werden keine Waren oder Dienstleistungen angeboten. Die Website dient ausschliesslich der persönlichen Präsentation. Eine Pflicht zur Angabe einer Handelsregisternummer oder Mehrwertsteuernummer besteht nicht, da keine gewerbliche Tätigkeit ausgeübt wird (Art. 2 UWG; Art. 10 DSG).',
+    },
+
+    copyright: {
+      heading: 'Urheberrecht (Art. 2 ff. URG)',
+      disclaimer: [
+        {
+          text: 'Allgemeiner Hinweis: Ich, Rafael Palomares, beanspruche kein Eigentum an den auf dieser Website gezeigten Inhalten Dritter. Sämtliche Bilder, Videos, Charaktere, Namen, Logos und sonstigen Medien gehören ihren jeweiligen Rechteinhabern. Die Darstellung erfolgt ausschliesslich zu privaten, nicht-kommerziellen Fan- und Präsentationszwecken.',
+        },
+        {
+          text: 'General notice: I, Rafael Palomares, do not own any of the third-party content shown on this website. All images, videos, characters, names and logos belong to their respective owners. They are displayed solely for private, non-commercial purposes.',
+          emphasised: true,
+        },
+      ],
+      intro:
+        'Alle auf dieser Website verwendeten Inhalte Dritter — Bilder, Charaktere, Namen, Logos und Medien — sind geistiges Eigentum ihrer jeweiligen Rechteinhaber. Diese Website erhebt keinerlei Eigentumsansprüche daran. Die Verwendung erfolgt ausschliesslich zu privaten, nicht-kommerziellen Zwecken im Sinne von Art. 19 Abs. 1 lit. a URG (Privatgebrauch).',
+      idolsHeading: 'Vorbilder — Bilder',
+      volleyballHeading: 'Lieblings-Volleyballspieler — Bilder',
+      volleyballUsageNote:
+        'Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.',
+      videosHeading: 'Videos der Lieblings-Volleyballspieler',
+      videosIntro:
+        'Bei den folgenden Lieblings-Volleyballspielern werden Videoclips angezeigt, die lokal auf dieser Website gehostet werden:',
+      videosOutro:
+        'Alle an den Videos bestehenden Rechte liegen bei den jeweiligen Urhebern und Rechteinhabern. Diese Website erhebt daran keine Eigentumsansprüche; die Verwendung erfolgt ausschliesslich zu privaten, nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.',
+      charactersHeading: 'Lieblingscharaktere — Bilder',
+      characterUsageNote:
+        'Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.',
+      favAnimalHeading: 'Lieblingstier',
+      favAnimalNoteBefore:
+        'Das auf dieser Website angezeigte Lieblingstier',
+      favAnimalNoteAfter:
+        'wird ausschliesslich durch ein Standard-Unicode-Emoji sowie durch eigene, von Rafael Palomares verfasste Texte dargestellt. Es werden hierfür keine Bilder, Videos oder sonstigen Inhalte Dritter verwendet, weshalb diesbezüglich keine Urheberrechte Dritter betroffen sind.',
+      quoteHeading: 'Zitat',
+      quoteNoteBefore: 'Das auf dieser Website angezeigte Zitat stammt von',
+      quoteNoteAfter:
+        '(gemeinfrei). Verwendung zu persönlichen, nicht-kommerziellen Zwecken im Rahmen des Zitatrechts gemäss Art. 25 URG.',
+    },
+
+    privacy: {
+      heading: 'Datenschutzerklärung',
+      lawRef:
+        'Gemäss Bundesgesetz über den Datenschutz (DSG / nDSG, SR 235.1), in Kraft seit 1. September 2023.',
+      blocks: [
+        {
+          heading: 'Verantwortliche Person (Art. 5 lit. j nDSG)',
+          paragraphs: [],
+        },
+        {
+          heading: 'Grundsatz der Datensparsamkeit (Art. 6 nDSG)',
+          paragraphs: [
+            {
+              text: 'Diese Website erhebt, speichert und verarbeitet keine personenbezogenen Daten. Es werden keine Cookies gesetzt, kein Tracking durchgeführt, keine Analysetools (z. B. Google Analytics) eingesetzt und keine Nutzerprofile erstellt.',
+            },
+            {
+              text: 'Die Website verfügt über kein Registrierungs- oder Login-System und kein Kontaktformular. Eine Datenbearbeitung im Sinne von Art. 5 lit. d nDSG findet durch den Websitebetreiber nicht statt.',
+            },
+          ],
+        },
+        {
+          heading: 'Externe Links (Social Media)',
+          paragraphs: [
+            {
+              text: 'Diese Website enthält Links zu externen Profilen auf Drittplattformen. Für die Inhalte und den Datenschutz dieser verlinkten Seiten sind ausschliesslich deren jeweilige Anbieter verantwortlich. Beim Anklicken eines Links verlassen Sie diese Website.',
+            },
+          ],
+        },
+        {
+          heading: 'Bilder (lokal gehostet)',
+          paragraphs: [
+            {
+              text: 'Die auf dieser Website angezeigten Bilder werden lokal gehostet. Für den Abruf der Bilder findet keine Verbindung zu Drittanbietern statt.',
+            },
+          ],
+        },
+        {
+          heading: 'Videos (lokal gehostet)',
+          paragraphs: [
+            {
+              text: 'Die auf dieser Website angezeigten Videos werden lokal gehostet. Für den Abruf der Videos findet keine Verbindung zu Drittanbietern statt, und es werden keine personenbezogenen Daten an Dritte übermittelt.',
+            },
+          ],
+        },
+        {
+          heading: 'Hosting (Art. 9 nDSG)',
+          paragraphs: [
+            {
+              text: 'Diese Website wird bei Vercel (Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA) gehostet. Vercel erhebt beim Aufruf der Seite automatisch technische Daten (sog. System Data), wie IP-Adressen und Zugriffs-Logs, um den Betrieb und die Sicherheit der Plattform zu gewährleisten. Vercel ist unter dem Swiss-U.S. Data Privacy Framework zertifiziert, womit der Datentransfer in die USA gemäss nDSG zulässig ist. Details entnehmen Sie bitte der Datenschutzerklärung von Vercel.',
+            },
+          ],
+        },
+        {
+          heading: 'Betroffenenrechte (Art. 25 ff. nDSG)',
+          paragraphs: [
+            {
+              text: 'Da diese Website keine personenbezogenen Daten erhebt oder speichert, sind Auskunfts-, Berichtigungs- und Löschungsansprüche gegenüber dem Websitebetreiber gegenstandslos. Bei Fragen wenden Sie sich an die oben genannte E-Mail-Adresse.',
+            },
+          ],
+        },
+      ],
+    },
+
+    liability: {
+      heading: 'Haftungsausschluss (Art. 41 ff. OR)',
+      paragraphsBefore: [
+        'Die Inhalte dieser Website wurden mit grösstmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch keine Gewähr übernommen. Eine Haftung für Schäden, die durch die Nutzung dieser Website entstehen, ist gemäss Art. 100 OR ausgeschlossen, soweit gesetzlich zulässig.',
+        'Alle auf dieser Website verwendeten Marken, Charakternamen, Bilder und sonstigen Inhalte Dritter sind Eigentum ihrer jeweiligen Rechteinhaber. Die Verwendung erfolgt ausschliesslich zu privaten, nicht-kommerziellen Zwecken im Rahmen des Privatgebrauchs (Art. 19 URG) und des Zitatrechts (Art. 25 URG).',
+      ],
+      contactNoteBefore:
+        'Sollten Sie der Ansicht sein, dass durch Inhalte dieser Website Ihre Rechte verletzt werden, nehmen Sie bitte Kontakt auf unter',
+      contactNoteAfter:
+        'Ich werde die betreffenden Inhalte umgehend prüfen und gegebenenfalls entfernen (Notice-and-Takedown-Prinzip).',
+    },
+
+    footerLawRefs: 'DSG/nDSG (SR 235.1) · URG (SR 231.1) · OR (SR 220) · UWG (SR 241)',
+  },
 };

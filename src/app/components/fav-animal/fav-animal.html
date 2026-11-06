@@ -1,0 +1,25 @@
+<section class="section" id="fav-animal" *ngIf="animal as a">
+  <div class="container">
+    <span class="section-label">Favorite Animal</span>
+    <h2 class="section-title">Why the {{ a.name }}</h2>
+
+    <div class="animal-grid">
+      <div class="animal-visual">
+        <span class="animal-icon" role="img" [attr.aria-label]="a.name">{{ a.icon }}</span>
+        <span class="animal-name">{{ a.name }}</span>
+        <span class="animal-tagline">{{ a.tagline }}</span>
+      </div>
+
+      <div class="animal-body">
+        <p class="animal-reason" *ngFor="let paragraph of a.reason">{{ paragraph }}</p>
+
+        <ul class="animal-traits">
+          <li *ngFor="let trait of a.traits">
+            <span class="trait-dot"></span>
+            {{ trait }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

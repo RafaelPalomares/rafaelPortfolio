@@ -1,222 +1,136 @@
-<div class="legal-page">
+<div class="legal-page" *ngIf="data as portfolio">
 
   <div class="legal-header">
-    <a routerLink="/" class="back-link">← Back to portfolio</a>
-    <h1 class="legal-title">Legal Notice & Privacy Policy</h1>
-    <p class="legal-subtitle">Impressum · Datenschutzerklärung · Urheberrecht — gemäss Schweizer Recht</p>
+    <a routerLink="/" class="back-link">{{ portfolio.legal.backLinkLabel }}</a>
+    <h1 class="legal-title">{{ portfolio.legal.pageTitle }}</h1>
+    <p class="legal-subtitle">{{ portfolio.legal.pageSubtitle }}</p>
   </div>
 
   <div class="legal-container">
 
     <!-- ── IMPRESSUM ──────────────────────────────────────────────────────── -->
     <section class="legal-section">
-      <h2>Impressum</h2>
-      <p>
-        Diese Website ist ein persönliches, nicht-kommerzielles Portfolio und wird betrieben von:
-      </p>
+      <h2>{{ portfolio.legal.impressum.heading }}</h2>
+      <p>{{ portfolio.legal.impressum.intro }}</p>
       <address>
-        <strong>Rafael Palomares</strong><br />
-        Bern, Schweiz<br />
-        <a href="mailto:rafael.palomares0607@gmail.com">rafael.palomares0607@gmail.com</a>
+        <strong>{{ portfolio.person.name }}</strong><br />
+        {{ portfolio.person.location }}<br />
+        <a [href]="'mailto:' + portfolio.person.email">{{ portfolio.person.email }}</a>
       </address>
-      <p>
-        Es werden keine Waren oder Dienstleistungen angeboten. Die Website dient ausschliesslich
-        der persönlichen Präsentation. Eine Pflicht zur Angabe einer Handelsregisternummer oder
-        Mehrwertsteuernummer besteht nicht, da keine gewerbliche Tätigkeit ausgeübt wird
-        (Art. 2 UWG; Art. 10 DSG).
-      </p>
+      <p>{{ portfolio.legal.impressum.notice }}</p>
     </section>
 
     <!-- ── URHEBERRECHT ───────────────────────────────────────────────────── -->
     <section class="legal-section">
-      <h2>Urheberrecht (Art. 2 ff. URG)</h2>
+      <h2>{{ portfolio.legal.copyright.heading }}</h2>
 
       <div class="legal-disclaimer">
-        <p>
-          <strong>Allgemeiner Hinweis:</strong> Ich, Rafael Palomares, beanspruche kein
-          Eigentum an den auf dieser Website gezeigten Inhalten Dritter. Sämtliche Bilder,
-          Videos, Charaktere, Namen, Logos und sonstigen Medien gehören ihren jeweiligen
-          Rechteinhabern. Die Darstellung erfolgt ausschliesslich zu privaten,
-          nicht-kommerziellen Fan- und Präsentationszwecken.
-        </p>
-        <p>
-          <em>General notice: I, Rafael Palomares, do not own any of the third-party content
-          shown on this website. All images, videos, characters, names and logos belong to
-          their respective owners. They are displayed solely for private, non-commercial
-          purposes.</em>
+        <p *ngFor="let paragraph of portfolio.legal.copyright.disclaimer">
+          <em *ngIf="paragraph.emphasised; else plainDisclaimer">{{ paragraph.text }}</em>
+          <ng-template #plainDisclaimer>{{ paragraph.text }}</ng-template>
         </p>
       </div>
 
+      <p>{{ portfolio.legal.copyright.intro }}</p>
+
+      <h3>{{ portfolio.legal.copyright.idolsHeading }}</h3>
+      <ul>
+        <li *ngFor="let idol of portfolio.idols">
+          <strong>{{ idol.name }}</strong>
+          <span *ngIf="idol.role"> — {{ idol.role }}</span>
+          <ng-container *ngIf="idol.copyright">
+            <br />{{ idol.copyright }}
+          </ng-container>
+        </li>
+      </ul>
+
+      <h3>{{ portfolio.legal.copyright.volleyballHeading }}</h3>
+      <ul>
+        <li *ngFor="let player of portfolio.volleyballPlayers">
+          <strong>{{ player.name }}</strong>
+          <ng-container *ngIf="player.copyright">
+            <br />{{ player.copyright }}
+          </ng-container>
+          <br />{{ portfolio.legal.copyright.volleyballUsageNote }}
+        </li>
+      </ul>
+
+      <h3>{{ portfolio.legal.copyright.videosHeading }}</h3>
       <p>
-        Alle auf dieser Website verwendeten Inhalte Dritter — Bilder, Charaktere, Namen,
-        Logos und Medien — sind geistiges Eigentum ihrer jeweiligen Rechteinhaber. Diese
-        Website erhebt keinerlei Eigentumsansprüche daran. Die Verwendung erfolgt
-        ausschliesslich zu privaten, nicht-kommerziellen Zwecken im Sinne von
-        Art. 19 Abs. 1 lit. a URG (Privatgebrauch).
+        {{ portfolio.legal.copyright.videosIntro }}
+        <ng-container *ngFor="let player of videoPlayers(portfolio); let last = last">{{ player.name }}<span *ngIf="!last">, </span></ng-container>.
+        {{ portfolio.legal.copyright.videosOutro }}
       </p>
 
-
-      <h3>Vorbilder — Bilder</h3>
+      <h3>{{ portfolio.legal.copyright.charactersHeading }}</h3>
       <ul>
-        <li>
-          <strong>Napoleon Bonaparte</strong> —
-          Gemälde von Jacques-Louis David, 1801. Gemeinfrei (Public Domain).<br />
-          Quelle:
-          <a href="https://commons.wikimedia.org/w/index.php?curid=38872895" target="_blank" rel="noopener noreferrer">
-            Wikimedia Commons
-          </a>
-        </li>
-        <li>
-          <strong>Alexander the Great</strong> —
-          Historische Darstellung. Gemeinfrei (Public Domain).
-        </li>
-        <li>
-          <strong>Sun Tzu</strong> —
-          Autor unbekannt, aus <em>Qing Palace Collection Picture Book</em>, Beijing: Palace Museum Press, 1994. Gemeinfrei (Public Domain).<br />
-          Quelle:
-          <a href="https://commons.wikimedia.org/w/index.php?curid=57088337" target="_blank" rel="noopener noreferrer">
-            Wikimedia Commons
-          </a>
+        <li *ngFor="let character of portfolio.favCharacters">
+          <strong>{{ character.name }}</strong>
+          <span *ngIf="character.media"> — Charakter aus <em>{{ character.media }}</em></span>.
+          <ng-container *ngIf="character.copyright">
+            <br />{{ character.copyright }}.
+          </ng-container>
+          {{ portfolio.legal.copyright.characterUsageNote }}
         </li>
       </ul>
 
-      <h3>Lieblings-Volleyballspieler — Bilder</h3>
-      <ul>
-        <li>
-          <strong>Simeon Nikolov</strong> —
-          © Volleybox.net · Alle Rechte vorbehalten.<br />
-          Quelle: <a href="https://volleybox.net" target="_blank" rel="noopener noreferrer">volleybox.net</a>.
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-        <li>
-          <strong>Micah Christenson</strong> —
-          © FIVB · Alle Rechte vorbehalten.<br />
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-        <li>
-          <strong>Eze Vazquez</strong> —
-          © jeweiliger Rechteinhaber · Alle Rechte vorbehalten.<br />
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-      </ul>
-
-      <h3>Videos der Lieblings-Volleyballspieler</h3>
+      <h3>{{ portfolio.legal.copyright.favAnimalHeading }}</h3>
       <p>
-        Bei den Lieblings-Volleyballspielern (Simeon Nikolov, Micah Christenson, Eze Vazquez)
-        werden Videoclips angezeigt, die lokal auf dieser Website gehostet werden. Alle an den
-        Videos bestehenden Rechte liegen bei den jeweiligen Urhebern und Rechteinhabern. Diese
-        Website erhebt daran keine Eigentumsansprüche; die Verwendung erfolgt ausschliesslich zu
-        privaten, nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
+        {{ portfolio.legal.copyright.favAnimalNoteBefore }}
+        (<strong>{{ portfolio.favAnimal.name }}</strong> {{ portfolio.favAnimal.icon }})
+        {{ portfolio.legal.copyright.favAnimalNoteAfter }}
       </p>
 
-      <h3>Lieblingscharaktere — Bilder</h3>
-      <ul>
-        <li>
-          <strong>Oikawa Tooru</strong> — Charakter aus <em>Haikyuu!!</em> von Haruichi Furudate.<br />
-          © Haruichi Furudate / Shueisha. Bild via haikyuu.fandom.com.
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-        <li>
-          <strong>Satoru Gojo</strong> — Charakter aus <em>Jujutsu Kaisen</em> von Gege Akutami.<br />
-          © Gege Akutami / Shueisha. Bild via Steam.
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-        <li>
-          <strong>Jax</strong> — Charakter aus <em>The Amazing Digital Circus</em>.<br />
-          © Gooseworx / GLITCH Productions. Bild via Reddit.
-          Verwendung zu nicht-kommerziellen Fan-Zwecken gemäss Art. 19 URG.
-        </li>
-      </ul>
-
-
-
-      <h3>Zitat</h3>
+      <h3>{{ portfolio.legal.copyright.quoteHeading }}</h3>
       <p>
-        Das auf dieser Website angezeigte Zitat stammt aus dem Werk
-        <em>The Art of War</em> von Sun Tzu (gemeinfrei). Verwendung zu persönlichen,
-        nicht-kommerziellen Zwecken im Rahmen des Zitatrechts gemäss Art. 25 URG.
+        {{ portfolio.legal.copyright.quoteNoteBefore }}
+        <strong>{{ portfolio.quote.author }}</strong>
+        {{ portfolio.legal.copyright.quoteNoteAfter }}
       </p>
     </section>
 
     <!-- ── DATENSCHUTZERKLÄRUNG (nDSG) ───────────────────────────────────── -->
     <section class="legal-section">
-      <h2>Datenschutzerklärung</h2>
-      <p class="legal-law-ref">Gemäss Bundesgesetz über den Datenschutz (DSG / nDSG, SR 235.1), in Kraft seit 1. September 2023.</p>
+      <h2>{{ portfolio.legal.privacy.heading }}</h2>
+      <p class="legal-law-ref">{{ portfolio.legal.privacy.lawRef }}</p>
 
-      <h3>Verantwortliche Person (Art. 5 lit. j nDSG)</h3>
-      <p>
-        <strong>Rafael Palomares</strong><br />
-        Bern, Schweiz<br />
-        <a href="mailto:rafael.palomares0607@gmail.com">rafael.palomares0607@gmail.com</a>
-      </p>
+      <ng-container *ngFor="let block of portfolio.legal.privacy.blocks">
+        <h3 *ngIf="block.heading">{{ block.heading }}</h3>
 
-      <h3>Grundsatz der Datensparsamkeit (Art. 6 nDSG)</h3>
-      <p>
-        Diese Website erhebt, speichert und verarbeitet <strong>keine personenbezogenen Daten</strong>.
-        Es werden keine Cookies gesetzt, kein Tracking durchgeführt, keine Analysetools
-        (z. B. Google Analytics) eingesetzt und keine Nutzerprofile erstellt.
-      </p>
-      <p>
-        Die Website verfügt über kein Registrierungs- oder Login-System und kein
-        Kontaktformular. Eine Datenbearbeitung im Sinne von Art. 5 lit. d nDSG findet
-        durch den Websitebetreiber nicht statt.
-      </p>
+        <!-- Responsible-person block: render the person contact details from data -->
+        <ng-container *ngIf="block.paragraphs.length === 0; else normalBlock">
+          <p>
+            <strong>{{ portfolio.person.name }}</strong><br />
+            {{ portfolio.person.location }}<br />
+            <a [href]="'mailto:' + portfolio.person.email">{{ portfolio.person.email }}</a>
+          </p>
+        </ng-container>
 
-      <h3>Bilder (lokal gehostet)</h3>
-      <p>
-        Die auf dieser Website angezeigten Bilder werden lokal gehostet. Für den Abruf der
-        Bilder findet keine Verbindung zu Drittanbietern statt.
-      </p>
+        <ng-template #normalBlock>
+          <p *ngFor="let paragraph of block.paragraphs">{{ paragraph.text }}</p>
 
-      <h3>Videos (lokal gehostet)</h3>
-      <p>
-        Die auf dieser Website angezeigten Videos werden lokal gehostet. Für den Abruf der
-        Videos findet keine Verbindung zu Drittanbietern statt, und es werden keine
-        personenbezogenen Daten an Dritte übermittelt.
-      </p>
-
-      <h3>Hosting (Art. 9 nDSG)</h3>
-      <p>
-      Diese Website wird bei Vercel (Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA) gehostet. Vercel erhebt beim Aufruf der Seite automatisch technische Daten (sog. System Data), wie IP-Adressen und Zugriffs-Logs, um den Betrieb und die Sicherheit der Plattform zu gewährleisten. Vercel ist unter dem Swiss-U.S. Data Privacy Framework zertifiziert, womit der Datentransfer in die USA gemäss nDSG zulässig ist. Details entnehmen Sie bitte der Datenschutzerklärung von Vercel.
-      </p>
-
-
-      <h3>Betroffenenrechte (Art. 25 ff. nDSG)</h3>
-      <p>
-        Da diese Website keine personenbezogenen Daten erhebt oder speichert, sind
-        Auskunfts-, Berichtigungs- und Löschungsansprüche gegenüber dem Websitebetreiber
-        gegenstandslos. Bei Fragen wenden Sie sich an:
-        <a href="mailto:rafael.palomares0607@gmail.com">rafael.palomares0607@gmail.com</a>
-      </p>
+          <!-- Append the social links inline for the external-links block -->
+          <p *ngIf="block.heading === 'Externe Links (Social Media)'" class="legal-social-links">
+            <ng-container *ngFor="let social of portfolio.socials; let last = last"><a [href]="social.url" target="_blank" rel="noopener noreferrer">{{ social.label }}</a><span *ngIf="!last"> · </span></ng-container>
+          </p>
+        </ng-template>
+      </ng-container>
     </section>
 
     <!-- ── HAFTUNGSAUSSCHLUSS ─────────────────────────────────────────────── -->
     <section class="legal-section">
-      <h2>Haftungsausschluss (Art. 41 ff. OR)</h2>
+      <h2>{{ portfolio.legal.liability.heading }}</h2>
+      <p *ngFor="let paragraph of portfolio.legal.liability.paragraphsBefore">{{ paragraph }}</p>
       <p>
-        Die Inhalte dieser Website wurden mit grösstmöglicher Sorgfalt erstellt. Für die
-        Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch keine Gewähr
-        übernommen. Eine Haftung für Schäden, die durch die Nutzung dieser Website
-        entstehen, ist gemäss Art. 100 OR ausgeschlossen, soweit gesetzlich zulässig.
-      </p>
-      <p>
-        Alle auf dieser Website verwendeten Marken, Charakternamen, Bilder und sonstigen
-        Inhalte Dritter sind Eigentum ihrer jeweiligen Rechteinhaber. Die Verwendung
-        erfolgt ausschliesslich zu privaten, nicht-kommerziellen Zwecken im Rahmen des
-        Privatgebrauchs (Art. 19 URG) und des Zitatrechts (Art. 25 URG).
-      </p>
-      <p>
-        Sollten Sie der Ansicht sein, dass durch Inhalte dieser Website Ihre Rechte verletzt
-        werden, nehmen Sie bitte Kontakt auf unter
-        <a href="mailto:rafael.palomares0607@gmail.com">rafael.palomares0607@gmail.com</a>.
-        Ich werde die betreffenden Inhalte umgehend prüfen und gegebenenfalls entfernen
-        (Notice-and-Takedown-Prinzip).
+        {{ portfolio.legal.liability.contactNoteBefore }}
+        <a [href]="'mailto:' + portfolio.person.email">{{ portfolio.person.email }}</a>.
+        {{ portfolio.legal.liability.contactNoteAfter }}
       </p>
     </section>
 
     <p class="legal-footer-note">
-      Stand: {{ currentYear }} · Rafael Palomares · Bern, Schweiz<br />
-      <span class="legal-law-refs">DSG/nDSG (SR 235.1) · URG (SR 231.1) · OR (SR 220) · UWG (SR 241)</span>
+      Stand: {{ currentYear }} · {{ portfolio.person.name }} · {{ portfolio.person.location }}<br />
+      <span class="legal-law-refs">{{ portfolio.legal.footerLawRefs }}</span>
     </p>
 
   </div>
