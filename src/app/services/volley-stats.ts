@@ -55,6 +55,7 @@ const EMPTY_STATS: VolleyStats = {
   gamesPlayed: 0,
   wins: 0,
   losses: 0,
+  winRate: 0,
   totalPointsWon: 0,
   totalAces: 0,
   totalKills: 0,
@@ -175,10 +176,14 @@ export class VolleyStatsService {
     const currentSeason = this.buildCurrentSeasonInfo(games, seasons);
     const results = this.buildResults(games);
 
+    const decidedGames = wins + losses;
+    const winRate = decidedGames === 0 ? 0 : Math.round((wins / decidedGames) * 1000) / 10;
+
     return {
       gamesPlayed,
       wins,
       losses,
+      winRate,
       totalPointsWon,
       totalAces: counts.ace,
       totalKills: counts.kill,

@@ -35,6 +35,64 @@
   flex-shrink: 0;
 }
 
+/* ── Record summary ─────────────────────────────────────────────────────── */
+.record {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.record-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.record-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-win .record-value {
+  color: #22c55e;
+}
+
+.record-loss .record-value {
+  color: #ef4444;
+}
+
+.record-rate .record-value {
+  color: var(--accent);
+}
+
+.record-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.record-divider {
+  font-size: 1.5rem;
+  color: var(--text-dim);
+}
+
+.record-rate {
+  margin-left: auto;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+
 /* ── Headline metric tiles ──────────────────────────────────────────────── */
 .stat-tiles {
   display: grid;

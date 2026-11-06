@@ -117,6 +117,7 @@ export interface VolleyStats {
   readonly gamesPlayed: number;
   readonly wins: number;
   readonly losses: number;
+  readonly winRate: number;
   readonly totalPointsWon: number;
   readonly totalAces: number;
   readonly totalKills: number;

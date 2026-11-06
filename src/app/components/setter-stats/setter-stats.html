@@ -18,6 +18,23 @@
       </ng-template>
     </div>
 
+    <!-- Record summary -->
+    <div class="record" *ngIf="stats() as s">
+      <div class="record-item record-win">
+        <span class="record-value">{{ s.wins }}</span>
+        <span class="record-label">Wins</span>
+      </div>
+      <div class="record-divider">&ndash;</div>
+      <div class="record-item record-loss">
+        <span class="record-value">{{ s.losses }}</span>
+        <span class="record-label">Losses</span>
+      </div>
+      <div class="record-item record-rate">
+        <span class="record-value">{{ s.winRate }}%</span>
+        <span class="record-label">Win Rate</span>
+      </div>
+    </div>
+
     <!-- Headline Metric Tiles -->
     <div class="stat-tiles" aria-live="polite">
       <div class="stat-tile" *ngFor="let tile of statTiles">

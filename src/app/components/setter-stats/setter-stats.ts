@@ -150,10 +150,10 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
   private buildViewModel(stats: VolleyStats): void {
     this.statTiles = [
       { key: 'gamesPlayed', label: 'Games Played', target: stats.gamesPlayed, suffix: '', decimals: 0 },
+      { key: 'winRate', label: 'Win Rate', target: stats.winRate, suffix: '%', decimals: 0 },
       { key: 'totalAssists', label: 'Total Assists', target: stats.setter.totalAssists, suffix: '', decimals: 0 },
       { key: 'assistsPerGame', label: 'Assists / Game', target: stats.setter.assistsPerGame, suffix: '', decimals: 1 },
       { key: 'totalKills', label: 'Total Kills', target: stats.totalKills, suffix: '', decimals: 0 },
-      { key: 'totalAces', label: 'Service Aces', target: stats.totalAces, suffix: '', decimals: 0 },
       { key: 'totalBlocks', label: 'Blocks', target: stats.totalBlocks, suffix: '', decimals: 0 },
     ];
 
