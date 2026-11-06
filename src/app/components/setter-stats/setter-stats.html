@@ -96,10 +96,10 @@
         </span>
         <span
           class="highlight-points"
-          *ngIf="closest.myPoints !== null && closest.opponentPoints !== null"
+          *ngIf="closest.myPoints !== null && closest.opponentPoints !== null && closest.pointDifference !== null"
         >
           {{ closest.myPoints }}&ndash;{{ closest.opponentPoints }} pts ·
-          {{ closest.pointDifference! > 0 ? '+' : '' }}{{ closest.pointDifference }} spread
+          {{ closest.pointDifference > 0 ? '+' : '' }}{{ closest.pointDifference }} spread
         </span>
       </div>
     </div>
