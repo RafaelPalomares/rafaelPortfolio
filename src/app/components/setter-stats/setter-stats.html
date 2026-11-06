@@ -3,9 +3,20 @@
     <span class="section-label">By the Numbers</span>
     <h2 class="section-title">VolleyStats Dashboard</h2>
     <p class="section-lead">
-      Live performance metrics pulled from my VolleyStats tracker. Kills, aces, blocks and a breakdown of
-      how I win points — updated as the season goes on.
+      Live career metrics pulled from my VolleyStats tracker. Kills, aces, blocks and a breakdown of
+      how I win points — aggregated across every season I've tracked.
     </p>
+
+    <!-- Current season status -->
+    <div class="season-status" *ngIf="stats()?.currentSeason as season">
+      <span class="season-dot"></span>
+      <span *ngIf="season.gamesPlayed > 0; else noGames">
+        Current season: <strong>{{ season.name }}</strong> · {{ season.gamesPlayed }} game{{ season.gamesPlayed === 1 ? '' : 's' }} played
+      </span>
+      <ng-template #noGames>
+        Current season: <strong>{{ season.name }}</strong> · season underway — no games played yet
+      </ng-template>
+    </div>
 
     <!-- Headline Metric Tiles -->
     <div class="stat-tiles" aria-live="polite">
@@ -97,6 +108,23 @@
         <span class="setter-metric-label">{{ metric.label }}</span>
         <span class="setter-metric-detail">{{ metric.detail }}</span>
       </div>
+    </div>
+
+    <!-- Match Results -->
+    <div class="results" *ngIf="stats()?.results?.length">
+      <h3 class="results-title">Match Results</h3>
+      <ul class="results-list">
+        <li class="result-row" *ngFor="let result of stats()!.results">
+          <span class="result-outcome" [class]="'result-outcome ' + result.outcome">
+            {{ result.outcome === 'win' ? 'W' : result.outcome === 'loss' ? 'L' : 'D' }}
+          </span>
+          <span class="result-info">
+            <span class="result-opponent">vs {{ result.opponent }}</span>
+            <span class="result-date">{{ result.date | date: 'mediumDate' }}</span>
+          </span>
+          <span class="result-score">{{ result.myScore }}&ndash;{{ result.opponentScore }}</span>
+        </li>
+      </ul>
     </div>
 
     <p class="stats-source">

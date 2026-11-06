@@ -30,7 +30,39 @@ export interface GameRow {
   readonly my_score: number;
   readonly opponent_score: number;
   readonly notes: string | null;
+  readonly season_id: string | null;
   readonly created_at: string | null;
+}
+
+/**
+ * Raw row shape returned by the Supabase `seasons` table.
+ * Column names use snake_case to match Postgres conventions.
+ */
+export interface SeasonRow {
+  readonly id: string;
+  readonly name: string;
+  readonly created_at: string | null;
+}
+
+/**
+ * Describes the current (most recently created) season and how many games I
+ * have played in it so far. Used to show an honest "season status" note.
+ */
+export interface CurrentSeasonInfo {
+  readonly name: string;
+  readonly gamesPlayed: number;
+}
+
+/**
+ * The outcome of a single game, ready to be rendered in the results list.
+ */
+export interface GameResult {
+  readonly title: string;
+  readonly opponent: string;
+  readonly date: string;
+  readonly myScore: number;
+  readonly opponentScore: number;
+  readonly outcome: 'win' | 'loss' | 'draw';
 }
 
 /**
@@ -95,5 +127,7 @@ export interface VolleyStats {
   readonly pointsPerGame: number;
   readonly pointTypeShares: readonly PointTypeShare[];
   readonly setter: SetterStats;
+  readonly currentSeason: CurrentSeasonInfo | null;
+  readonly results: readonly GameResult[];
   readonly lastGameDate: string | null;
 }

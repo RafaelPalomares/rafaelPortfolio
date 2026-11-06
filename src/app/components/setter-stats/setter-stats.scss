@@ -5,6 +5,36 @@
   margin: 1rem 0 0;
 }
 
+/* ── Current season status ──────────────────────────────────────────────── */
+.season-status {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+
+  margin-top: 1.25rem;
+  padding: 0.6rem 1rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+  color: var(--text-muted);
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+}
+
+.season-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
 /* ── Headline metric tiles ──────────────────────────────────────────────── */
 .stat-tiles {
   display: grid;
@@ -223,6 +253,98 @@
 .setter-metric-detail {
   font-size: 0.72rem;
   color: var(--text-dim);
+}
+
+/* ── Match results ──────────────────────────────────────────────────────── */
+.results {
+  margin-top: 2.5rem;
+}
+
+.results-title {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+.results-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.result-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 0.9rem 1.25rem;
+
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+}
+
+.result-outcome {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 28px;
+  width: 28px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+
+  &.win {
+    background: #22c55e;
+  }
+
+  &.loss {
+    background: #ef4444;
+  }
+
+  &.draw {
+    background: #64748b;
+  }
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.result-opponent {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.result-date {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.result-score {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Source note ────────────────────────────────────────────────────────── */

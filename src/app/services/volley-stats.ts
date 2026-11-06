@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { catchError, from, Observable, of } from 'rxjs';
 import {
+  CurrentSeasonInfo,
+  GameResult,
   GameRow,
   PointRow,
   PointType,
   PointTypeShare,
+  SeasonRow,
   SetterStats,
   VolleyStats,
 } from '../models/volley-stats.model';
@@ -67,6 +70,8 @@ const EMPTY_STATS: VolleyStats = {
     percentage: 0,
   })),
   setter: EMPTY_SETTER_STATS,
+  currentSeason: null,
+  results: [],
   lastGameDate: null,
 };
 
@@ -106,7 +111,7 @@ export class VolleyStatsService {
 
     const gamesResponse = await client
       .from('games')
-      .select('id, title, opponent, date, my_score, opponent_score, notes, created_at')
+      .select('id, title, opponent, date, my_score, opponent_score, notes, season_id, created_at')
       .order('date', { ascending: false });
 
     if (gamesResponse.error != null) {
@@ -121,10 +126,19 @@ export class VolleyStatsService {
       throw new Error(`Failed to load points: ${pointsResponse.error.message}`);
     }
 
+    // Seasons may not be readable (e.g. no policy yet); treat a failure as
+    // "no season info" rather than breaking the whole dashboard.
+    const seasonsResponse = await client
+      .from('seasons')
+      .select('id, name, created_at')
+      .order('created_at', { ascending: false });
+
     const games = (gamesResponse.data ?? []) as readonly GameRow[];
     const points = (pointsResponse.data ?? []) as readonly PointRow[];
+    const seasons =
+      seasonsResponse.error != null ? [] : ((seasonsResponse.data ?? []) as readonly SeasonRow[]);
 
-    return this.aggregate(games, points);
+    return this.aggregate(games, points, seasons);
   }
 
   /**
@@ -133,7 +147,11 @@ export class VolleyStatsService {
    * @param points The visible point rows
    * @returns The aggregated volleyball statistics
    */
-  private aggregate(games: readonly GameRow[], points: readonly PointRow[]): VolleyStats {
+  private aggregate(
+    games: readonly GameRow[],
+    points: readonly PointRow[],
+    seasons: readonly SeasonRow[],
+  ): VolleyStats {
     const gamesPlayed = games.length;
 
     let wins = 0;
@@ -154,6 +172,8 @@ export class VolleyStatsService {
 
     const pointTypeShares = this.buildPointTypeShares(counts, totalPointsWon);
     const setter = this.buildSetterStats(points, gamesPlayed);
+    const currentSeason = this.buildCurrentSeasonInfo(games, seasons);
+    const results = this.buildResults(games);
 
     return {
       gamesPlayed,
@@ -169,7 +189,60 @@ export class VolleyStatsService {
       pointsPerGame: perGame(totalPointsWon),
       pointTypeShares,
       setter,
+      currentSeason,
+      results,
       lastGameDate: games.length > 0 ? games[0].date : null,
+    };
+  }
+
+  /**
+   * Maps the raw game rows into display-ready results, newest first.
+   * @param games The visible game rows, expected newest-first
+   * @returns The ordered game results
+   */
+  private buildResults(games: readonly GameRow[]): readonly GameResult[] {
+    return games.map((game) => {
+      let outcome: GameResult['outcome'] = 'draw';
+      if (game.my_score > game.opponent_score) {
+        outcome = 'win';
+      } else if (game.my_score < game.opponent_score) {
+        outcome = 'loss';
+      }
+
+      return {
+        title: game.title,
+        opponent: game.opponent,
+        date: game.date,
+        myScore: game.my_score,
+        opponentScore: game.opponent_score,
+        outcome,
+      };
+    });
+  }
+
+  /**
+   * Determines the current season (the most recently created one) and counts
+   * how many games belong to it. The headline stats always reflect my whole
+   * career; this is only used to show an honest status note for the ongoing
+   * season, which may still be empty.
+   * @param games The visible game rows
+   * @param seasons The visible season rows, expected newest-first
+   * @returns The current season info, or null when no season data is available
+   */
+  private buildCurrentSeasonInfo(
+    games: readonly GameRow[],
+    seasons: readonly SeasonRow[],
+  ): CurrentSeasonInfo | null {
+    if (seasons.length === 0) {
+      return null;
+    }
+
+    const current = seasons[0];
+    const gamesPlayed = games.filter((game) => game.season_id === current.id).length;
+
+    return {
+      name: current.name,
+      gamesPlayed,
     };
   }
 
