@@ -560,6 +560,12 @@
   color: var(--text-muted);
 }
 
+.highlight-points {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ── Point-type donut ───────────────────────────────────────────────────── */
 .donut-card {
   display: flex;

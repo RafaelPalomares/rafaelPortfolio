@@ -289,7 +289,7 @@ export class VolleyStatsService {
     const decidedGames = wins + losses;
     const winRate = decidedGames === 0 ? 0 : Math.round((wins / decidedGames) * 1000) / 10;
 
-    const highlights = this.buildHighlights(games);
+    const highlights = this.buildHighlights(games, setResults);
 
     return {
       gamesPlayed,
@@ -357,14 +357,32 @@ export class VolleyStatsService {
   }
 
   /**
-   * Determines the biggest-margin win and the closest decided game.
+   * Determines the most dominant win and the closest decided game, ranking by
+   * the total points scored across a game's `set_results` rows rather than by
+   * the set-margin on the games row.
+   *
+   * For each game its set-result rows are summed into `myPoints`/`oppPoints`
+   * and `pointDifference = myPoints - oppPoints`. Games that have been
+   * backfilled with set scores rank by that signed point spread; games with no
+   * set-result rows fall back cleanly to the games-row set-margin
+   * (`my_score - opponent_score`). To keep the ranking honest with mixed data,
+   * a game that has real point data always outranks one that only has the
+   * set-margin fallback, so the point-based ordering takes over as soon as any
+   * set scores exist while never breaking before they do. With no set-result
+   * rows at all the behaviour is identical to the plain set-margin ranking.
    * @param games The visible game rows
+   * @param setResults The visible set-result rows
    * @returns The best win and closest game, each null when unavailable
    */
-  private buildHighlights(games: readonly GameRow[]): {
+  private buildHighlights(
+    games: readonly GameRow[],
+    setResults: readonly SetResultRow[],
+  ): {
     bestWin: HighlightGame | null;
     closestGame: HighlightGame | null;
   } {
+    const pointsByGame = this.sumSetPointsByGame(setResults);
+
     let bestWin: HighlightGame | null = null;
     let closestGame: HighlightGame | null = null;
 
@@ -373,27 +391,112 @@ export class VolleyStatsService {
         continue;
       }
 
-      const difference = game.my_score - game.opponent_score;
+      const setMargin = game.my_score - game.opponent_score;
+      const gamePoints = pointsByGame.get(game.id) ?? null;
+      const hasPoints = gamePoints != null;
+      const pointDifference = hasPoints ? gamePoints.myPoints - gamePoints.oppPoints : null;
+      // Rank by the signed point spread when set scores exist, otherwise by the
+      // set-margin. `difference` keeps the set-margin for display/fallback.
+      const rankingValue = pointDifference ?? setMargin;
+
       const highlight: HighlightGame = {
         title: game.title,
         opponent: game.opponent,
         date: game.date,
         myScore: game.my_score,
         opponentScore: game.opponent_score,
-        difference,
+        difference: setMargin,
+        myPoints: hasPoints ? gamePoints.myPoints : null,
+        opponentPoints: hasPoints ? gamePoints.oppPoints : null,
+        pointDifference,
       };
 
-      if (difference > 0 && (bestWin == null || difference > bestWin.difference)) {
+      if (rankingValue > 0 && this.outranksBestWin(bestWin, hasPoints, rankingValue)) {
         bestWin = highlight;
       }
 
-      const absDifference = Math.abs(difference);
-      if (closestGame == null || absDifference < Math.abs(closestGame.difference)) {
+      if (this.outranksClosestGame(closestGame, hasPoints, rankingValue)) {
         closestGame = highlight;
       }
     }
 
     return { bestWin, closestGame };
+  }
+
+  /**
+   * Sums the per-game point totals across a game's `set_results` rows. Rows
+   * with a non-positive set number are ignored, matching the other set-based
+   * aggregations. Games without any set-result rows are simply absent from the
+   * map so the caller can fall back to the games-row set-margin.
+   * @param setResults The visible set-result rows
+   * @returns A map from game id to its summed points for and against
+   */
+  private sumSetPointsByGame(
+    setResults: readonly SetResultRow[],
+  ): Map<string, { myPoints: number; oppPoints: number }> {
+    const pointsByGame = new Map<string, { myPoints: number; oppPoints: number }>();
+
+    for (const setResult of setResults) {
+      if (!Number.isInteger(setResult.set_number) || setResult.set_number <= 0) {
+        continue;
+      }
+      const entry = pointsByGame.get(setResult.game_id) ?? { myPoints: 0, oppPoints: 0 };
+      entry.myPoints += setResult.my_score;
+      entry.oppPoints += setResult.opponent_score;
+      pointsByGame.set(setResult.game_id, entry);
+    }
+
+    return pointsByGame;
+  }
+
+  /**
+   * Decides whether a candidate should replace the current biggest win. A
+   * candidate with real point data always beats one ranked only by the
+   * set-margin fallback; otherwise the larger signed spread wins.
+   * @param current The current best win, or null when none chosen yet
+   * @param candidateHasPoints Whether the candidate has real point data
+   * @param candidateValue The candidate's signed ranking spread
+   * @returns True when the candidate should become the new best win
+   */
+  private outranksBestWin(
+    current: HighlightGame | null,
+    candidateHasPoints: boolean,
+    candidateValue: number,
+  ): boolean {
+    if (current == null) {
+      return true;
+    }
+    const currentHasPoints = current.pointDifference != null;
+    if (candidateHasPoints !== currentHasPoints) {
+      return candidateHasPoints;
+    }
+    const currentValue = current.pointDifference ?? current.difference;
+    return candidateValue > currentValue;
+  }
+
+  /**
+   * Decides whether a candidate should replace the current closest game. A
+   * candidate with real point data always beats one ranked only by the
+   * set-margin fallback; otherwise the smaller absolute spread wins.
+   * @param current The current closest game, or null when none chosen yet
+   * @param candidateHasPoints Whether the candidate has real point data
+   * @param candidateValue The candidate's signed ranking spread
+   * @returns True when the candidate should become the new closest game
+   */
+  private outranksClosestGame(
+    current: HighlightGame | null,
+    candidateHasPoints: boolean,
+    candidateValue: number,
+  ): boolean {
+    if (current == null) {
+      return true;
+    }
+    const currentHasPoints = current.pointDifference != null;
+    if (candidateHasPoints !== currentHasPoints) {
+      return candidateHasPoints;
+    }
+    const currentValue = current.pointDifference ?? current.difference;
+    return Math.abs(candidateValue) < Math.abs(currentValue);
   }
 
   /**

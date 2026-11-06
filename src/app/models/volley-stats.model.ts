@@ -139,6 +139,13 @@ export interface RecentForm {
 
 /**
  * A single highlighted game, used for the biggest win and the closest game.
+ *
+ * `myScore`/`opponentScore` are the set counts from the `games` row (e.g. 3-1)
+ * and `difference` is the set-margin used as a ranking fallback. When the game
+ * has real `set_results` rows, `myPoints`/`opponentPoints` carry the total
+ * points scored across all sets and `pointDifference` is their signed spread;
+ * these drive the ranking and let the card show the actual point spread. They
+ * are null for games whose set scores have not been backfilled yet.
  */
 export interface HighlightGame {
   readonly title: string;
@@ -147,6 +154,9 @@ export interface HighlightGame {
   readonly myScore: number;
   readonly opponentScore: number;
   readonly difference: number;
+  readonly myPoints: number | null;
+  readonly opponentPoints: number | null;
+  readonly pointDifference: number | null;
 }
 
 /**

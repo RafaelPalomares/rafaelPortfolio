@@ -83,6 +83,9 @@
         <span class="highlight-detail">
           vs {{ best.opponent }} · +{{ best.difference }} · {{ best.date | date: 'mediumDate' }}
         </span>
+        <span class="highlight-points" *ngIf="best.myPoints !== null && best.opponentPoints !== null">
+          {{ best.myPoints }}&ndash;{{ best.opponentPoints }} pts · +{{ best.pointDifference }} spread
+        </span>
       </div>
 
       <div class="highlight-card" *ngIf="stats()?.closestGame as closest">
@@ -90,6 +93,13 @@
         <span class="highlight-score">{{ closest.myScore }}&ndash;{{ closest.opponentScore }}</span>
         <span class="highlight-detail">
           vs {{ closest.opponent }} · margin {{ closest.difference > 0 ? '+' : '' }}{{ closest.difference }} · {{ closest.date | date: 'mediumDate' }}
+        </span>
+        <span
+          class="highlight-points"
+          *ngIf="closest.myPoints !== null && closest.opponentPoints !== null"
+        >
+          {{ closest.myPoints }}&ndash;{{ closest.opponentPoints }} pts ·
+          {{ closest.pointDifference! > 0 ? '+' : '' }}{{ closest.pointDifference }} spread
         </span>
       </div>
     </div>
