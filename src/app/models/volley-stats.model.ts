@@ -186,6 +186,34 @@ export interface SetNumberPerformance {
 }
 
 /**
+ * My point-involvement rate within a single set number, derived from the
+ * `points` and `set_results` tables. Counts the points I was personally
+ * involved in (points I scored directly plus my assists) as a share of the
+ * team points scored in those sets. Only sets that have a matching
+ * `set_results` denominator contribute.
+ */
+export interface SetNumberInvolvement {
+  readonly setNumber: number;
+  readonly involvements: number;
+  readonly teamPoints: number;
+  readonly involvementRate: number;
+}
+
+/**
+ * My overall point-involvement summary plus a per-set-number breakdown. The
+ * overall rate is the total involvements across all qualifying sets divided by
+ * the team points across those same sets, as a percentage. A set qualifies
+ * only when it has a matching `set_results` row to supply the denominator.
+ */
+export interface PointInvolvement {
+  readonly totalInvolvements: number;
+  readonly totalTeamPoints: number;
+  readonly qualifyingSets: number;
+  readonly involvementRate: number;
+  readonly bySetNumber: readonly SetNumberInvolvement[];
+}
+
+/**
  * My record against a single opponent, with a derived win rate.
  */
 export interface OpponentRecord {
@@ -232,6 +260,7 @@ export interface VolleyStats {
   readonly closestGame: HighlightGame | null;
   readonly setBalance: SetBalance;
   readonly setNumberPerformance: readonly SetNumberPerformance[];
+  readonly pointInvolvement: PointInvolvement;
   readonly opponentRecords: readonly OpponentRecord[];
   readonly trend: readonly TrendPoint[];
 }

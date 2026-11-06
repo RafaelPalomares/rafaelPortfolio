@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VolleyStatsService } from '../../services/volley-stats';
 import {
+  PointInvolvement,
   PointTypeShare,
   SetBalance,
   SetNumberPerformance,
@@ -81,6 +82,19 @@ interface SetNumberBar {
   readonly setsWon: number;
   readonly setsLost: number;
   readonly setsPlayed: number;
+  readonly heightPercent: number;
+}
+
+/**
+ * One bar of the per-set-number point-involvement chart. The bar height tracks
+ * the involvement rate while the label reports the raw involvements over team
+ * points for context.
+ */
+interface InvolvementBar {
+  readonly setNumber: number;
+  readonly involvementRate: number;
+  readonly involvements: number;
+  readonly teamPoints: number;
   readonly heightPercent: number;
 }
 
@@ -211,6 +225,7 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
   setterMetrics: SetterMetric[] = [];
   setBalanceMetrics: SetBalanceMetric[] = [];
   setNumberBars: SetNumberBar[] = [];
+  involvementBars: InvolvementBar[] = [];
   trendChart: TrendChart = { polylinePoints: '', areaPoints: '', maxAssists: 0, hasData: false };
 
   ngOnInit(): void {
@@ -295,6 +310,7 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setterMetrics = this.buildSetterMetrics(stats.setter);
     this.setBalanceMetrics = this.buildSetBalanceMetrics(stats.setBalance);
     this.setNumberBars = this.buildSetNumberBars(stats.setNumberPerformance);
+    this.involvementBars = this.buildInvolvementBars(stats.pointInvolvement);
     this.trendChart = this.buildTrendChart(stats.trend);
 
     const initialValues: Record<string, number> = {};
@@ -413,6 +429,23 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
       setsLost: entry.setsLost,
       setsPlayed: entry.setsPlayed,
       heightPercent: Math.round(entry.winRate),
+    }));
+  }
+
+  /**
+   * Builds the per-set-number point-involvement bars. Each bar height tracks
+   * the involvement rate in that set number so the chart reads as "how much of
+   * the team's points I was part of, by set".
+   * @param involvement The aggregated point-involvement summary
+   * @returns The ordered involvement bars
+   */
+  private buildInvolvementBars(involvement: PointInvolvement): InvolvementBar[] {
+    return involvement.bySetNumber.map((entry) => ({
+      setNumber: entry.setNumber,
+      involvementRate: entry.involvementRate,
+      involvements: entry.involvements,
+      teamPoints: entry.teamPoints,
+      heightPercent: Math.min(100, Math.round(entry.involvementRate)),
     }));
   }
 

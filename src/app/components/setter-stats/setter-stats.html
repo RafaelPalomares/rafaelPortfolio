@@ -246,6 +246,54 @@
         </ng-template>
       </div>
 
+      <!-- Point involvement: share of team points I was part of -->
+      <div class="vb-card set-card" *ngIf="stats() as s">
+        <h3 class="card-title">Point Involvement</h3>
+        <p class="card-sub">
+          The share of each set's team points I was part of — points I scored plus my assists —
+          by set number, from real set scores.
+        </p>
+
+        <div class="set-balance" *ngIf="s.pointInvolvement.qualifyingSets > 0; else noInvolvementData">
+          <div class="set-balance-tiles">
+            <div class="set-balance-tile">
+              <span class="set-balance-value">{{ s.pointInvolvement.involvementRate }}%</span>
+              <span class="set-balance-label">Involvement Rate</span>
+              <span class="set-balance-detail">
+                {{ s.pointInvolvement.totalInvolvements }} of {{ s.pointInvolvement.totalTeamPoints }} pts
+              </span>
+            </div>
+            <div class="set-balance-tile">
+              <span class="set-balance-value">{{ s.pointInvolvement.totalInvolvements }}</span>
+              <span class="set-balance-label">Involvements</span>
+              <span class="set-balance-detail">Own points + assists</span>
+            </div>
+            <div class="set-balance-tile">
+              <span class="set-balance-value">{{ s.pointInvolvement.qualifyingSets }}</span>
+              <span class="set-balance-label">Sets Counted</span>
+              <span class="set-balance-detail">With real set scores</span>
+            </div>
+          </div>
+
+          <div class="set-bars" *ngIf="involvementBars.length">
+            <div class="set-bar-col" *ngFor="let bar of involvementBars">
+              <span class="set-bar-value">{{ bar.involvementRate }}%</span>
+              <span class="set-bar-track">
+                <span class="set-bar-fill" [style.height.%]="radarProgress() * bar.heightPercent"></span>
+              </span>
+              <span class="set-bar-label">{{ setNumberLabel(bar.setNumber) }}</span>
+              <span class="set-bar-record">{{ bar.involvements }}/{{ bar.teamPoints }}</span>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #noInvolvementData>
+          <p class="set-empty">
+            No involvement data yet — needs tracked points and real set scores to compute a share.
+          </p>
+        </ng-template>
+      </div>
+
       <!-- Assists-per-game trend -->
       <div class="vb-card trend-card" *ngIf="trendChart.hasData">
         <h3 class="card-title">Assists Over Time</h3>

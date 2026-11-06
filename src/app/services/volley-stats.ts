@@ -6,6 +6,7 @@ import {
   GameRow,
   HighlightGame,
   OpponentRecord,
+  PointInvolvement,
   PointRow,
   PointType,
   PointTypeShare,
@@ -15,6 +16,7 @@ import {
   SeasonRow,
   SeasonSummary,
   SetBalance,
+  SetNumberInvolvement,
   SetNumberPerformance,
   SetResultRow,
   SetterStats,
@@ -98,6 +100,13 @@ const EMPTY_STATS: VolleyStats = {
     averagePointsPerSet: 0,
   },
   setNumberPerformance: [],
+  pointInvolvement: {
+    totalInvolvements: 0,
+    totalTeamPoints: 0,
+    qualifyingSets: 0,
+    involvementRate: 0,
+    bySetNumber: [],
+  },
   opponentRecords: [],
   trend: [],
 };
@@ -315,6 +324,7 @@ export class VolleyStatsService {
       closestGame: highlights.closestGame,
       setBalance: this.buildSetBalance(setResults),
       setNumberPerformance: this.buildSetNumberPerformance(setResults),
+      pointInvolvement: this.buildPointInvolvement(points, setResults),
       opponentRecords: this.buildOpponentRecords(games),
       trend: this.buildTrend(games, points),
     };
@@ -582,6 +592,119 @@ export class VolleyStatsService {
         };
       })
       .sort((entryA, entryB) => entryA.setNumber - entryB.setNumber);
+  }
+
+  /**
+   * Builds my point-involvement summary: the share of a set's team points that
+   * I was personally involved in, where "involved" means a point I scored
+   * directly (`scored_by_me = true`) or an assist I set up (`point_type =
+   * 'assist'`). A single point row that is both scored by me and an assist is
+   * counted once, not twice.
+   *
+   * The denominator for a set is the team points scored in that set, taken from
+   * the matching `set_results` row's `my_score`. Sets without a matching
+   * `set_results` row have no honest denominator and are excluded entirely; the
+   * denominator is never fabricated from the points table. The overall rate is
+   * the total involvements across all qualifying sets divided by the team
+   * points across those same sets, as a percentage rounded to one decimal.
+   * Returns a clean zero-state when no set has a usable denominator.
+   * @param points The visible point rows
+   * @param setResults The visible set-result rows
+   * @returns The aggregated point-involvement summary
+   */
+  private buildPointInvolvement(
+    points: readonly PointRow[],
+    setResults: readonly SetResultRow[],
+  ): PointInvolvement {
+    // Team points per (game_id, set_number) from the real set scores; this is
+    // the only source for the denominator, so sets absent here are excluded.
+    const teamPointsBySet = new Map<string, number>();
+    for (const setResult of setResults) {
+      if (!Number.isInteger(setResult.set_number) || setResult.set_number <= 0) {
+        continue;
+      }
+      teamPointsBySet.set(this.setKey(setResult.game_id, setResult.set_number), setResult.my_score);
+    }
+
+    // Involvements per (game_id, set_number), counting a point that is both
+    // scored by me and an assist exactly once.
+    const involvementsBySet = new Map<string, number>();
+    for (const point of points) {
+      if (!Number.isInteger(point.set_number) || point.set_number <= 0) {
+        continue;
+      }
+      if (!point.scored_by_me && point.point_type !== 'assist') {
+        continue;
+      }
+      const key = this.setKey(point.game_id, point.set_number);
+      involvementsBySet.set(key, (involvementsBySet.get(key) ?? 0) + 1);
+    }
+
+    const perSetNumber = new Map<number, { involvements: number; teamPoints: number }>();
+    let totalInvolvements = 0;
+    let totalTeamPoints = 0;
+    let qualifyingSets = 0;
+
+    // Only sets with a real denominator contribute to any total.
+    for (const [key, teamPoints] of teamPointsBySet) {
+      if (teamPoints <= 0) {
+        continue;
+      }
+      const setNumber = this.setNumberFromKey(key);
+      const involvements = involvementsBySet.get(key) ?? 0;
+
+      qualifyingSets += 1;
+      totalInvolvements += involvements;
+      totalTeamPoints += teamPoints;
+
+      const entry = perSetNumber.get(setNumber) ?? { involvements: 0, teamPoints: 0 };
+      entry.involvements += involvements;
+      entry.teamPoints += teamPoints;
+      perSetNumber.set(setNumber, entry);
+    }
+
+    const involvementRate =
+      totalTeamPoints === 0 ? 0 : Math.round((totalInvolvements / totalTeamPoints) * 1000) / 10;
+
+    const bySetNumber: SetNumberInvolvement[] = [...perSetNumber.entries()]
+      .map(([setNumber, record]) => ({
+        setNumber,
+        involvements: record.involvements,
+        teamPoints: record.teamPoints,
+        involvementRate:
+          record.teamPoints === 0
+            ? 0
+            : Math.round((record.involvements / record.teamPoints) * 1000) / 10,
+      }))
+      .sort((entryA, entryB) => entryA.setNumber - entryB.setNumber);
+
+    return {
+      totalInvolvements,
+      totalTeamPoints,
+      qualifyingSets,
+      involvementRate,
+      bySetNumber,
+    };
+  }
+
+  /**
+   * Builds the composite map key identifying a single set by its game and set
+   * number.
+   * @param gameId The game id the set belongs to
+   * @param setNumber The one-based set number
+   * @returns The composite set key
+   */
+  private setKey(gameId: string, setNumber: number): string {
+    return `${gameId}#${setNumber}`;
+  }
+
+  /**
+   * Extracts the set number from a composite set key built by `setKey`.
+   * @param key The composite set key
+   * @returns The one-based set number
+   */
+  private setNumberFromKey(key: string): number {
+    return Number(key.slice(key.lastIndexOf('#') + 1));
   }
 
   /**
