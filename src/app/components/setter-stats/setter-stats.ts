@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
+  computed,
   inject,
   signal,
   viewChild,
@@ -11,7 +12,14 @@ import {
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { VolleyStatsService } from '../../services/volley-stats';
-import { PointTypeShare, SetterStats, VolleyStats } from '../../models/volley-stats.model';
+import {
+  PointTypeShare,
+  SetBreakdownEntry,
+  SetterStats,
+  TrendPoint,
+  VolleyStats,
+  VolleyStatsBundle,
+} from '../../models/volley-stats.model';
 
 /**
  * A single headline metric rendered as an animated count-up tile.
@@ -43,6 +51,44 @@ interface SetterMetric {
 }
 
 /**
+ * One arc segment of the point-type donut chart.
+ */
+interface DonutSegment {
+  readonly label: string;
+  readonly percentage: number;
+  readonly colorClass: string;
+  readonly dashArray: string;
+  readonly dashOffset: number;
+}
+
+/**
+ * One bar of the per-set point breakdown chart.
+ */
+interface SetBar {
+  readonly setNumber: number;
+  readonly points: number;
+  readonly heightPercent: number;
+}
+
+/**
+ * The computed SVG geometry for the assists-per-game trend sparkline.
+ */
+interface TrendChart {
+  readonly polylinePoints: string;
+  readonly areaPoints: string;
+  readonly maxAssists: number;
+  readonly hasData: boolean;
+}
+
+/**
+ * A selectable season option for the season filter control.
+ */
+interface SeasonOption {
+  readonly id: string | null;
+  readonly name: string;
+}
+
+/**
  * Geometry for one point of the point-type radar polygon.
  */
 interface RadarPoint {
@@ -59,6 +105,13 @@ interface RadarPoint {
 const RADAR_CENTER = 130;
 const RADAR_RADIUS = 95;
 const COUNT_UP_DURATION_MS = 1400;
+
+const DONUT_RADIUS = 60;
+const DONUT_CIRCUMFERENCE = 2 * Math.PI * DONUT_RADIUS;
+
+const TREND_WIDTH = 280;
+const TREND_HEIGHT = 90;
+const TREND_PADDING = 10;
 
 /**
  * Maps each point type to a color class used by both the distribution bar and
@@ -93,25 +146,89 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
   private intersectionObserver: IntersectionObserver | null = null;
   private hasAnimated = false;
 
-  readonly stats = signal<VolleyStats | null>(null);
+  readonly bundle = signal<VolleyStatsBundle | null>(null);
+  readonly selectedSeasonId = signal<string | null>(null);
   readonly isLoading = signal<boolean>(true);
   readonly displayValues = signal<Record<string, number>>({});
   readonly radarProgress = signal<number>(0);
 
+  /**
+   * The statistics currently in scope: the whole-career aggregate when no
+   * season is selected, otherwise the chosen season's aggregate.
+   */
+  readonly activeStats = computed<VolleyStats | null>(() => {
+    const currentBundle = this.bundle();
+    if (currentBundle == null) {
+      return null;
+    }
+    const seasonId = this.selectedSeasonId();
+    if (seasonId == null) {
+      return currentBundle.career;
+    }
+    const match = currentBundle.seasons.find((season) => season.id === seasonId);
+    return match?.stats ?? currentBundle.career;
+  });
+
+  /**
+   * Convenience alias so existing template bindings can keep reading `stats()`
+   * while the active scope is driven by the season filter.
+   */
+  readonly stats = computed<VolleyStats | null>(() => this.activeStats());
+
+  /**
+   * The season options for the filter control, with an "All Seasons" entry
+   * first followed by every tracked season.
+   */
+  readonly seasonOptions = computed<SeasonOption[]>(() => {
+    const currentBundle = this.bundle();
+    const options: SeasonOption[] = [{ id: null, name: 'All Seasons' }];
+    if (currentBundle != null) {
+      for (const season of currentBundle.seasons) {
+        options.push({ id: season.id, name: season.name });
+      }
+    }
+    return options;
+  });
+
   statTiles: StatTile[] = [];
   distributionSegments: DistributionSegment[] = [];
+  donutSegments: DonutSegment[] = [];
   radarPoints: RadarPoint[] = [];
   setterMetrics: SetterMetric[] = [];
+  setBars: SetBar[] = [];
+  trendChart: TrendChart = { polylinePoints: '', areaPoints: '', maxAssists: 0, hasData: false };
 
   ngOnInit(): void {
-    this.statsSubscription = this.volleyStatsService.getStats().subscribe((stats) => {
-      this.stats.set(stats);
+    this.statsSubscription = this.volleyStatsService.getStats().subscribe((bundle) => {
+      this.bundle.set(bundle);
       this.isLoading.set(false);
-      this.buildViewModel(stats);
-      if (this.hasAnimated) {
-        this.startAnimations();
-      }
+      this.rebuild();
     });
+  }
+
+  /**
+   * Handles a season filter change, rescoping the dashboard and replaying the
+   * reveal animations when they have already run.
+   * @param id The selected season id, or null for all seasons
+   */
+  onSeasonChange(id: string | null): void {
+    this.selectedSeasonId.set(id);
+    this.rebuild();
+  }
+
+  /**
+   * Rebuilds the view-model from the active scope and (re)starts animations
+   * once the section has been revealed.
+   */
+  private rebuild(): void {
+    const scoped = this.activeStats();
+    if (scoped == null) {
+      return;
+    }
+    this.buildViewModel(scoped);
+    if (this.hasAnimated) {
+      this.startAnimations();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -158,8 +275,11 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
     ];
 
     this.distributionSegments = this.buildDistributionSegments(stats.pointTypeShares);
+    this.donutSegments = this.buildDonutSegments(stats.pointTypeShares);
     this.radarPoints = this.buildRadarPoints(stats.pointTypeShares);
     this.setterMetrics = this.buildSetterMetrics(stats.setter);
+    this.setBars = this.buildSetBars(stats.setBreakdown);
+    this.trendChart = this.buildTrendChart(stats.trend);
 
     const initialValues: Record<string, number> = {};
     for (const tile of this.statTiles) {
@@ -209,6 +329,80 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
       percentage: share.percentage,
       colorClass: POINT_TYPE_COLORS[share.type] ?? 'seg-other',
     }));
+  }
+
+  /**
+   * Builds the point-type donut segments, laying each arc end-to-end around the
+   * ring using circumference-based dash arrays.
+   * @param shares The point-type shares
+   * @returns The ordered donut segments
+   */
+  private buildDonutSegments(shares: readonly PointTypeShare[]): DonutSegment[] {
+    const segments: DonutSegment[] = [];
+    let offsetPercent = 0;
+
+    for (const share of shares) {
+      const arc = (share.percentage / 100) * DONUT_CIRCUMFERENCE;
+      segments.push({
+        label: share.label,
+        percentage: share.percentage,
+        colorClass: POINT_TYPE_COLORS[share.type] ?? 'seg-other',
+        dashArray: `${arc} ${DONUT_CIRCUMFERENCE - arc}`,
+        dashOffset: -(offsetPercent / 100) * DONUT_CIRCUMFERENCE,
+      });
+      offsetPercent += share.percentage;
+    }
+
+    return segments;
+  }
+
+  /**
+   * Builds the per-set bar heights, scaled to the busiest set so the tallest
+   * bar fills the chart.
+   * @param setBreakdown The per-set point counts
+   * @returns The ordered set bars
+   */
+  private buildSetBars(setBreakdown: readonly SetBreakdownEntry[]): SetBar[] {
+    const maxPoints = setBreakdown.reduce((max, entry) => Math.max(max, entry.points), 0);
+    return setBreakdown.map((entry) => ({
+      setNumber: entry.setNumber,
+      points: entry.points,
+      heightPercent: maxPoints === 0 ? 0 : Math.round((entry.points / maxPoints) * 100),
+    }));
+  }
+
+  /**
+   * Builds the assists-per-game sparkline geometry. A single data point renders
+   * as a flat line, and an empty trend produces an inert chart.
+   * @param trend The ordered assists-per-game trend points
+   * @returns The computed sparkline geometry
+   */
+  private buildTrendChart(trend: readonly TrendPoint[]): TrendChart {
+    if (trend.length === 0) {
+      return { polylinePoints: '', areaPoints: '', maxAssists: 0, hasData: false };
+    }
+
+    const maxAssists = trend.reduce((max, point) => Math.max(max, point.assists), 0);
+    const innerWidth = TREND_WIDTH - TREND_PADDING * 2;
+    const innerHeight = TREND_HEIGHT - TREND_PADDING * 2;
+    const baseline = TREND_HEIGHT - TREND_PADDING;
+
+    const coordinates = trend.map((point, index) => {
+      const x =
+        trend.length === 1
+          ? TREND_WIDTH / 2
+          : TREND_PADDING + (innerWidth * index) / (trend.length - 1);
+      const ratio = maxAssists === 0 ? 0 : point.assists / maxAssists;
+      const y = baseline - innerHeight * ratio;
+      return { x, y };
+    });
+
+    const polylinePoints = coordinates.map((point) => `${point.x},${point.y}`).join(' ');
+    const first = coordinates[0];
+    const last = coordinates[coordinates.length - 1];
+    const areaPoints = `${first.x},${baseline} ${polylinePoints} ${last.x},${baseline}`;
+
+    return { polylinePoints, areaPoints, maxAssists, hasData: true };
   }
 
   /**

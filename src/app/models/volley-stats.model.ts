@@ -2,7 +2,7 @@
  * The kinds of actions tracked per rally, matching the `points.point_type`
  * CHECK constraint in the database. These include both point-winning actions
  * (ace, kill, block, opponent_error) and other tracked actions such as a
- * setter assist, a dig, or a serve/attack/reception error.
+ * setter assist, a dig, or a serve/attack error.
  */
 export type PointType =
   | 'ace'
@@ -14,8 +14,6 @@ export type PointType =
   | 'dig'
   | 'serve_error'
   | 'attack_error'
-  | 'reception'
-  | 'reception_error'
   | 'other';
 
 /**
@@ -110,6 +108,62 @@ export interface SetterStats {
 }
 
 /**
+ * A current win or loss streak, derived from the ordered game results.
+ */
+export interface StreakInfo {
+  readonly type: 'win' | 'loss' | 'none';
+  readonly length: number;
+}
+
+/**
+ * The outcomes of the last few games, oldest-first, for a compact W-L-D form
+ * indicator.
+ */
+export interface RecentForm {
+  readonly outcomes: readonly ('win' | 'loss' | 'draw')[];
+}
+
+/**
+ * A single highlighted game, used for the biggest win and the closest game.
+ */
+export interface HighlightGame {
+  readonly title: string;
+  readonly opponent: string;
+  readonly date: string;
+  readonly myScore: number;
+  readonly opponentScore: number;
+  readonly difference: number;
+}
+
+/**
+ * The number of points I scored in a given set number, aggregated across all
+ * games in scope.
+ */
+export interface SetBreakdownEntry {
+  readonly setNumber: number;
+  readonly points: number;
+}
+
+/**
+ * My record against a single opponent, with a derived win rate.
+ */
+export interface OpponentRecord {
+  readonly opponent: string;
+  readonly wins: number;
+  readonly losses: number;
+  readonly draws: number;
+  readonly winRate: number;
+}
+
+/**
+ * A single point on the assists-per-game trend timeline.
+ */
+export interface TrendPoint {
+  readonly date: string;
+  readonly assists: number;
+}
+
+/**
  * Aggregated volleyball statistics derived from the `games` and `points`
  * tables, ready to be rendered by the stats dashboard.
  */
@@ -131,4 +185,50 @@ export interface VolleyStats {
   readonly currentSeason: CurrentSeasonInfo | null;
   readonly results: readonly GameResult[];
   readonly lastGameDate: string | null;
+  readonly streak: StreakInfo;
+  readonly recentForm: RecentForm;
+  readonly bestWin: HighlightGame | null;
+  readonly closestGame: HighlightGame | null;
+  readonly setBreakdown: readonly SetBreakdownEntry[];
+  readonly opponentRecords: readonly OpponentRecord[];
+  readonly trend: readonly TrendPoint[];
+}
+
+/**
+ * A single season paired with its own scoped aggregate statistics.
+ */
+export interface SeasonSummary {
+  readonly id: string;
+  readonly name: string;
+  readonly stats: VolleyStats;
+}
+
+/**
+ * A compact slice of a season's headline metrics, used for season-to-season
+ * comparison.
+ */
+export interface SeasonComparisonSlice {
+  readonly name: string;
+  readonly winRate: number;
+  readonly assistsPerGame: number;
+  readonly pointsPerGame: number;
+}
+
+/**
+ * A comparison between the current season and the previous one. Either side may
+ * be null when not enough seasons are available.
+ */
+export interface SeasonComparison {
+  readonly current: SeasonComparisonSlice | null;
+  readonly previous: SeasonComparisonSlice | null;
+}
+
+/**
+ * The full result returned by the stats service: the whole-career aggregate,
+ * a per-season breakdown for the season filter, and a season comparison.
+ */
+export interface VolleyStatsBundle {
+  readonly career: VolleyStats;
+  readonly seasons: readonly SeasonSummary[];
+  readonly comparison: SeasonComparison;
 }

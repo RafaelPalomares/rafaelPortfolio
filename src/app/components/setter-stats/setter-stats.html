@@ -7,8 +7,21 @@
       how I win points — aggregated across every season I've tracked.
     </p>
 
+    <!-- Season filter -->
+    <div class="season-filter" *ngIf="seasonOptions().length > 1" role="group" aria-label="Filter stats by season">
+      <button
+        type="button"
+        class="season-chip"
+        *ngFor="let option of seasonOptions()"
+        [class.active]="selectedSeasonId() === option.id"
+        (click)="onSeasonChange(option.id)"
+      >
+        {{ option.name }}
+      </button>
+    </div>
+
     <!-- Current season status -->
-    <div class="season-status" *ngIf="stats()?.currentSeason as season">
+    <div class="season-status" *ngIf="bundle()?.career?.currentSeason as season">
       <span class="season-dot"></span>
       <span *ngIf="season.gamesPlayed > 0; else noGames">
         Current season: <strong>{{ season.name }}</strong> · {{ season.gamesPlayed }} game{{ season.gamesPlayed === 1 ? '' : 's' }} played
@@ -32,6 +45,52 @@
       <div class="record-item record-rate">
         <span class="record-value">{{ s.winRate }}%</span>
         <span class="record-label">Win Rate</span>
+      </div>
+    </div>
+
+    <!-- Form: streak + recent form -->
+    <div class="form-row" *ngIf="stats() as s">
+      <div class="form-card" *ngIf="s.streak.type !== 'none'">
+        <span class="form-card-label">Current Streak</span>
+        <span class="form-card-value" [class]="'form-card-value ' + s.streak.type">
+          {{ s.streak.length }} {{ s.streak.type === 'win' ? 'W' : 'L' }}
+        </span>
+        <span class="form-card-detail">
+          {{ s.streak.length }} {{ s.streak.type }}{{ s.streak.length === 1 ? '' : 's' }} in a row
+        </span>
+      </div>
+
+      <div class="form-card" *ngIf="s.recentForm.outcomes.length">
+        <span class="form-card-label">Last {{ s.recentForm.outcomes.length }} Games</span>
+        <span class="form-chips">
+          <span
+            class="form-chip"
+            *ngFor="let outcome of s.recentForm.outcomes"
+            [class]="'form-chip ' + outcome"
+          >
+            {{ outcome === 'win' ? 'W' : outcome === 'loss' ? 'L' : 'D' }}
+          </span>
+        </span>
+        <span class="form-card-detail">Oldest to newest</span>
+      </div>
+    </div>
+
+    <!-- Highlights: best win + closest game -->
+    <div class="highlights" *ngIf="stats()?.bestWin || stats()?.closestGame">
+      <div class="highlight-card" *ngIf="stats()?.bestWin as best">
+        <span class="highlight-label">Biggest Win</span>
+        <span class="highlight-score">{{ best.myScore }}&ndash;{{ best.opponentScore }}</span>
+        <span class="highlight-detail">
+          vs {{ best.opponent }} · +{{ best.difference }} · {{ best.date | date: 'mediumDate' }}
+        </span>
+      </div>
+
+      <div class="highlight-card" *ngIf="stats()?.closestGame as closest">
+        <span class="highlight-label">Closest Game</span>
+        <span class="highlight-score">{{ closest.myScore }}&ndash;{{ closest.opponentScore }}</span>
+        <span class="highlight-detail">
+          vs {{ closest.opponent }} · margin {{ closest.difference > 0 ? '+' : '' }}{{ closest.difference }} · {{ closest.date | date: 'mediumDate' }}
+        </span>
       </div>
     </div>
 
@@ -116,6 +175,63 @@
           </text>
         </svg>
       </div>
+
+      <!-- Point-Type Donut -->
+      <div class="vb-card donut-card">
+        <h3 class="card-title">Point Mix</h3>
+        <p class="card-sub">The same breakdown as a proportional donut.</p>
+
+        <svg class="donut-svg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="80" cy="80" r="60" class="donut-track" />
+          <circle
+            *ngFor="let segment of donutSegments"
+            cx="80"
+            cy="80"
+            r="60"
+            class="donut-seg"
+            [class]="'donut-seg stroke-' + segment.colorClass"
+            [attr.stroke-dasharray]="segment.dashArray"
+            [attr.stroke-dashoffset]="segment.dashOffset"
+            transform="rotate(-90 80 80)"
+          />
+        </svg>
+
+        <ul class="tempo-legend">
+          <li *ngFor="let segment of donutSegments">
+            <span class="legend-dot" [class]="'legend-dot ' + segment.colorClass"></span>
+            <span class="legend-label">{{ segment.label }}</span>
+            <span class="legend-value">{{ segment.percentage }}%</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Points per set -->
+      <div class="vb-card set-card" *ngIf="setBars.length">
+        <h3 class="card-title">Points per Set</h3>
+        <p class="card-sub">How many of my points fell in each set.</p>
+
+        <div class="set-bars">
+          <div class="set-bar-col" *ngFor="let bar of setBars">
+            <span class="set-bar-value">{{ bar.points }}</span>
+            <span class="set-bar-track">
+              <span class="set-bar-fill" [style.height.%]="radarProgress() * bar.heightPercent"></span>
+            </span>
+            <span class="set-bar-label">Set {{ bar.setNumber }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assists-per-game trend -->
+      <div class="vb-card trend-card" *ngIf="trendChart.hasData">
+        <h3 class="card-title">Assists Over Time</h3>
+        <p class="card-sub">My assists per game, oldest to newest.</p>
+
+        <svg class="trend-svg" viewBox="0 0 280 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon [attr.points]="trendChart.areaPoints" class="trend-area" />
+          <polyline [attr.points]="trendChart.polylinePoints" class="trend-line" />
+        </svg>
+        <span class="trend-peak">Peak: {{ trendChart.maxAssists }} assists</span>
+      </div>
     </div>
 
     <!-- Setter Efficiency Metrics -->
@@ -124,6 +240,50 @@
         <span class="setter-metric-value">{{ metric.value }}</span>
         <span class="setter-metric-label">{{ metric.label }}</span>
         <span class="setter-metric-detail">{{ metric.detail }}</span>
+      </div>
+    </div>
+
+    <!-- Per-opponent records -->
+    <div class="opponents" *ngIf="stats()?.opponentRecords?.length">
+      <h3 class="results-title">Head to Head</h3>
+      <ul class="opponent-list">
+        <li class="opponent-row" *ngFor="let record of stats()!.opponentRecords">
+          <span class="opponent-name">{{ record.opponent }}</span>
+          <span class="opponent-record">
+            {{ record.wins }}W &ndash; {{ record.losses }}L<span *ngIf="record.draws"> &ndash; {{ record.draws }}D</span>
+          </span>
+          <span class="opponent-rate">{{ record.winRate }}%</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Season comparison -->
+    <div class="season-compare" *ngIf="bundle()?.comparison?.current as current">
+      <h3 class="results-title">Season Comparison</h3>
+      <div class="compare-grid">
+        <div class="compare-col">
+          <span class="compare-season">{{ current.name }}</span>
+          <span class="compare-tag">Current</span>
+          <ul class="compare-metrics">
+            <li><span>Win Rate</span><strong>{{ current.winRate }}%</strong></li>
+            <li><span>Assists / Game</span><strong>{{ current.assistsPerGame }}</strong></li>
+            <li><span>Points / Game</span><strong>{{ current.pointsPerGame }}</strong></li>
+          </ul>
+        </div>
+        <div class="compare-col" *ngIf="bundle()?.comparison?.previous as previous; else noPrevious">
+          <span class="compare-season">{{ previous.name }}</span>
+          <span class="compare-tag">Previous</span>
+          <ul class="compare-metrics">
+            <li><span>Win Rate</span><strong>{{ previous.winRate }}%</strong></li>
+            <li><span>Assists / Game</span><strong>{{ previous.assistsPerGame }}</strong></li>
+            <li><span>Points / Game</span><strong>{{ previous.pointsPerGame }}</strong></li>
+          </ul>
+        </div>
+        <ng-template #noPrevious>
+          <div class="compare-col compare-empty">
+            <span class="compare-detail">No previous season to compare yet.</span>
+          </div>
+        </ng-template>
       </div>
     </div>
 

@@ -405,6 +405,407 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Season filter ──────────────────────────────────────────────────────── */
+.season-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  margin-top: 1.5rem;
+}
+
+.season-chip {
+  padding: 0.45rem 1rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  color: var(--text-muted);
+
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    color: var(--text);
+  }
+
+  &.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+}
+
+/* ── Form: streak + recent form ─────────────────────────────────────────── */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  margin-top: 1.5rem;
+}
+
+.form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 1.5rem;
+}
+
+.form-card-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.form-card-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+
+  &.win {
+    color: #22c55e;
+  }
+
+  &.loss {
+    color: #ef4444;
+  }
+}
+
+.form-card-detail {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.form-chips {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.form-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 26px;
+  width: 26px;
+
+  border-radius: 7px;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+
+  &.win {
+    background: #22c55e;
+  }
+
+  &.loss {
+    background: #ef4444;
+  }
+
+  &.draw {
+    background: #64748b;
+  }
+}
+
+/* ── Highlights: best/closest game ──────────────────────────────────────── */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  margin-top: 1rem;
+}
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 1.5rem;
+}
+
+.highlight-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.highlight-score {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.highlight-detail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Point-type donut ───────────────────────────────────────────────────── */
+.donut-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.donut-svg {
+  width: 100%;
+  height: auto;
+  max-width: 220px;
+  margin: 0 auto 0.5rem;
+}
+
+.donut-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 18;
+}
+
+.donut-seg {
+  fill: none;
+  stroke-width: 18;
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.stroke-seg-kill {
+  stroke: #6366f1;
+}
+
+.stroke-seg-ace {
+  stroke: #22d3ee;
+}
+
+.stroke-seg-block {
+  stroke: #a855f7;
+}
+
+.stroke-seg-oppo-error {
+  stroke: #f59e0b;
+}
+
+.stroke-seg-other {
+  stroke: #64748b;
+}
+
+/* ── Points per set ─────────────────────────────────────────────────────── */
+.set-bars {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+
+  height: 160px;
+}
+
+.set-bar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+
+  flex: 1;
+  height: 100%;
+}
+
+.set-bar-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.set-bar-track {
+  display: flex;
+  align-items: flex-end;
+
+  height: 100%;
+  width: 100%;
+  max-width: 48px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.set-bar-fill {
+  width: 100%;
+  min-height: 2px;
+
+  background: var(--accent);
+  border-radius: 8px 8px 0 0;
+  transition: height 0.1s linear;
+}
+
+.set-bar-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+/* ── Assists trend sparkline ────────────────────────────────────────────── */
+.trend-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.trend-svg {
+  width: 100%;
+  height: 90px;
+}
+
+.trend-area {
+  fill: rgba(99, 102, 241, 0.15);
+  stroke: none;
+}
+
+.trend-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.trend-peak {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* ── Per-opponent records ───────────────────────────────────────────────── */
+.opponents {
+  margin-top: 2.5rem;
+}
+
+.opponent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.opponent-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 0.9rem 1.25rem;
+}
+
+.opponent-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.opponent-record {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.opponent-rate {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Season comparison ──────────────────────────────────────────────────── */
+.season-compare {
+  margin-top: 2.5rem;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.compare-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 1.5rem;
+}
+
+.compare-season {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.compare-tag {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.compare-metrics {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  strong {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.compare-empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.compare-detail {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
 /* ── Source note ────────────────────────────────────────────────────────── */
 .stats-source {
   display: flex;
@@ -437,5 +838,11 @@
 
   .setter-metrics {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row,
+  .highlights,
+  .compare-grid {
+    grid-template-columns: 1fr;
   }
 }
