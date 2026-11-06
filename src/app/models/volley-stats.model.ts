@@ -64,6 +64,20 @@ export interface GameResult {
 }
 
 /**
+ * Raw row shape returned by the Supabase `set_results` table.
+ * Column names use snake_case to match Postgres conventions.
+ */
+export interface SetResultRow {
+  readonly id: string;
+  readonly game_id: string;
+  readonly team_id: string;
+  readonly set_number: number;
+  readonly my_score: number;
+  readonly opponent_score: number;
+  readonly created_at: string | null;
+}
+
+/**
  * Raw row shape returned by the Supabase `points` table.
  * Column names use snake_case to match Postgres conventions.
  */
@@ -136,12 +150,29 @@ export interface HighlightGame {
 }
 
 /**
- * The number of points I scored in a given set number, aggregated across all
- * games in scope.
+ * The set-balance summary derived from the `set_results` table: how many sets
+ * I won versus lost, the resulting win ratio, and the average points scored per
+ * set from the real set scores.
  */
-export interface SetBreakdownEntry {
+export interface SetBalance {
+  readonly setsWon: number;
+  readonly setsLost: number;
+  readonly setsPlayed: number;
+  readonly setWinRatio: number;
+  readonly averagePointsPerSet: number;
+}
+
+/**
+ * My win/loss record within a single set number (e.g. all first sets, all
+ * tiebreaks), aggregated across the games in scope. Used for an honest
+ * "performance by set number" view.
+ */
+export interface SetNumberPerformance {
   readonly setNumber: number;
-  readonly points: number;
+  readonly setsWon: number;
+  readonly setsLost: number;
+  readonly setsPlayed: number;
+  readonly winRate: number;
 }
 
 /**
@@ -189,7 +220,8 @@ export interface VolleyStats {
   readonly recentForm: RecentForm;
   readonly bestWin: HighlightGame | null;
   readonly closestGame: HighlightGame | null;
-  readonly setBreakdown: readonly SetBreakdownEntry[];
+  readonly setBalance: SetBalance;
+  readonly setNumberPerformance: readonly SetNumberPerformance[];
   readonly opponentRecords: readonly OpponentRecord[];
   readonly trend: readonly TrendPoint[];
 }

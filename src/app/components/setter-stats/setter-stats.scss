@@ -605,7 +605,57 @@
   stroke: #64748b;
 }
 
-/* ── Points per set ─────────────────────────────────────────────────────── */
+/* ── Set balance & performance by set number ────────────────────────────── */
+.set-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.set-balance-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.set-balance-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+
+  padding: 0.75rem 0.5rem;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.set-balance-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.set-balance-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.set-balance-detail {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.set-empty {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
 .set-bars {
   display: flex;
   gap: 0.75rem;
@@ -659,6 +709,12 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-dim);
+}
+
+.set-bar-record {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Assists trend sparkline ────────────────────────────────────────────── */

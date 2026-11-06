@@ -14,7 +14,9 @@ import {
   SeasonComparisonSlice,
   SeasonRow,
   SeasonSummary,
-  SetBreakdownEntry,
+  SetBalance,
+  SetNumberPerformance,
+  SetResultRow,
   SetterStats,
   StreakInfo,
   TrendPoint,
@@ -88,7 +90,14 @@ const EMPTY_STATS: VolleyStats = {
   recentForm: { outcomes: [] },
   bestWin: null,
   closestGame: null,
-  setBreakdown: [],
+  setBalance: {
+    setsWon: 0,
+    setsLost: 0,
+    setsPlayed: 0,
+    setWinRatio: 0,
+    averagePointsPerSet: 0,
+  },
+  setNumberPerformance: [],
   opponentRecords: [],
   trend: [],
 };
@@ -161,12 +170,22 @@ export class VolleyStatsService {
       .select('id, name, created_at')
       .order('created_at', { ascending: false });
 
+    // Set results may not be backfilled or readable yet; treat a failure or an
+    // empty response as "no set data" rather than breaking the dashboard.
+    const setResultsResponse = await client
+      .from('set_results')
+      .select('id, game_id, team_id, set_number, my_score, opponent_score, created_at');
+
     const games = (gamesResponse.data ?? []) as readonly GameRow[];
     const points = (pointsResponse.data ?? []) as readonly PointRow[];
     const seasons =
       seasonsResponse.error != null ? [] : ((seasonsResponse.data ?? []) as readonly SeasonRow[]);
+    const setResults =
+      setResultsResponse.error != null
+        ? []
+        : ((setResultsResponse.data ?? []) as readonly SetResultRow[]);
 
-    return this.buildBundle(games, points, seasons);
+    return this.buildBundle(games, points, seasons, setResults);
   }
 
   /**
@@ -175,23 +194,28 @@ export class VolleyStatsService {
    * @param games The visible game rows, newest-first
    * @param points The visible point rows
    * @param seasons The visible season rows, newest-first
+   * @param setResults The visible set-result rows
    * @returns The aggregated volleyball bundle
    */
   private buildBundle(
     games: readonly GameRow[],
     points: readonly PointRow[],
     seasons: readonly SeasonRow[],
+    setResults: readonly SetResultRow[],
   ): VolleyStatsBundle {
-    const career = this.aggregate(games, points, seasons);
+    const career = this.aggregate(games, points, seasons, setResults);
 
     const seasonSummaries: SeasonSummary[] = seasons.map((season) => {
       const seasonGames = games.filter((game) => game.season_id === season.id);
       const seasonGameIds = new Set(seasonGames.map((game) => game.id));
       const seasonPoints = points.filter((point) => seasonGameIds.has(point.game_id));
+      const seasonSetResults = setResults.filter((setResult) =>
+        seasonGameIds.has(setResult.game_id),
+      );
       return {
         id: season.id,
         name: season.name,
-        stats: this.aggregate(seasonGames, seasonPoints, seasons),
+        stats: this.aggregate(seasonGames, seasonPoints, seasons, seasonSetResults),
       };
     });
 
@@ -226,15 +250,18 @@ export class VolleyStatsService {
   }
 
   /**
-   * Combines games and points into summary statistics.
+   * Combines games, points, and set results into summary statistics.
    * @param games The visible game rows
    * @param points The visible point rows
+   * @param seasons The visible season rows
+   * @param setResults The visible set-result rows
    * @returns The aggregated volleyball statistics
    */
   private aggregate(
     games: readonly GameRow[],
     points: readonly PointRow[],
     seasons: readonly SeasonRow[],
+    setResults: readonly SetResultRow[],
   ): VolleyStats {
     const gamesPlayed = games.length;
 
@@ -286,7 +313,8 @@ export class VolleyStatsService {
       recentForm: this.buildRecentForm(results),
       bestWin: highlights.bestWin,
       closestGame: highlights.closestGame,
-      setBreakdown: this.buildSetBreakdown(points),
+      setBalance: this.buildSetBalance(setResults),
+      setNumberPerformance: this.buildSetNumberPerformance(setResults),
       opponentRecords: this.buildOpponentRecords(games),
       trend: this.buildTrend(games, points),
     };
@@ -369,26 +397,87 @@ export class VolleyStatsService {
   }
 
   /**
-   * Counts the points I scored, grouped by positive set number and sorted
-   * ascending. Rows with a non-positive set number are ignored.
-   * @param points The visible point rows
-   * @returns The per-set point counts, ascending by set number
+   * Builds the set-balance summary from the real set scores: sets won versus
+   * lost (a set is won when my score beats the opponent's), the resulting win
+   * ratio, and the average points scored per set. Tied set scores count as
+   * played but neither won nor lost. Returns a clean zero-state when no set
+   * results have been backfilled yet.
+   * @param setResults The visible set-result rows
+   * @returns The aggregated set balance
    */
-  private buildSetBreakdown(points: readonly PointRow[]): readonly SetBreakdownEntry[] {
-    const perSet = new Map<number, number>();
+  private buildSetBalance(setResults: readonly SetResultRow[]): SetBalance {
+    let setsWon = 0;
+    let setsLost = 0;
+    let setsPlayed = 0;
+    let totalPoints = 0;
 
-    for (const point of points) {
-      if (!point.scored_by_me) {
+    for (const setResult of setResults) {
+      if (!Number.isInteger(setResult.set_number) || setResult.set_number <= 0) {
         continue;
       }
-      if (!Number.isInteger(point.set_number) || point.set_number <= 0) {
-        continue;
+      setsPlayed += 1;
+      totalPoints += setResult.my_score;
+      if (setResult.my_score > setResult.opponent_score) {
+        setsWon += 1;
+      } else if (setResult.my_score < setResult.opponent_score) {
+        setsLost += 1;
       }
-      perSet.set(point.set_number, (perSet.get(point.set_number) ?? 0) + 1);
     }
 
-    return [...perSet.entries()]
-      .map(([setNumber, pointsScored]) => ({ setNumber, points: pointsScored }))
+    const decidedSets = setsWon + setsLost;
+    const setWinRatio = decidedSets === 0 ? 0 : Math.round((setsWon / decidedSets) * 1000) / 10;
+    const averagePointsPerSet =
+      setsPlayed === 0 ? 0 : Math.round((totalPoints / setsPlayed) * 10) / 10;
+
+    return {
+      setsWon,
+      setsLost,
+      setsPlayed,
+      setWinRatio,
+      averagePointsPerSet,
+    };
+  }
+
+  /**
+   * Groups the real set results by set number and computes a win/loss record
+   * and win rate for each, giving an honest "performance by set number" view
+   * (first set versus fifth-set tiebreak, and so on). Rows with a non-positive
+   * set number are ignored.
+   * @param setResults The visible set-result rows
+   * @returns The per-set-number performance, ascending by set number
+   */
+  private buildSetNumberPerformance(
+    setResults: readonly SetResultRow[],
+  ): readonly SetNumberPerformance[] {
+    const perSetNumber = new Map<number, { setsWon: number; setsLost: number; setsPlayed: number }>();
+
+    for (const setResult of setResults) {
+      if (!Number.isInteger(setResult.set_number) || setResult.set_number <= 0) {
+        continue;
+      }
+      const entry =
+        perSetNumber.get(setResult.set_number) ?? { setsWon: 0, setsLost: 0, setsPlayed: 0 };
+      entry.setsPlayed += 1;
+      if (setResult.my_score > setResult.opponent_score) {
+        entry.setsWon += 1;
+      } else if (setResult.my_score < setResult.opponent_score) {
+        entry.setsLost += 1;
+      }
+      perSetNumber.set(setResult.set_number, entry);
+    }
+
+    return [...perSetNumber.entries()]
+      .map(([setNumber, record]) => {
+        const decided = record.setsWon + record.setsLost;
+        const winRate = decided === 0 ? 0 : Math.round((record.setsWon / decided) * 1000) / 10;
+        return {
+          setNumber,
+          setsWon: record.setsWon,
+          setsLost: record.setsLost,
+          setsPlayed: record.setsPlayed,
+          winRate,
+        };
+      })
       .sort((entryA, entryB) => entryA.setNumber - entryB.setNumber);
   }
 

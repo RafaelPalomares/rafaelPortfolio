@@ -14,7 +14,8 @@ import { Subscription } from 'rxjs';
 import { VolleyStatsService } from '../../services/volley-stats';
 import {
   PointTypeShare,
-  SetBreakdownEntry,
+  SetBalance,
+  SetNumberPerformance,
   SetterStats,
   TrendPoint,
   VolleyStats,
@@ -62,11 +63,24 @@ interface DonutSegment {
 }
 
 /**
- * One bar of the per-set point breakdown chart.
+ * A single set-balance metric shown alongside the per-set-number chart.
  */
-interface SetBar {
+interface SetBalanceMetric {
+  readonly label: string;
+  readonly value: string;
+  readonly detail: string;
+}
+
+/**
+ * One bar of the per-set-number win-rate chart. The bar height tracks the win
+ * rate while the label reports the set record for context.
+ */
+interface SetNumberBar {
   readonly setNumber: number;
-  readonly points: number;
+  readonly winRate: number;
+  readonly setsWon: number;
+  readonly setsLost: number;
+  readonly setsPlayed: number;
   readonly heightPercent: number;
 }
 
@@ -195,7 +209,8 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
   donutSegments: DonutSegment[] = [];
   radarPoints: RadarPoint[] = [];
   setterMetrics: SetterMetric[] = [];
-  setBars: SetBar[] = [];
+  setBalanceMetrics: SetBalanceMetric[] = [];
+  setNumberBars: SetNumberBar[] = [];
   trendChart: TrendChart = { polylinePoints: '', areaPoints: '', maxAssists: 0, hasData: false };
 
   ngOnInit(): void {
@@ -278,7 +293,8 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.donutSegments = this.buildDonutSegments(stats.pointTypeShares);
     this.radarPoints = this.buildRadarPoints(stats.pointTypeShares);
     this.setterMetrics = this.buildSetterMetrics(stats.setter);
-    this.setBars = this.buildSetBars(stats.setBreakdown);
+    this.setBalanceMetrics = this.buildSetBalanceMetrics(stats.setBalance);
+    this.setNumberBars = this.buildSetNumberBars(stats.setNumberPerformance);
     this.trendChart = this.buildTrendChart(stats.trend);
 
     const initialValues: Record<string, number> = {};
@@ -357,18 +373,57 @@ export class SetterStatsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * Builds the per-set bar heights, scaled to the busiest set so the tallest
-   * bar fills the chart.
-   * @param setBreakdown The per-set point counts
-   * @returns The ordered set bars
+   * Builds the set-balance summary tiles from the real set scores.
+   * @param setBalance The aggregated set balance
+   * @returns The ordered set-balance metrics
    */
-  private buildSetBars(setBreakdown: readonly SetBreakdownEntry[]): SetBar[] {
-    const maxPoints = setBreakdown.reduce((max, entry) => Math.max(max, entry.points), 0);
-    return setBreakdown.map((entry) => ({
+  private buildSetBalanceMetrics(setBalance: SetBalance): SetBalanceMetric[] {
+    return [
+      {
+        label: 'Set Win Rate',
+        value: `${setBalance.setWinRatio}%`,
+        detail: `${setBalance.setsWon}W · ${setBalance.setsLost}L`,
+      },
+      {
+        label: 'Sets Played',
+        value: `${setBalance.setsPlayed}`,
+        detail: `${setBalance.setsWon} won · ${setBalance.setsLost} lost`,
+      },
+      {
+        label: 'Avg Points / Set',
+        value: `${setBalance.averagePointsPerSet}`,
+        detail: 'From real set scores',
+      },
+    ];
+  }
+
+  /**
+   * Builds the per-set-number bars. Each bar height tracks the win rate in that
+   * set number so the chart reads as an honest "performance by set number".
+   * @param performance The per-set-number performance, ascending by set number
+   * @returns The ordered set-number bars
+   */
+  private buildSetNumberBars(
+    performance: readonly SetNumberPerformance[],
+  ): SetNumberBar[] {
+    return performance.map((entry) => ({
       setNumber: entry.setNumber,
-      points: entry.points,
-      heightPercent: maxPoints === 0 ? 0 : Math.round((entry.points / maxPoints) * 100),
+      winRate: entry.winRate,
+      setsWon: entry.setsWon,
+      setsLost: entry.setsLost,
+      setsPlayed: entry.setsPlayed,
+      heightPercent: Math.round(entry.winRate),
     }));
+  }
+
+  /**
+   * Builds a human-readable label for a set number, naming the fifth set as a
+   * tiebreak since it is only played to decide a drawn match.
+   * @param setNumber The one-based set number
+   * @returns The display label for the set
+   */
+  setNumberLabel(setNumber: number): string {
+    return setNumber >= 5 ? 'TB' : `Set ${setNumber}`;
   }
 
   /**

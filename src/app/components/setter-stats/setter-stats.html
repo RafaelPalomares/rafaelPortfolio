@@ -205,20 +205,35 @@
         </ul>
       </div>
 
-      <!-- Points per set -->
-      <div class="vb-card set-card" *ngIf="setBars.length">
-        <h3 class="card-title">Points per Set</h3>
-        <p class="card-sub">How many of my points fell in each set.</p>
+      <!-- Set balance & performance by set number -->
+      <div class="vb-card set-card" *ngIf="stats() as s">
+        <h3 class="card-title">Set Balance</h3>
+        <p class="card-sub">Sets won vs lost and my win rate by set number, from real set scores.</p>
 
-        <div class="set-bars">
-          <div class="set-bar-col" *ngFor="let bar of setBars">
-            <span class="set-bar-value">{{ bar.points }}</span>
-            <span class="set-bar-track">
-              <span class="set-bar-fill" [style.height.%]="radarProgress() * bar.heightPercent"></span>
-            </span>
-            <span class="set-bar-label">Set {{ bar.setNumber }}</span>
+        <div class="set-balance" *ngIf="s.setBalance.setsPlayed > 0; else noSetData">
+          <div class="set-balance-tiles">
+            <div class="set-balance-tile" *ngFor="let metric of setBalanceMetrics">
+              <span class="set-balance-value">{{ metric.value }}</span>
+              <span class="set-balance-label">{{ metric.label }}</span>
+              <span class="set-balance-detail">{{ metric.detail }}</span>
+            </div>
+          </div>
+
+          <div class="set-bars" *ngIf="setNumberBars.length">
+            <div class="set-bar-col" *ngFor="let bar of setNumberBars">
+              <span class="set-bar-value">{{ bar.winRate }}%</span>
+              <span class="set-bar-track">
+                <span class="set-bar-fill" [style.height.%]="radarProgress() * bar.heightPercent"></span>
+              </span>
+              <span class="set-bar-label">{{ setNumberLabel(bar.setNumber) }}</span>
+              <span class="set-bar-record">{{ bar.setsWon }}&ndash;{{ bar.setsLost }}</span>
+            </div>
           </div>
         </div>
+
+        <ng-template #noSetData>
+          <p class="set-empty">No set scores tracked yet — set stats will appear once games are logged.</p>
+        </ng-template>
       </div>
 
       <!-- Assists-per-game trend -->
