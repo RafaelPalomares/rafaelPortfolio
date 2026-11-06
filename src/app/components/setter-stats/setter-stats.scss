@@ -1,0 +1,261 @@
+.section-lead {
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 1rem 0 0;
+}
+
+/* ── Headline metric tiles ──────────────────────────────────────────────── */
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 1.75rem;
+
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+}
+
+.stat-tile-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-tile-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+/* ── Card grid ──────────────────────────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.vb-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  padding: 2rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0 0 0.35rem;
+}
+
+.card-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 1.75rem;
+}
+
+/* ── Distribution bar ───────────────────────────────────────────────────── */
+.tempo-bar {
+  display: flex;
+
+  height: 14px;
+  width: 100%;
+
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tempo-seg {
+  height: 100%;
+  transition: width 0.1s linear;
+}
+
+.tempo-legend {
+  list-style: none;
+
+  margin: 1.5rem 0 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+}
+
+.legend-dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.legend-value {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Point-type colors, shared by bar segments and legend dots */
+.seg-kill {
+  background: #6366f1;
+}
+
+.seg-ace {
+  background: #22d3ee;
+}
+
+.seg-block {
+  background: #a855f7;
+}
+
+.seg-oppo-error {
+  background: #f59e0b;
+}
+
+.seg-other {
+  background: #64748b;
+}
+
+/* ── Radar ──────────────────────────────────────────────────────────────── */
+.radar-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.radar-svg {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.radar-ring {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.radar-axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.radar-shape {
+  fill: rgba(99, 102, 241, 0.25);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.radar-dot {
+  fill: var(--accent);
+}
+
+.radar-label {
+  fill: var(--text-dim);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Setter efficiency metrics ──────────────────────────────────────────── */
+.setter-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.setter-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 1.5rem;
+}
+
+.setter-metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.setter-metric-label {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.setter-metric-detail {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+/* ── Source note ────────────────────────────────────────────────────────── */
+.stats-source {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+
+  margin-top: 2rem;
+
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.source-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .stat-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .setter-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,107 @@
+<section class="section" id="setter-stats" #dashboardRoot>
+  <div class="container">
+    <span class="section-label">By the Numbers</span>
+    <h2 class="section-title">VolleyStats Dashboard</h2>
+    <p class="section-lead">
+      Live performance metrics pulled from my VolleyStats tracker. Kills, aces, blocks and a breakdown of
+      how I win points — updated as the season goes on.
+    </p>
+
+    <!-- Headline Metric Tiles -->
+    <div class="stat-tiles" aria-live="polite">
+      <div class="stat-tile" *ngFor="let tile of statTiles">
+        <span class="stat-tile-value">
+          {{ (displayValues()[tile.key] || 0) | number: '1.' + tile.decimals + '-' + tile.decimals }}{{ tile.suffix }}
+        </span>
+        <span class="stat-tile-label">{{ tile.label }}</span>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <!-- Point-Type Distribution -->
+      <div class="vb-card tempo-card">
+        <h3 class="card-title">How I Win Points</h3>
+        <p class="card-sub">The share of my points that come from each play type.</p>
+
+        <div class="tempo-bar" role="img" aria-label="Point type distribution bar">
+          <div
+            *ngFor="let segment of distributionSegments"
+            class="tempo-seg"
+            [class]="'tempo-seg ' + segment.colorClass"
+            [style.width.%]="radarProgress() * segment.percentage"
+          ></div>
+        </div>
+
+        <ul class="tempo-legend">
+          <li *ngFor="let segment of distributionSegments">
+            <span class="legend-dot" [class]="'legend-dot ' + segment.colorClass"></span>
+            <span class="legend-label">{{ segment.label }}</span>
+            <span class="legend-value">{{ segment.percentage }}%</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Point-Type Radar -->
+      <div class="vb-card radar-card">
+        <h3 class="card-title">Scoring Profile</h3>
+        <p class="card-sub">My point mix across the core play types.</p>
+
+        <svg class="radar-svg" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Concentric rings -->
+          <circle cx="130" cy="130" r="95" class="radar-ring" />
+          <circle cx="130" cy="130" r="71" class="radar-ring" />
+          <circle cx="130" cy="130" r="47" class="radar-ring" />
+          <circle cx="130" cy="130" r="24" class="radar-ring" />
+
+          <!-- Axis spokes -->
+          <line
+            *ngFor="let point of radarPoints"
+            x1="130"
+            y1="130"
+            [attr.x2]="point.axisX"
+            [attr.y2]="point.axisY"
+            class="radar-axis"
+          />
+
+          <!-- Data polygon -->
+          <polygon [attr.points]="radarPolygonPoints()" class="radar-shape" />
+
+          <!-- Vertex dots -->
+          <circle
+            *ngFor="let point of radarPoints"
+            [attr.cx]="130 + (point.pointX - 130) * radarProgress()"
+            [attr.cy]="130 + (point.pointY - 130) * radarProgress()"
+            r="3.5"
+            class="radar-dot"
+          />
+
+          <!-- Axis labels -->
+          <text
+            *ngFor="let point of radarPoints"
+            [attr.x]="point.labelX"
+            [attr.y]="point.labelY"
+            class="radar-label"
+            text-anchor="middle"
+            dominant-baseline="middle"
+          >
+            {{ point.label }}
+          </text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Setter Efficiency Metrics -->
+    <div class="setter-metrics">
+      <div class="setter-metric" *ngFor="let metric of setterMetrics">
+        <span class="setter-metric-value">{{ metric.value }}</span>
+        <span class="setter-metric-label">{{ metric.label }}</span>
+        <span class="setter-metric-detail">{{ metric.detail }}</span>
+      </div>
+    </div>
+
+    <p class="stats-source">
+      <span class="source-dot"></span>
+      Data served live from Supabase.
+    </p>
+  </div>
+</section>

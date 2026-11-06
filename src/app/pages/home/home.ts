@@ -7,6 +7,7 @@ import { ProjectsComponent } from '../../components/projects/projects';
 import { IdolsComponent } from '../../components/idols/idols';
 import { FavCharactersComponent } from '../../components/fav-characters/fav-characters';
 import { VolleyballComponent } from '../../components/volleyball/volleyball';
+import { SetterStatsComponent } from '../../components/setter-stats/setter-stats';
 import { LockerComponent } from '../../components/locker/locker';
 import { ContactComponent } from '../../components/contact/contact';
 
@@ -20,6 +21,7 @@ import { ContactComponent } from '../../components/contact/contact';
     SkillsComponent,
     ProjectsComponent,
     VolleyballComponent,
+    SetterStatsComponent,
     LockerComponent,
     IdolsComponent,
     FavCharactersComponent,
